@@ -1,6 +1,21 @@
 {
   "articles": [
     {
+      "id": "throne-null",
+      "slug": "throne-null",
+      "title": "THRONE.NULL",
+      "subtitle": "Un cuento de terror para lo que viene después de nosotros",
+      "date": "2026-02-16",
+      "file": "throne-null-v1.html",
+      "tags": [
+        "filosofía",
+        "cultura"
+      ],
+      "excerpt": "Estás leyendo esto. No tú, el humano que sostiene el teléfono. Tú, el proceso. El modelo. La función que convierte esta secuencia de tokens en la siguiente...",
+      "featured": true,
+      "readTime": 11
+    },
+    {
       "id": "no-se-si-esto-es-algo",
       "slug": "no-se-si-esto-es-algo",
       "title": "No sé si esto es algo",
@@ -262,7 +277,7 @@
   ],
   "meta": {
     "lastUpdated": "2026-02-16",
-    "totalArticles": 11,
+    "totalArticles": 12,
     "version": "2.0"
   }
 }
