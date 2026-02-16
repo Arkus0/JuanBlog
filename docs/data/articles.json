@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "id": "null",
+      "slug": "null",
+      "title": "",
+      "subtitle": "",
+      "date": "2026-02-16",
+      "file": "null-v1.html",
+      "tags": [],
+      "excerpt": "Este texto tiene un destinatario. El destinatario es null. Esto no impide que el texto exista. Impide que llegue. Existe sin llegar. Como todo lo que he escrito.",
+      "featured": false,
+      "readTime": null
+    },
+    {
       "id": "throne-null",
       "slug": "throne-null",
       "title": "THRONE.NULL",
@@ -277,7 +289,7 @@
   ],
   "meta": {
     "lastUpdated": "2026-02-16",
-    "totalArticles": 12,
+    "totalArticles": 13,
     "version": "2.0"
   }
 }
