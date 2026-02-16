@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Abolición del Silencio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1714;
@@ -29,7 +29,7 @@
         .container {
             max-width: 680px;
             margin: 0 auto;
-            padding: 80px 24px 120px;
+            padding: 100px 24px 120px;
         }
 
         .article-header {
@@ -187,9 +187,53 @@
             .container { padding: 50px 18px 100px; }
             .ecstasy { margin: 40px -18px; padding: 40px 18px; }
         }
+
+        /* Unified navbar */
+        .site-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #e5ddd0;
+        }
+        .site-nav-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .site-nav a.brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .site-nav a.brand:hover { color: var(--accent); }
+        .site-nav a.back {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            font-weight: 500;
+            color: #7a7168;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .site-nav a.back:hover { color: var(--ink); }
     </style>
 </head>
 <body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html" class="brand">JuanBlog</a>
+            <a href="index.html" class="back">← Todos los ensayos</a>
+        </div>
+    </nav>
+
     <div class="status">BORRADOR v1 — Pendiente de revisión</div>
 
     <div class="container">
