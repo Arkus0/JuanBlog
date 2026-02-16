@@ -28,7 +28,8 @@ function qualityRules(topic: TopicLabel): string {
 
 export async function classifyTopic(ideasText: string): Promise<TopicLabel> {
   const prompt = `Clasifica estas ideas en una sola etiqueta: sociologia, entrenamiento, politica, estilo_vida, tecnologia, mixto.\n\nIdeas:\n${ideasText}\n\nResponde solo la etiqueta.`;
-  const response = (await llmClients.askOpenAI(prompt, 'gpt-4o-mini')).trim().toLowerCase();
+  // Usamos Kimi (gratis) para clasificación
+  const response = (await llmClients.askKimi(prompt)).trim().toLowerCase();
   const allowed: TopicLabel[] = [
     'sociologia',
     'entrenamiento',
@@ -52,16 +53,16 @@ export async function generateDraft(args: {
 
   const context = `Ideas inbox:\n${ideasJoined}\n\nTarget words: ${args.targetWords}\nTopic: ${args.topicLabel}\nReglas:\n${rules}`;
 
-  const divergentPrompt = `${context}\n\nRol: estratega divergente. Entrega outline, tesis, estructura, qué evitar.`;
-  const narrativePrompt = `${context}\n\nRol: narrador. Escribe borrador narrativo claro con ejemplos.`;
-  const criticPrompt = `${context}\n\nRol: crítico severo SEO+contenido. Señala huecos, redundancias y mejoras.`;
+  // Ronda 1 (divergente): Kimi y Grok generan en paralelo
+  const kimiPrompt = `${context}\n\nRol: estratega de contenido. Entrega outline, tesis, estructura, qué evitar, y un borrador inicial.`;
+  const grokPrompt = `${context}\n\nRol: narrador y crítico. Escribe borrador narrativo claro con ejemplos y señala huecos o mejoras.`;
 
-  const [gptOutline, claudeDraft, kimiCritique] = await Promise.all([
-    llmClients.askOpenAI(divergentPrompt),
-    llmClients.askClaude(narrativePrompt),
-    llmClients.askKimi(criticPrompt)
+  const [kimiDraft, grokDraft] = await Promise.all([
+    llmClients.askKimi(kimiPrompt),
+    llmClients.askGrok(grokPrompt)
   ]);
 
+  // Ronda 2 (convergente): Kimi unifica en JSON estricto
   const convergePrompt = `Toma estos materiales y unifica en un JSON ESTRICTO válido (sin markdown, sin texto adicional):
 {
   "title": "...",
@@ -80,32 +81,30 @@ No inventes fuentes.
 Contexto base:
 ${context}
 
-Material A (GPT outline):
-${gptOutline}
+Material A (Kimi - estructura y borrador):
+${kimiDraft}
 
-Material B (Claude draft):
-${claudeDraft}
-
-Material C (Kimi critique):
-${kimiCritique}
+Material B (Grok - narrativa y crítica):
+${grokDraft}
 
 ${args.previousVersion ? `Versión previa:\n${args.previousVersion}` : ''}
 ${args.revisionInstructions ? `Instrucciones de revisión:\n${args.revisionInstructions}` : ''}`;
 
-  const v1Raw = await llmClients.askOpenAI(convergePrompt, 'gpt-4o');
+  const v1Raw = await llmClients.askKimi(convergePrompt);
 
+  // Ronda 3 (red team): Ambos modelos critican
   const redTeamPrompt = `Actúa como red team editorial. Evalúa este JSON borrador y lista mejoras concretas (errores, claims dudosos, estructura, SEO).\n${v1Raw}`;
-  const [redGpt, redClaude, redKimi] = await Promise.all([
-    llmClients.askOpenAI(redTeamPrompt),
-    llmClients.askClaude(redTeamPrompt),
-    llmClients.askKimi(redTeamPrompt)
+  const [redKimi, redGrok] = await Promise.all([
+    llmClients.askKimi(redTeamPrompt),
+    llmClients.askGrok(redTeamPrompt)
   ]);
 
+  // Aplicar mejoras con Grok (que suele ser más directo)
   const applyPrompt = `Aplica las siguientes mejoras al JSON borrador y devuelve JSON ESTRICTO válido únicamente:\n
 Borrador inicial:\n${v1Raw}\n
-Críticas red team:\n- GPT: ${redGpt}\n- Claude: ${redClaude}\n- Kimi: ${redKimi}\n
+Críticas red team:\n- Kimi: ${redKimi}\n- Grok: ${redGrok}\n
 Asegura target_words=${args.targetWords} y topic_label=${args.topicLabel}.`;
 
-  const v2Raw = await llmClients.askClaude(applyPrompt);
+  const v2Raw = await llmClients.askGrok(applyPrompt);
   return parseAndValidateDraft(v2Raw);
 }

@@ -58,11 +58,12 @@ export async function handleDraft(targetWords: 1000 | 2000): Promise<string> {
 
   const actionLabel = article.wp_post_id ? 'Draft actualizado' : 'Draft creado';
   const linksMsg = composeLinksMessage([draftResult.viewUrl, draftResult.selfLink, draftResult.editUrl]);
+  const modoPrueba = !draftResult.selfLink ? '\n\n⚠️ *MODO PRUEBA*: Blogger no configurado. El draft se guardó localmente.' : '';
 
   return `Borrador v${version.version_number} listo para revisión.\n\n*${draft.title}*\n\n${draft.content_markdown.slice(
     0,
     2500
-  )}\n\n${actionLabel} en Blogger.${linksMsg}\n\nUsa /revise <instrucciones> o /approve.`;
+  )}\n\n${actionLabel}.${linksMsg}${modoPrueba}\n\nUsa /revise <instrucciones> o /approve.`;
 }
 
 export async function handleRevise(instructions: string): Promise<string> {
@@ -99,11 +100,12 @@ export async function handleRevise(instructions: string): Promise<string> {
 
   const actionLabel = article.wp_post_id ? 'Draft actualizado' : 'Draft creado';
   const linksMsg = composeLinksMessage([draftResult.viewUrl, draftResult.selfLink, draftResult.editUrl]);
+  const modoPrueba = !draftResult.selfLink ? '\n\n⚠️ *MODO PRUEBA*: Blogger no configurado. El draft se guardó localmente.' : '';
 
   return `Revisión aplicada. Nueva versión v${version.version_number}.\n\n*${draft.title}*\n\n${draft.content_markdown.slice(
     0,
     2500
-  )}\n\n${actionLabel} en Blogger.${linksMsg}\n\nUsa /revise <instrucciones> o /approve.`;
+  )}\n\n${actionLabel}.${linksMsg}${modoPrueba}\n\nUsa /revise <instrucciones> o /approve.`;
 }
 
 export async function handleApprove(): Promise<string> {
@@ -113,7 +115,7 @@ export async function handleApprove(): Promise<string> {
   }
 
   if (article.status === 'PUBLISHED') {
-    const links = await publisher.getPostLinks(article.wp_post_id).catch(() => ({}));
+    const links = await publisher.getPostLinks(article.wp_post_id).catch(() => ({ viewUrl: undefined, selfLink: undefined, editUrl: undefined }));
     const linksMsg = composeLinksMessage([links.viewUrl, links.selfLink, links.editUrl]);
     return `✅ Este artículo ya está publicado (post #${article.wp_post_id}).${linksMsg}`;
   }
@@ -127,7 +129,8 @@ export async function handleApprove(): Promise<string> {
   });
 
   const linksMsg = composeLinksMessage([result.viewUrl, result.selfLink]);
-  return `✅ Publicado post #${result.remotePostId}. Artículo #${article.id} marcado como PUBLISHED.${linksMsg}`;
+  const modoPrueba = !result.selfLink ? '\n\n⚠️ *MODO PRUEBA*: El post fue "publicado" localmente. Configura Blogger para publicación real.' : '';
+  return `✅ Publicado post #${result.remotePostId}. Artículo #${article.id} marcado como PUBLISHED.${linksMsg}${modoPrueba}`;
 }
 
 export async function handleStatus(): Promise<string> {

@@ -1,6 +1,6 @@
 # JuanBlog Telegram -> LLM Pipeline -> Blogger
 
-Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir ideas por Telegram, generar borradores con 3 modelos (GPT, Claude, Kimi), iterar con `/revise` y publicar en Blogger **solo con `/approve`**.
+Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir ideas por Telegram, generar borradores con 2 modelos (Kimi gratis + Grok), iterar con `/revise` y publicar en Blogger **solo con `/approve`**.
 
 ## Checklist de implementación (máx. 15)
 
@@ -27,10 +27,10 @@ Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir i
 - **Webhook Telegram**: `POST /webhook/telegram`.
 - **Estado** por artículo (`COLLECTING`, `DRAFTING`, `REVIEW`, `REVISING`, `APPROVED`, `PUBLISHED`).
 - **Versionado**: cada `/draft` o `/revise` genera una nueva versión (`v1`, `v2`, ...).
-- **Pipeline LLM**:
-  - Ronda 1 (divergente): GPT (outline), Claude (narrativa), Kimi (crítica SEO/huecos).
-  - Ronda 2 (convergente): Editor genera JSON estricto `v1`.
-  - Ronda 3 (red team): 3 críticas + editor aplica cambios -> `v2`.
+- **Pipeline LLM** (simplificado, solo Kimi + Grok):
+  - Ronda 1 (divergente): Kimi (estructura + borrador) y Grok (narrativa + crítica) en paralelo.
+  - Ronda 2 (convergente): Kimi unifica en JSON estricto `v1`.
+  - Ronda 3 (red team): Kimi + Grok critican, Grok aplica cambios -> `v2`.
 - **Publisher (Blogger)**:
   - al producir `v2`: crea/actualiza `draft`.
   - `/approve`: publica.
@@ -53,21 +53,29 @@ Copia `.env.example` a `.env` y completa:
 cp .env.example .env
 ```
 
-Obligatorias para Blogger:
+### Variables obligatorias mínimas (para probar):
 
+**Telegram:**
+- `TELEGRAM_BOT_TOKEN` - Del @BotFather
+- `TELEGRAM_WEBHOOK_SECRET` - Un secreto largo que inventas tú
+
+**IA (necesitas al menos uno):**
+- `OPENROUTER_API_KEY` - **GRATIS** en [openrouter.ai](https://openrouter.ai) para usar Kimi
+- `GROK_API_KEY` - Desde [console.x.ai](https://console.x.ai) (tienes €25 gratis al registrarte)
+
+### Variables para Blogger (opcionales para pruebas):
+
+Si dejas estas vacías, el sistema funciona en **modo prueba**:
 - `GOOGLE_CLIENT_ID`
 - `GOOGLE_CLIENT_SECRET`
 - `GOOGLE_REFRESH_TOKEN`
 - `BLOGGER_BLOG_ID`
 
-Además:
+En modo prueba los borradores se guardan localmente y se muestran en Telegram, pero no se publican en Blogger.
 
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_WEBHOOK_SECRET`
-- `OPENAI_API_KEY`
-- `ANTHROPIC_API_KEY`
-- `KIMI_API_KEY` o `OPENROUTER_API_KEY`
-- `KIMI_BASE_URL`
+### Opcionales adicionales:
+- `OPENAI_API_KEY` - Solo si quieres usar GPT también
+- `ANTHROPIC_API_KEY` - Solo si quieres usar Claude también
 
 Notas: `WP_*` quedaron opcionales solo por retrocompatibilidad y no se usan en runtime.
 
@@ -79,6 +87,56 @@ npm run dev
 ```
 
 Servidor en `http://localhost:3000`.
+
+---
+
+## 🧪 Probar sin Blogger (modo prueba)
+
+Puedes probar todo el flujo sin configurar Blogger. En este modo:
+- Los borradores se generan con IA
+- Se guardan localmente en SQLite
+- Se muestran en Telegram
+- No se publica nada en Blogger
+
+### Pasos:
+
+1. **Configura solo las variables mínimas** en `.env`:
+```env
+TELEGRAM_BOT_TOKEN=tu_token
+TELEGRAM_WEBHOOK_SECRET=un_secreto_largo
+OPENROUTER_API_KEY=tu_key_de_openrouter
+GROK_API_KEY=tu_key_de_grok
+# Deja vacías las variables de Google/Blogger
+```
+
+2. **Inicia el servidor**:
+```bash
+npm run dev
+```
+
+Verás en los logs: `"Usando MockPublisher (modo prueba - sin Blogger)"`
+
+3. **Expón tu localhost con ngrok**:
+```bash
+ngrok http 3000
+```
+
+4. **Configura el webhook de Telegram** (reemplaza la URL):
+```bash
+curl -X POST "https://api.telegram.org/botTU_TOKEN/setWebhook" \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://TU_URL.ngrok-free.app/webhook/telegram","secret_token":"TU_SECRETO"}'
+```
+
+5. **Prueba en Telegram**:
+- `/idea Mi primera idea para un artículo`
+- `/idea Otra idea relacionada`
+- `/draft` → Generará el borrador con Kimi + Grok
+- `/revise Hazlo más largo` → Revisará el borrador
+- `/approve` → "Publicará" localmente (simulado)
+- `/status` → Ver estado actual
+
+Cuando estés listo para conectar Blogger, completa las variables de Google y reinicia.
 
 ## Smoke test real de Blogger
 
@@ -197,6 +255,15 @@ npm run test
 npm run smoke:blogger
 ```
 
-## Notas de proveedor Kimi
+## Notas de proveedores
 
-Por defecto se implementa Kimi en modo **OpenAI-compatible** usando `KIMI_BASE_URL` + `KIMI_API_KEY` (o `OPENROUTER_API_KEY`).
+### Kimi (GRATIS vía OpenRouter)
+- Regístrate gratis en [openrouter.ai](https://openrouter.ai)
+- Usa el modelo `moonshotai/kimi-k2:free` (incluido en el código)
+- No necesitas tarjeta de crédito
+
+### Grok (xAI)
+- Consigue tu API key en [console.x.ai](https://console.x.ai)
+- Al registrarte recibes €25 en créditos gratuitos
+- Después puedes recargar con tarjeta
+- El modelo usado es `grok-2-latest`

@@ -3,7 +3,7 @@ import { config } from '../config/env';
 import { logger } from '../logger';
 import { PostLinks, Publisher, PublishResult, UpsertDraftInput, UpsertDraftResult } from './types';
 
-function toNumericId(id: string | number | undefined): number {
+function toNumericId(id: string | number | undefined | null): number {
   if (!id) throw new Error('Blogger no devolvió post id');
   const parsed = Number(id);
   if (Number.isNaN(parsed)) {
@@ -30,17 +30,16 @@ export class BloggerPublisher implements Publisher {
 
   async upsertDraft(input: UpsertDraftInput): Promise<UpsertDraftResult> {
     if (input.remotePostId) {
-      const response = await this.blogger.posts.patch({
+      const response = (await this.blogger.posts.patch({
         auth: this.oauth2,
         blogId: config.BLOGGER_BLOG_ID,
         postId: String(input.remotePostId),
-        isDraft: true,
         requestBody: {
           title: input.title,
           content: input.contentHtml,
           labels: input.labels
         }
-      });
+      } as any)) as { data: { id?: string | null; url?: string | null; selfLink?: string | null } };
 
       const post = response.data;
       return {
@@ -49,16 +48,15 @@ export class BloggerPublisher implements Publisher {
       };
     }
 
-    const response = await this.blogger.posts.insert({
+    const response = (await this.blogger.posts.insert({
       auth: this.oauth2,
       blogId: config.BLOGGER_BLOG_ID,
-      isDraft: true,
       requestBody: {
         title: input.title,
         content: input.contentHtml,
         labels: input.labels
       }
-    });
+    } as any)) as { data: { id?: string | null; url?: string | null; selfLink?: string | null } };
 
     const post = response.data;
     return {
@@ -69,11 +67,11 @@ export class BloggerPublisher implements Publisher {
 
   async publish(remotePostId: number): Promise<PublishResult> {
     try {
-      const published = await this.blogger.posts.publish({
+      const published = (await this.blogger.posts.publish({
         auth: this.oauth2,
         blogId: config.BLOGGER_BLOG_ID,
         postId: String(remotePostId)
-      });
+      } as any)) as { data: { id?: string | null; url?: string | null; selfLink?: string | null } };
       return {
         remotePostId: toNumericId(published.data.id ?? remotePostId),
         viewUrl: published.data.url ?? undefined,
@@ -81,23 +79,22 @@ export class BloggerPublisher implements Publisher {
       };
     } catch (error) {
       logger.warn({ err: error, remotePostId }, 'Fallback publish strategy: insert public copy from draft');
-      const draft = await this.blogger.posts.get({
+      const draft = (await this.blogger.posts.get({
         auth: this.oauth2,
         blogId: config.BLOGGER_BLOG_ID,
         postId: String(remotePostId),
         view: 'ADMIN'
-      });
+      } as any)) as { data: { title?: string | null; content?: string | null; labels?: string[] | null } };
 
-      const copied = await this.blogger.posts.insert({
+      const copied = (await this.blogger.posts.insert({
         auth: this.oauth2,
         blogId: config.BLOGGER_BLOG_ID,
-        isDraft: false,
         requestBody: {
           title: draft.data.title ?? 'Untitled',
           content: draft.data.content ?? '',
           labels: draft.data.labels ?? []
         }
-      });
+      } as any)) as { data: { id?: string | null; url?: string | null; selfLink?: string | null } };
 
       const finalPostId = toNumericId(copied.data.id);
       logger.info({ oldDraftPostId: remotePostId, finalPostId }, 'Published through fallback strategy');
@@ -111,12 +108,12 @@ export class BloggerPublisher implements Publisher {
   }
 
   async getPostLinks(remotePostId: number): Promise<PostLinks> {
-    const post = await this.blogger.posts.get({
+    const post = (await this.blogger.posts.get({
       auth: this.oauth2,
       blogId: config.BLOGGER_BLOG_ID,
       postId: String(remotePostId),
       view: 'ADMIN'
-    });
+    } as any)) as { data: { url?: string | null; selfLink?: string | null } };
 
     return mapLinks(post.data);
   }
