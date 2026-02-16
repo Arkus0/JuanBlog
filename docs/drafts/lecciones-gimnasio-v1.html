@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecciones del Gimnasio: La Sabiduría de No Saber</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #faf9f6;
-            --text: #2c2c2c;
-            --text-dim: #6b6b6b;
+            --primary: #2563eb;
+            --secondary: #43508b;
             --accent: #8b7355;
-            --accent-light: #d4c4b0;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,55 +22,57 @@
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.9;
+            line-height: 1.8;
             font-size: 17px;
             font-weight: 300;
         }
         
         .container {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 60px 30px;
+            padding: 50px 30px;
         }
         
         .status {
             display: inline-block;
-            background: rgba(139, 115, 85, 0.1);
+            background: rgba(139, 115, 85, 0.15);
             color: var(--accent);
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 20px;
             font-size: 0.7rem;
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 40px;
-            border: 1px solid var(--accent-light);
+            margin-bottom: 35px;
+            border: 1px solid rgba(139, 115, 85, 0.3);
         }
         
         h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem;
-            font-weight: 400;
-            line-height: 1.25;
-            margin-bottom: 15px;
-            color: var(--text);
+            font-family: 'Space Grotesk', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4cc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-family: 'Space Grotesk', serif;
+            font-size: 1.2rem;
             font-style: italic;
             color: var(--text-dim);
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid var(--accent-light);
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .meta {
             color: var(--text-dim);
             font-size: 0.8rem;
             margin-bottom: 50px;
-            letter-spacing: 0.5px;
         }
         
         .meta span {
@@ -76,14 +80,14 @@
         }
         
         h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-family: 'Space Grotesk', serif;
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--text);
-            margin-top: 50px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--accent-light);
+            margin-top: 55px;
+            margin-bottom: 22px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
         }
         
         p {
@@ -93,8 +97,8 @@
         }
         
         strong {
-            font-weight: 500;
-            color: var(--text);
+            color: #fff;
+            font-weight: 400;
         }
         
         em {
@@ -104,20 +108,20 @@
         
         .quote {
             margin: 35px 0;
-            padding: 25px 30px;
-            border-left: 2px solid var(--accent);
-            background: rgba(139, 115, 85, 0.03);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
+            padding: 22px 28px;
+            border-left: 3px solid var(--accent);
+            background: rgba(139, 115, 85, 0.08);
+            font-family: 'Space Grotesk', serif;
+            font-size: 1.1rem;
             font-style: italic;
-            line-height: 1.7;
+            line-height: 1.65;
             color: var(--text-dim);
         }
         
         .quote-author {
             display: block;
-            margin-top: 15px;
-            font-size: 0.9rem;
+            margin-top: 12px;
+            font-size: 0.85rem;
             font-style: normal;
             color: var(--accent);
         }
@@ -125,15 +129,15 @@
         .divider {
             text-align: center;
             margin: 40px 0;
-            color: var(--accent-light);
-            font-size: 1.2rem;
-            letter-spacing: 10px;
+            color: rgba(139, 115, 85, 0.5);
+            font-size: 1.1rem;
+            letter-spacing: 8px;
         }
         
         .actions {
             margin-top: 60px;
             padding-top: 30px;
-            border-top: 1px solid var(--accent-light);
+            border-top: 1px solid rgba(255,255,255,0.1);
             display: flex;
             gap: 15px;
         }
@@ -141,7 +145,7 @@
         .btn {
             padding: 12px 24px;
             border: 1px solid var(--accent);
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 400;
             font-size: 0.85rem;
@@ -159,14 +163,14 @@
         footer {
             margin-top: 80px;
             padding-top: 40px;
-            border-top: 1px solid var(--accent-light);
+            border-top: 1px solid rgba(255,255,255,0.08);
             text-align: center;
             color: var(--text-dim);
             font-size: 0.8rem;
         }
         
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
+            h1 { font-size: 1.9rem; }
             .container { padding: 40px 20px; }
         }
     </style>
