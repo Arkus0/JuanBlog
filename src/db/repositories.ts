@@ -94,3 +94,36 @@ export function createVersion(articleId: number, payload: DraftPayload): Version
 
   return db.prepare('SELECT * FROM versions WHERE id = ?').get(Number(res.lastInsertRowid)) as Version;
 }
+
+export function createVersionAndUpdateArticleState(params: {
+  articleId: number;
+  draftPayload: DraftPayload;
+  status: ArticleStatus;
+  wp_post_id: number;
+}): Version {
+  const run = db.transaction(() => {
+    const version = createVersion(params.articleId, params.draftPayload);
+    updateArticleState({
+      articleId: params.articleId,
+      status: params.status,
+      wp_post_id: params.wp_post_id
+    });
+    return version;
+  });
+  return run();
+}
+
+export function updateArticlePublishState(params: {
+  articleId: number;
+  wp_post_id: number;
+  status: ArticleStatus;
+}): void {
+  const run = db.transaction(() => {
+    updateArticleState({
+      articleId: params.articleId,
+      wp_post_id: params.wp_post_id,
+      status: params.status
+    });
+  });
+  run();
+}

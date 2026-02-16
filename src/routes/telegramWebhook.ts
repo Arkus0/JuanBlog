@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { config } from '../config';
+import { config } from '../config/env';
 import { sendTelegramMessage, TelegramUpdate } from '../clients/telegramClient';
 import { parseCommand } from '../services/commandParser';
 import {

@@ -1,4 +1,4 @@
-import { config } from '../config';
+import { config } from '../config/env';
 import { withRetry } from '../utils/retry';
 
 export interface TelegramUpdate {

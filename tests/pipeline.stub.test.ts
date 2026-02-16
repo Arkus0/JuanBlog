@@ -7,9 +7,10 @@ beforeAll(() => {
   process.env.OPENAI_API_KEY = 'x';
   process.env.ANTHROPIC_API_KEY = 'x';
   process.env.KIMI_API_KEY = 'x';
-  process.env.WP_BASE_URL = 'https://example.com';
-  process.env.WP_USERNAME = 'u';
-  process.env.WP_APP_PASSWORD = 'p';
+  process.env.GOOGLE_CLIENT_ID = 'gid';
+  process.env.GOOGLE_CLIENT_SECRET = 'gsecret';
+  process.env.GOOGLE_REFRESH_TOKEN = 'grefresh';
+  process.env.BLOGGER_BLOG_ID = '123456';
 });
 
 describe('classifyTopic', async () => {

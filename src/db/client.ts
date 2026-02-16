@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3';
-import { config } from '../config';
+import { config } from '../config/env';
 
 export const db = new Database(config.DATABASE_PATH);
 

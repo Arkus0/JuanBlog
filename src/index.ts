@@ -1,5 +1,5 @@
 import Fastify from 'fastify';
-import { config } from './config';
+import { config } from './config/env';
 import { logger } from './logger';
 import { initDb } from './db/client';
 import { registerTelegramWebhook } from './routes/telegramWebhook';

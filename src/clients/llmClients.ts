@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { config } from '../config';
+import { config } from '../config/env';
 import { withRetry } from '../utils/retry';
 
 const openai = new OpenAI({ apiKey: config.OPENAI_API_KEY });

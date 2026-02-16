@@ -1,6 +1,6 @@
-# JuanBlog Telegram -> LLM Pipeline -> WordPress
+# JuanBlog Telegram -> LLM Pipeline -> Blogger
 
-Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir ideas por Telegram, generar borradores con 3 modelos (GPT, Claude, Kimi), iterar con `/revise` y publicar en WordPress **solo con `/approve`**.
+Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir ideas por Telegram, generar borradores con 3 modelos (GPT, Claude, Kimi), iterar con `/revise` y publicar en Blogger **solo con `/approve`**.
 
 ## Checklist de implementación (máx. 15)
 
@@ -12,13 +12,13 @@ Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir i
 6. Implementar parser de comandos de Telegram.
 7. Implementar webhook Fastify con validación de `X-Telegram-Bot-Api-Secret-Token`.
 8. Implementar cliente Telegram (sendMessage) con reintentos/backoff.
-9. Implementar cliente OpenAI Responses API.
-10. Implementar cliente Claude Messages API.
-11. Implementar cliente Kimi vía provider OpenAI-compatible configurable.
-12. Implementar pipeline multi-ronda (divergente -> editor -> red team -> editor).
-13. Validar JSON estricto y reglas de estructura/longitud/claims.
-14. Integrar WordPress REST: create/update draft y publish bajo `/approve`.
-15. Añadir tests mínimos (parser/DB/pipeline stub) y documentación local + ngrok.
+9. Implementar clientes OpenAI, Claude y Kimi (OpenAI-compatible).
+10. Implementar pipeline multi-ronda (divergente -> editor -> red team -> editor).
+11. Implementar abstracción `Publisher`.
+12. Implementar `BloggerPublisher` con OAuth2 refresh token.
+13. Convertir Markdown -> HTML sanitizado antes de publicar.
+14. Guardar/actualizar borradores en Blogger y publicar solo con `/approve`.
+15. Añadir tests mínimos y documentación local + ngrok.
 
 ---
 
@@ -31,9 +31,9 @@ Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir i
   - Ronda 1 (divergente): GPT (outline), Claude (narrativa), Kimi (crítica SEO/huecos).
   - Ronda 2 (convergente): Editor genera JSON estricto `v1`.
   - Ronda 3 (red team): 3 críticas + editor aplica cambios -> `v2`.
-- **WordPress**:
+- **Publisher (Blogger)**:
   - al producir `v2`: crea/actualiza `draft`.
-  - `/approve`: cambia a `publish`.
+  - `/approve`: publica.
 - **Regla dura**: nunca publica automáticamente sin `/approve`.
 
 ## Comandos Telegram
@@ -41,8 +41,8 @@ Sistema end-to-end en **Node.js + TypeScript + Fastify + SQLite** para recibir i
 - `/idea <texto>`: agrega idea al inbox del artículo activo.
 - `/draft [1000|2000]`: ejecuta pipeline y devuelve versión revisada (default 1000).
 - `/revise <instrucciones>`: nueva iteración sobre la última versión.
-- `/approve`: publica en WordPress el draft actual.
-- `/status`: estado + versión + objetivo de palabras + wp_post_id.
+- `/approve`: publica en Blogger el draft actual.
+- `/status`: estado + versión + objetivo de palabras + remote post id.
 - `/new`: cierra artículo activo y crea uno nuevo en `COLLECTING`.
 
 ## Variables de entorno
@@ -53,17 +53,23 @@ Copia `.env.example` a `.env` y completa:
 cp .env.example .env
 ```
 
-Variables:
+Obligatorias para Blogger:
+
+- `GOOGLE_CLIENT_ID`
+- `GOOGLE_CLIENT_SECRET`
+- `GOOGLE_REFRESH_TOKEN`
+- `BLOGGER_BLOG_ID`
+
+Además:
 
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_WEBHOOK_SECRET`
 - `OPENAI_API_KEY`
 - `ANTHROPIC_API_KEY`
 - `KIMI_API_KEY` o `OPENROUTER_API_KEY`
-- `KIMI_BASE_URL` (default OpenAI-compatible provider)
-- `WP_BASE_URL` (ej: `https://mi-sitio.com`)
-- `WP_USERNAME`
-- `WP_APP_PASSWORD`
+- `KIMI_BASE_URL`
+
+Notas: `WP_*` quedaron opcionales solo por retrocompatibilidad y no se usan en runtime.
 
 ## Instalación y arranque
 
@@ -73,6 +79,22 @@ npm run dev
 ```
 
 Servidor en `http://localhost:3000`.
+
+## Smoke test real de Blogger
+
+Ejecuta validación de autenticación + lectura de blog:
+
+```bash
+npm run smoke:blogger
+```
+
+Opcionalmente, crear un draft de prueba:
+
+```bash
+SMOKE_CREATE_DRAFT=true npm run smoke:blogger
+```
+
+El smoke test falla con errores explícitos para: variables faltantes, auth inválida (`invalid_grant`), permisos insuficientes y `BLOGGER_BLOG_ID` inválido.
 
 ## Crear bot Telegram y webhook
 
@@ -96,33 +118,60 @@ curl -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/setWebhook" \
   }'
 ```
 
-## Configurar WordPress (self-hosted)
+## Configurar Blogger (paso a paso)
 
-1. En WP: **Usuarios -> Tu usuario -> Application Passwords**.
-2. Crear nueva password de aplicación.
-3. Guardar:
-   - `WP_USERNAME`
-   - `WP_APP_PASSWORD`
-   - `WP_BASE_URL` (sin slash final)
-4. Verifica REST:
+1. Crea tu blog en https://www.blogger.com.
+2. En Google Cloud, habilita **Blogger API v3** para tu proyecto.
+3. Configura OAuth consent screen (para estabilidad de largo plazo, usa estado **Production** cuando puedas).
+4. Crea credenciales OAuth client (Desktop app recomendado para obtener token manual).
+
+### Cómo obtener `GOOGLE_REFRESH_TOKEN` (OAuth Playground)
+
+1. Abre https://developers.google.com/oauthplayground
+2. En ⚙️ (Settings), activa **Use your own OAuth credentials** e ingresa:
+   - `GOOGLE_CLIENT_ID`
+   - `GOOGLE_CLIENT_SECRET`
+3. En Step 1, usa el scope:
+   - `https://www.googleapis.com/auth/blogger`
+4. Authorize APIs.
+5. Exchange authorization code for tokens.
+6. Copia el `refresh_token` a `GOOGLE_REFRESH_TOKEN`.
+
+Importante:
+- El refresh token debe emitirse con acceso **offline**.
+- Si no aparece `refresh_token`, fuerza consentimiento (`prompt=consent`) o revoca acceso y repite el flujo.
+
+### Cómo obtener `BLOGGER_BLOG_ID`
+
+Opción API (recomendado):
 
 ```bash
-curl "$WP_BASE_URL/wp-json/wp/v2/posts"
+curl -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  "https://www.googleapis.com/blogger/v3/users/self/blogs"
 ```
+
+También puedes obtenerlo desde la UI/admin URL del blog según configuración.
+
+## Troubleshooting Blogger OAuth/API
+
+- `invalid_grant`:
+  - refresh token inválido/revocado/expirado o client_id/client_secret no corresponden.
+  - regenéralo y vuelve a guardar en `.env`.
+- `insufficientPermissions`:
+  - el token no incluye scope `https://www.googleapis.com/auth/blogger`.
+- `404`/`invalid blogId`:
+  - `BLOGGER_BLOG_ID` incorrecto o el usuario/token no tiene acceso a ese blog.
+- no llega `refresh_token` en OAuth Playground:
+  - usar `prompt=consent` o revocar permisos previos y repetir.
 
 ## Flujo operativo típico
 
 1. En Telegram manda varias ideas con `/idea ...`.
-2. Genera borrador por defecto:
-   - `/draft`
-3. O largo:
-   - `/draft 2000`
-4. Ajusta:
-   - `/revise hazlo más práctico y añade cierre más contundente`
-5. Ver estado:
-   - `/status`
-6. Publica manualmente:
-   - `/approve`
+2. Genera borrador por defecto: `/draft`
+3. O largo: `/draft 2000`
+4. Ajusta: `/revise hazlo más práctico y añade cierre más contundente`
+5. Ver estado: `/status`
+6. Publica manualmente: `/approve`
 
 ## Calidad y seguridad implementadas
 
@@ -134,7 +183,7 @@ curl "$WP_BASE_URL/wp-json/wp/v2/posts"
   - conclusión obligatoria
   - sección final `Notas / Claims a verificar` si hay claims
 - Control de longitud ±15% frente a `target_words`.
-- Reintentos con backoff exponencial para APIs externas (LLM, Telegram, WP).
+- Reintentos con backoff exponencial para APIs externas.
 - Logs estructurados con pino.
 
 ## Scripts
@@ -145,9 +194,9 @@ npm run build
 npm run start
 npm run lint
 npm run test
+npm run smoke:blogger
 ```
 
 ## Notas de proveedor Kimi
 
 Por defecto se implementa Kimi en modo **OpenAI-compatible** usando `KIMI_BASE_URL` + `KIMI_API_KEY` (o `OPENROUTER_API_KEY`).
-Si cambias de proveedor, ajusta `KIMI_BASE_URL` y modelo en `src/clients/llmClients.ts`.
