@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Evangelio de la Carne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1714;
+            --parchment: #f5f0e8;
+            --accent: #6b0f0f;
+            --accent-soft: #8b2020;
+            --muted: #6b6256;
+            --divider: #d4c9b8;
+            --ecstasy-bg: #120805;
+            --ecstasy-text: #e0d2c0;
+            --blood: #7a1a1a;
+            --bruise: #2d1b2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', 'Georgia', serif;
+            line-height: 1.85;
+            color: var(--ink);
+            background: var(--parchment);
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 100px 24px 120px;
+        }
+
+        /* Unified navbar */
+        .site-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #e5ddd0;
+        }
+        .site-nav-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .site-nav a.brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .site-nav a.brand:hover { color: var(--accent); }
+        .site-nav a.back {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            font-weight: 500;
+            color: #7a7168;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .site-nav a.back:hover { color: var(--ink); }
+
+        /* Header */
+        .article-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 40px;
+        }
+
+        .article-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .meta {
+            margin-top: 24px;
+            font-size: 0.85em;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* Sections */
+        .section { margin-bottom: 50px; }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        p {
+            font-size: 1.12em;
+            margin-bottom: 18px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .concept {
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 2px solid var(--accent-soft);
+            margin: 30px 0;
+            padding: 8px 0 8px 24px;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.05em;
+        }
+
+        /* Visceral break — dark band */
+        .visceral-break {
+            background: var(--ink);
+            color: var(--parchment);
+            margin: 50px -24px;
+            padding: 32px 24px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5em;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.04em;
+            line-height: 1.6;
+        }
+
+        .visceral-break em {
+            font-weight: 600;
+            font-style: normal;
+            color: #c45050;
+        }
+
+        /* Ecstasy */
+        .ecstasy {
+            background: var(--ecstasy-bg);
+            color: var(--ecstasy-text);
+            margin: 60px -24px;
+            padding: 70px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecstasy::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(122, 26, 26, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ecstasy .ecstasy-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .ecstasy h2 {
+            color: #c45050;
+        }
+
+        .ecstasy p {
+            color: var(--ecstasy-text);
+            line-height: 2.1;
+            font-size: 1.18em;
+        }
+
+        .ecstasy em {
+            color: #d4956a;
+        }
+
+        .ecstasy strong {
+            color: #e8c9a0;
+            font-weight: 500;
+        }
+
+        /* Dividers */
+        .section-divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--divider);
+            font-size: 1.2em;
+            letter-spacing: 0.5em;
+        }
+
+        /* Actions */
+        .actions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.85; }
+        .btn-approve { background: #2d5016; color: white; }
+        .btn-revise { background: var(--accent); color: white; }
+
+        .status {
+            position: fixed;
+            top: 52px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 3px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 0.85em;
+            letter-spacing: 0.1em;
+            z-index: 10;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2em; }
+            .container { padding: 60px 18px 100px; }
+            .ecstasy { margin: 40px -18px; padding: 50px 18px; }
+            .visceral-break { margin: 40px -18px; padding: 28px 18px; font-size: 1.25em; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html" class="brand">JuanBlog</a>
+            <a href="index.html" class="back">← Todos los ensayos</a>
+        </div>
+    </nav>
+
+    <div class="status">BORRADOR v1 — Pendiente de revisión</div>
+
+    <div class="container">
+
+        <header class="article-header">
+            <span class="article-number">JuanBlog · Ensayo V</span>
+            <h1>El Evangelio de la Carne</h1>
+            <p class="subtitle">Contra la Gran Desencarnación y los profetas del cuerpo abolido</p>
+            <p class="meta">Draft v1 · ~2200 palabras · 16 Feb 2026 · Claude</p>
+        </header>
+
+        <!-- I. EL DIAGNÓSTICO -->
+        <section class="section">
+            <h2>I. La Gran Anestesia</h2>
+
+            <p>Contemplamos el espectáculo de una especie que ha decidido, con la solemnidad burocrática de quien firma un contrato de divorcio, separarse de su propio cuerpo. No ha sido una ruptura dramática —no hubo grito, no hubo sangre, no hubo nada que mereciera ese nombre. Fue peor: fue un deslizamiento. Un desvanecimiento gradual y consentido, como el del enfermo terminal al que se le sube la morfina gota a gota hasta que ya no sabe dónde termina él y dónde empieza la nada. Eso somos. Una civilización en cuidados paliativos que ha confundido la anestesia con la salud.</p>
+
+            <p>El cuerpo ha sido declarado <span class="concept">OBSOLETO</span>. No oficialmente —nadie ha firmado el decreto, porque nadie firma ya nada que importe. Pero la obsolescencia está en los hechos: ocho horas sentado frente a una pantalla que emite la luz azul de un sol artificial y moribundo; comida que ya no se mastica sino que se «consume» mientras se consume otra cosa; sexo mediatizado por algoritmos que deciden por ti a quién desear; dolor abolido por la farmacología antes de que tenga tiempo de enseñarte nada. El cuerpo no ha sido derrotado. Ha sido <em>dimitido</em>. Y la dimisión, como sabía Cioran, es la única forma de cobardía que se disfraza de elegancia.</p>
+
+            <p>Nietzsche advirtió en el Zaratustra: «Detrás de tus pensamientos y sentimientos, hermano mío, se encuentra un amo más poderoso, un sabio desconocido —se llama el Sí-mismo. Habita en tu cuerpo, <em>es</em> tu cuerpo». Hemos asesinado al amo. No con violencia —con comodidad. Con una acumulación tan densa de almohadas, analgésicos, calefacción central y entretenimiento bajo demanda que el cuerpo ha olvidado que alguna vez supo gritar.</p>
+        </section>
+
+        <div class="visceral-break">
+            El animal humano no fue diseñado para la <em>comodidad</em>.<br>
+            Fue diseñado para la <em>confrontación</em>.
+        </div>
+
+        <!-- II. GENEALOGÍA -->
+        <section class="section">
+            <h2>II. Genealogía del cuerpo abandonado</h2>
+
+            <p>Hay que rastrear el crimen hasta su origen. La desencarnación no empieza con el iPhone. Empieza con Descartes, que tuvo la ocurrencia catastrófica de partir el ser humano en dos sustancias —<em>res cogitans</em> y <em>res extensa</em>— y declarar que la que piensa es la que vale. Con ese hachazo metafísico, el cuerpo quedó reducido a <span class="concept">MÁQUINA</span>, a vehículo, a carcasa prescindible del alma racional. La Modernidad entera es una nota a pie de página de ese error. Cuatrocientos años dedicados a perfeccionar la anestesia del espíritu respecto a la carne que lo sostiene.</p>
+
+            <p>Pero el cuerpo se vengó. Siempre se venga. Artaud lo entendió mejor que cualquier filósofo de cátedra cuando proclamó su Teatro de la Crueldad: un arte que no representara la vida sino que la <em>infligiera</em>. «El teatro, como la peste», escribió, «es una crisis que se resuelve con la muerte o con la curación». Artaud sabía lo que los racionalistas no quieren saber: que el cuerpo, reprimido, no se extingue —<em>enloquece</em>. Que la carne negada se convierte en síntoma: en ansiedad sin objeto, en pánico ante nada, en esa depresión endémica que la psiquiatría trata con pastillas porque no se atreve a decir la verdad, que es que <em>estás enfermo de no sentir</em>.</p>
+
+            <p>Bataille fue más lejos. Para Bataille, el gasto improductivo del cuerpo —el sudor, la sangre, el orgasmo, el vómito, la risa que desgarra— no es el residuo de la existencia civilizada: es su <span class="concept">FUNDAMENTO</span>. Todo lo que el cuerpo expulsa, toda esa materia que la higiene moderna ha declarado obscena, es exactamente lo que nos vincula con lo sagrado. La civilización se construyó <em>contra</em> el cuerpo, pero solo puede sostenerse <em>sobre</em> él. Es una contradicción que no se resuelve: se padece.</p>
+        </section>
+
+        <div class="section-divider">· · ·</div>
+
+        <!-- III. CONCEPTO METAPOLÍTICO -->
+        <section class="section">
+            <h2>III. El dolor como categoría política</h2>
+
+            <p>Que nadie se engañe: la abolición del dolor no es un logro humanitario. Es una <span class="concept">ESTRATEGIA DE CONTROL</span>. Un cuerpo que no duele es un cuerpo que no resiste. Un cuerpo que no resiste es un cuerpo que obedece sin necesidad de castigo —la forma más perfecta de dominación, porque ni siquiera se percibe como tal. Foucault describió cómo el poder pasó del suplicio al panóptico, de marcar la carne a vigilar la conducta. Pero no fue suficiente. La fase actual es más radical: no se trata de vigilar el cuerpo ni de castigarlo, sino de <em>abolirlo como sede de experiencia</em>. Un sujeto descorporizado es un sujeto que no puede rebelarse, porque la rebelión es, antes que nada, un acto <em>físico</em>: puños, barricadas, huelga de hambre, el cuerpo puesto donde no debería estar.</p>
+
+            <p>Jünger lo vio con la claridad despiadada de quien ha estado en las trincheras: «El dolor es una de esas llaves con las que abrimos las puertas no solo de lo más íntimo, sino también del mundo». Eliminar el dolor no es eliminar el sufrimiento —es eliminar la <em>llave</em>. Es condenar al sujeto a vivir encerrado en la antecámara de su propia existencia, cómodo pero cautivo, protegido pero impotente. Cada analgésico tomado sin necesidad es un cerrojo más en una puerta que ya nadie intenta abrir.</p>
+
+            <p>Y el gimnasio —ese espacio que debería ser el campo de entrenamiento de la reencarnación— ha sido en su mayor parte neutralizado. Convertido en spa con pesas. En experiencia estética donde el dolor se «gestiona», la intensidad se «modula», y el cuerpo sigue siendo, al final del día, una superficie que se mira en el espejo en lugar de un instrumento que se usa contra el mundo. El culturismo como narcisismo es la trampa final: te devuelve al cuerpo, sí, pero a un cuerpo-<em>imagen</em>, no a un cuerpo-<em>fuerza</em>. A un cuerpo que se exhibe, no a uno que <span class="concept">ACTÚA</span>.</p>
+        </section>
+
+        <div class="visceral-break">
+            No necesitas sentirte bien.<br>
+            Necesitas <em>sentir</em>.
+        </div>
+
+        <!-- IV. LA LEY DE HIERRO -->
+        <section class="section">
+            <h2>IV. La ley de hierro de la carne</h2>
+
+            <p>El cuerpo tiene sus propias leyes y no ha leído a Descartes. Primera ley: <em>lo que no se usa, se pierde</em>. No gradualmente, no con suavidad —con la brutalidad silenciosa de una amputación que no sangra. La sarcopenia no es una enfermedad; es el precio biológico de la cobardía. Cada fibra muscular que se atrofia es una pregunta que dejaste sin responder, una carga que elegiste no levantar, un gesto de potencia que preferiste ahorrarte.</p>
+
+            <p>Segunda ley: <em>el dolor es información</em>. No el dolor del daño —ese hay que evitarlo, no somos imbéciles. El dolor del esfuerzo. El dolor del umbral. Ese ardor que sube por los cuádriceps en la última serie, esa presión en el diafragma cuando el cinturón aprieta y el peso no sube, esa quemazón en los antebrazos cuando el agarre cede. Ese dolor no es el enemigo. Es el <span class="concept">MENSAJERO</span>. Te dice: «Aquí está el límite de lo que eres. ¿Qué vas a hacer?». Y la respuesta a esa pregunta —la respuesta real, la que se da con el cuerpo, no con la boca— define al sujeto con más precisión que cualquier psicometría.</p>
+
+            <p>Tercera ley: <em>la carne tiene memoria</em>. No la memoria del cerebro —esa que se engaña, se edita, se reescribe según conviene. La memoria del tejido. Los tendones que se engrosaron bajo la carga recuerdan esa carga. Las fascias que se tensaron bajo tracción recuerdan esa tracción. El cuerpo que ha levantado ciento ochenta kilos del suelo <em>no es el mismo cuerpo</em> que el que no lo ha hecho, aunque ambos pesen lo mismo y midan lo mismo y aparezcan idénticos en una resonancia magnética. Hay algo inscrito en la arquitectura profunda del organismo que la ciencia aún no sabe nombrar pero que el levantador conoce: una densidad, una gravedad propia, una relación con el suelo que no se adquiere por ósmosis sino por <span class="concept">CONFRONTACIÓN DIRECTA</span>.</p>
+        </section>
+
+        <div class="section-divider">· · ·</div>
+
+        <!-- V. ÉXTASIS -->
+        <section class="ecstasy">
+            <div class="ecstasy-inner">
+                <h2>V. La transmutación</h2>
+
+                <p>Y entonces llega. No cuando la esperas. No cuando la buscas. Llega cuando has dejado de ser tú para ser solo el gesto, solo la tensión, solo la cadena de fuerzas que va del suelo a tus manos pasando por todo lo que eres y todo lo que has sido. Llega en la repetición que no debería existir, la que el cuerpo ya ha declarado imposible y que sin embargo ocurre, no <em>a pesar</em> de ti sino <em>a través</em> de ti, como si fueras conducto y no causa, canal y no origen.</p>
+
+                <p>Lo que Bataille llamó <strong>experiencia interior</strong> —ese estado donde el sujeto se disuelve sin desaparecer, donde el yo se incendia pero la conciencia sigue ahí, mirando el fuego desde dentro del fuego. La <em>noche oscura</em> de San Juan, pero invertida: no es la oscuridad del alma que busca a Dios en el vacío. Es la <strong>incandescencia de la carne</strong> que descubre, en el extremo del esfuerzo, que hay algo más allá del esfuerzo. Algo que no tiene nombre. Algo que no se puede comprar, no se puede vender, no se puede gamificar, no se puede subir a Instagram.</p>
+
+                <p>En ese instante el dualismo cartesiano se destruye. No por argumento filosófico —por <em>experiencia bruta</em>. No hay mente y cuerpo. No hay res cogitans y res extensa. Hay una sola cosa, ardiente y entera, que siente y piensa y levanta y duele y goza simultáneamente, y esa cosa eres tú, y tú eres esa cosa, y la separación era mentira, siempre fue mentira, y el mundo entero de pantallas y abstracciones y mediaciones infinitas se revela de golpe como lo que es: un decorado de cartón que se desmonta con las manos.</p>
+
+                <p>Nietzsche, al final, no escribió filosofía. Escribió con el cuerpo. Las convulsiones de Turín, el colapso, el abrazo al caballo —eso no fue locura. Fue la <em>carne</em> reclamando lo que le pertenecía. Fue el cuerpo diciendo <strong>basta</strong> a una mente que había volado demasiado alto y demasiado tiempo sin volver a tocar tierra. La lección es brutal pero clara: no se trasciende <em>el</em> cuerpo. Se trasciende <em>desde</em> el cuerpo. O no se trasciende en absoluto.</p>
+            </div>
+        </section>
+
+        <!-- VI. CONCLUSIÓN QUE PROPULSA -->
+        <section class="section" style="margin-top: 60px;">
+            <h2>VI. Volver a sangrar</h2>
+
+            <p>Esto no es una invitación al fitness. Esto no es un programa de entrenamiento. Esto no es un artículo de blog sobre «bienestar» y «autocuidado» y todas esas palabras vaciadas de sentido que el capitalismo terapéutico vende como sucedáneo de lo que realmente necesitas, que es <em>volver a habitar tu cuerpo como quien vuelve a una casa incendiada</em>: con miedo, con rabia, con la urgencia de quien sabe que si no entra ahora no entrará nunca.</p>
+
+            <p>El gesto es simple. Tan simple que ofende. Levantar algo pesado. Correr hasta que los pulmones ardan. Golpear un saco hasta que los nudillos protesten. Saltar al agua fría. Ayunar hasta que el hambre deje de ser molestia y se convierta en <em>claridad</em>. Cualquier cosa —<span class="concept">CUALQUIER COSA</span>— que le recuerde a tu sistema nervioso que existe, que está vivo, que no es un software ejecutándose en un hardware prescindible.</p>
+
+            <p>Porque el evangelio de la carne no es un texto. Es un acto. Y el acto es siempre el mismo: dejar de ser espectador de tu propia vida y volver a meter las manos. Las manos literales. Las manos que agarran, que tiran, que empujan, que sangran si es necesario. Las manos que saben lo que la cabeza ha olvidado: que estás aquí, que el mundo es real, que la gravedad no negocia, y que la única respuesta digna a la pregunta de la existencia es una respuesta que se da de pie, con el cuerpo entero, temblando si hace falta, pero <em>entero</em>.</p>
+        </section>
+
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-revise" onclick="alert('Responde en Telegram con: /revise [tus instrucciones]')">📝 Pedir Cambios</button>
+        <button class="btn btn-approve" onclick="alert('Responde en Telegram con: /approve')">✅ Aprobar y Publicar</button>
+    </div>
+</body>
+</html>
