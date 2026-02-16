@@ -4,56 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JuanBlog - Artículos de Alto Nivel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Ensayos sobre filosofía, entrenamiento y cultura de masa. Pensamiento sin filtros.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #43508b;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
             --accent: #ef4444;
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #f8fafc;
-            --text-dim: #94a3b8;
+            --accent-hover: #dc2626;
+            --accent-light: rgba(239, 68, 68, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
         
         body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            font-size: 18px;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
         }
         
         /* Navbar */
         .navbar {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
         
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text);
+            color: var(--text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
         }
         
         .logo span {
@@ -67,35 +112,62 @@
         }
         
         .nav-links a {
-            color: var(--text-dim);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9rem;
-            transition: color 0.2s;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
         }
         
         .nav-links a:hover {
-            color: var(--text);
+            color: var(--text-primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         /* Hero Section */
         .hero {
-            padding: 10rem 2rem 6rem;
-            max-width: 1200px;
+            padding: 10rem 1.5rem 4rem;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            margin-top: 4rem;
         }
         
-        .hero-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-light);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
+            line-height: 1.1;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -103,206 +175,746 @@
         
         .hero p {
             font-size: 1.1rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+        
+        /* Search Section */
+        .search-section {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.25rem 1rem 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .search-clear {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.25rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .search-clear.visible {
+            opacity: 1;
+        }
+        
+        .search-clear:hover {
+            color: var(--accent);
+        }
+        
+        /* Tags Filter */
+        .tags-section {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .tag:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        
+        .tag.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .tag-count {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            background: rgba(255,255,255,0.2);
+            padding: 0.1rem 0.4rem;
+            border-radius: 100px;
+        }
+        
+        /* Results Info */
+        .results-info {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem;
+            padding: 0 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            min-height: 1.5rem;
+        }
+        
+        .results-info span {
+            color: var(--accent);
+            font-weight: 600;
         }
         
         /* Articles Grid */
         .articles-section {
-            padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            padding-left: 2rem;
+            padding: 0 1.5rem 4rem;
         }
         
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 400px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .article-card {
-            background: var(--card);
-            border-radius: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: var(--transition);
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px -1px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px var(--shadow);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        
+        .article-card:hover::before {
+            opacity: 1;
+        }
+        
+        .article-card.hidden {
+            display: none;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            flex: 1;
+        }
+        
+        .card-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
         
         .card-status {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 100px;
             font-weight: 600;
-            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .card-status.draft {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent);
         }
         
         .card-status.approved {
-            background: rgba(34, 197, 94, 0.2);
+            background: rgba(34, 197, 94, 0.15);
             color: #22c55e;
         }
         
-        .article-card h3 {
-            font-size: 1.1rem;
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             line-height: 1.4;
+            color: var(--text-primary);
         }
         
-        .article-card .meta {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-top: 1rem;
+        .card-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
         }
         
-        .article-card .meta span {
-            display: block;
-            margin-top: 0.25rem;
+        .card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .card-read-time::before {
+            content: '⏱️ ';
+        }
+        
+        .card-arrow {
+            color: var(--accent);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .article-card:hover .card-arrow {
+            transform: translateX(4px);
+        }
+        
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        .no-results h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .no-results p {
+            color: var(--text-muted);
         }
         
         /* Footer */
         .footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
             text-align: center;
-            padding: 3rem 2rem;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 4rem;
         }
         
-        /* Responsive */
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hero {
+                padding-top: 8rem;
             }
             
             .articles-grid {
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-muted);
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--bg-tertiary);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Highlight search matches */
+        .highlight {
+            background: rgba(239, 68, 68, 0.3);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 💪 <span>Juan</span>Blog
             </a>
-            <ul class="nav-links">
-                <li><a href="#articulos">Artículos</a></li>
-                <li><a href="#about">About</a></li>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Artículos</a></li>
+                <li><a href="#about" onclick="showAbout()">About</a></li>
+                <li><a href="https://github.com" target="_blank">GitHub</a></li>
             </ul>
         </div>
     </nav>
     
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-icon">☕</div>
+        <div class="hero-badge">
+            <span>🔥</span> Pensamiento sin filtros
+        </div>
         <h1>Artículos de Alto Nivel</h1>
-        <p>Ensayos sobre filosofía, entrenamiento y cultura de masa en un solo sitio</p>
+        <p>Ensayos sobre filosofía, entrenamiento y cultura de masa. Ideas que duelen, verdades que liberan.</p>
     </section>
     
-    <section class="articles-section" id="articulos">
-        <h2 class="section-title">📰 Últimos artículos</h2>
-        
-        <div class="articles-grid">
-            <a href="drafts/guerra-que-no-ves-v1.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status">BORRADOR</span>
-                <h3>La Guerra que No Ves</h3>
-                <p>Cómo Rusia Escribe tu Realidad</p>
-                <div class="meta">
-                    <span>17 Feb 2026</span>
-                </div>
-            </div>
-            </a>
-            
-            <a href="drafts/kant-magic-gimnasio-v1.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status">BORRADOR</span>
-                <h3>Kant, Magic y el Gimnasio</h3>
-                <p>Manual de Adultez</p>
-                <div class="meta">
-                    <span>16 Feb 2026</span>
-                </div>
-            </div>
-            </a>
-            
-            <a href="drafts/bestia-domada-v1.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status">BORRADOR</span>
-                <h3>La Bestia Domada</h3>
-                <p>Dejar de Fumar como Exorcismo de la Voluntad</p>
-                <div class="meta">
-                    <span>16 Feb 2026</span>
-                </div>
-            </div>
-            </a>
-            
-            <a href="drafts/lecciones-gimnasio-v1.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status">BORRADOR</span>
-                <h3>Lecciones del Gimnasio</h3>
-                <p>La Sabiduría de No Saber</p>
-                <div class="meta">
-                    <span>16 Feb 2026</span>
-                </div>
-            </div>
-            </a>
-            
-            <a href="drafts/crepusculo-invertebrados-v1.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status">BORRADOR</span>
-                <h3>El Crepúsculo de los Invertebrados</h3>
-                <p>España ante la Exigencia del Carácter</p>
-                <div class="meta">
-                    <span>16 Feb 2026</span>
-                </div>
-            </div>
-            </a>
-            
-            <a href="drafts/gigantes-del-orden-v2.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status">BORRADOR</span>
-                <h3>Los Gigantes del Orden</h3>
-                <p>Por Qué el Estado Necesita un Ejército de Culturistas</p>
-                <div class="meta">
-                    <span>16 Feb 2026</span>
-                </div>
-            </div>
-            </a>
-            
-            <a href="drafts/peso-muerto-grok-kimi-v1.html" style="text-decoration: none; color: inherit;">
-            <div class="article-card">
-                <span class="card-status approved">APROBADO</span>
-                <h3>El Peso Muerto</h3>
-                <p>La Base del Desarrollo de la Fuerza Total</p>
-                <div class="meta">
-                    <span>16 Feb 2026</span>
-                </div>
-            </div>
-            </a>
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput"
+                placeholder="Buscar artículos por título, tema o contenido..."
+                autocomplete="off"
+            >
+            <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
         </div>
     </section>
     
+    <!-- Tags Filter -->
+    <section class="tags-section">
+        <div class="tags-container" id="tagsContainer">
+            <!-- Tags will be populated by JS -->
+        </div>
+    </section>
+    
+    <!-- Results Info -->
+    <div class="results-info" id="resultsInfo"></div>
+    
+    <!-- Articles Grid -->
+    <section class="articles-section">
+        <div class="articles-grid" id="articlesGrid">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Cargando artículos...</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
     <footer class="footer">
-        <p>© 2026 JuanBlog. Generado con IA.</p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="#" onclick="showAbout(); return false;">About</a>
+                <a href="rss.xml">RSS</a>
+            </div>
+            <p>© 2026 JuanBlog. Generado con 💀 y café.</p>
+        </div>
     </footer>
+    
+    <script>
+        // State
+        let articles = [];
+        let tags = [];
+        let activeTag = null;
+        let searchQuery = '';
+        
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+        const tagsContainer = document.getElementById('tagsContainer');
+        const articlesGrid = document.getElementById('articlesGrid');
+        const resultsInfo = document.getElementById('resultsInfo');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
+        
+        // Event Listeners
+        searchInput.addEventListener('input', handleSearch);
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') clearSearch();
+        });
+        
+        // Load data from JSON
+        async function loadData() {
+            try {
+                const response = await fetch('data/articles.json');
+                const data = await response.json();
+                articles = data.articles;
+                tags = data.tags;
+                
+                renderTags();
+                renderArticles();
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                articlesGrid.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">⚠️</div>
+                        <h3>Error al cargar artículos</h3>
+                        <p>No se pudieron cargar los datos. Intenta recargar la página.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Render tags
+        function renderTags() {
+            // Count articles per tag
+            const tagCounts = {};
+            articles.forEach(article => {
+                article.tags.forEach(tag => {
+                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                });
+            });
+            
+            // Create "All" tag
+            const allTag = document.createElement('button');
+            allTag.className = `tag ${!activeTag ? 'active' : ''}`;
+            allTag.innerHTML = `Todos <span class="tag-count">${articles.length}</span>`;
+            allTag.onclick = () => selectTag(null);
+            tagsContainer.appendChild(allTag);
+            
+            // Create tag buttons
+            tags.forEach(tag => {
+                const count = tagCounts[tag.id] || 0;
+                if (count === 0) return;
+                
+                const btn = document.createElement('button');
+                btn.className = `tag ${activeTag === tag.id ? 'active' : ''}`;
+                btn.innerHTML = `${tag.name} <span class="tag-count">${count}</span>`;
+                btn.onclick = () => selectTag(tag.id);
+                btn.title = tag.description;
+                tagsContainer.appendChild(btn);
+            });
+        }
+        
+        // Select tag
+        function selectTag(tagId) {
+            activeTag = tagId;
+            
+            // Update UI
+            document.querySelectorAll('.tag').forEach((btn, index) => {
+                if (index === 0 && !tagId) {
+                    btn.classList.add('active');
+                } else if (tags[index - 1]?.id === tagId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            renderArticles();
+        }
+        
+        // Handle search
+        function handleSearch(e) {
+            searchQuery = e.target.value.toLowerCase().trim();
+            searchClear.classList.toggle('visible', searchQuery.length > 0);
+            renderArticles();
+        }
+        
+        // Clear search
+        function clearSearch() {
+            searchInput.value = '';
+            searchQuery = '';
+            searchClear.classList.remove('visible');
+            searchInput.focus();
+            renderArticles();
+        }
+        
+        // Filter and render articles
+        function renderArticles() {
+            let filtered = articles;
+            
+            // Filter by tag
+            if (activeTag) {
+                filtered = filtered.filter(a => a.tags.includes(activeTag));
+            }
+            
+            // Filter by search
+            if (searchQuery) {
+                filtered = filtered.filter(a => {
+                    const searchFields = [
+                        a.title,
+                        a.subtitle,
+                        a.excerpt,
+                        ...a.tags
+                    ].join(' ').toLowerCase();
+                    return searchFields.includes(searchQuery);
+                });
+            }
+            
+            // Sort by date (newest first)
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Update results info
+            updateResultsInfo(filtered.length);
+            
+            // Render
+            if (filtered.length === 0) {
+                articlesGrid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>No se encontraron artículos</h3>
+                        <p>Prueba con otros términos de búsqueda o selecciona otra categoría.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            articlesGrid.innerHTML = filtered.map(article => createArticleCard(article)).join('');
+        }
+        
+        // Create article card HTML
+        function createArticleCard(article) {
+            const statusClass = article.status === 'approved' ? 'approved' : 'draft';
+            const statusText = article.status === 'approved' ? 'Publicado' : 'Borrador';
+            const tagObjects = article.tags.map(tagId => {
+                const tag = tags.find(t => t.id === tagId);
+                return tag ? tag.name : tagId;
+            });
+            
+            // Highlight search matches
+            let title = article.title;
+            let subtitle = article.subtitle;
+            let excerpt = article.excerpt;
+            
+            if (searchQuery) {
+                const regex = new RegExp(`(${escapeRegex(searchQuery)})`, 'gi');
+                title = title.replace(regex, '<mark class="highlight">$1</mark>');
+                subtitle = subtitle.replace(regex, '<mark class="highlight">$1</mark>');
+                excerpt = excerpt.replace(regex, '<mark class="highlight">$1</mark>');
+            }
+            
+            return `
+                <a href="${article.file}" class="article-card">
+                    <div class="card-header">
+                        <div class="card-tags">
+                            ${tagObjects.slice(0, 3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+                        </div>
+                        <span class="card-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <h3 class="card-title">${title}</h3>
+                    <p class="card-subtitle">${subtitle}</p>
+                    <p class="card-excerpt">${excerpt}</p>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <span>${formatDate(article.date)}</span>
+                            <span class="card-read-time">${article.readTime} min</span>
+                        </div>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+            `;
+        }
+        
+        // Update results info
+        function updateResultsInfo(count) {
+            if (searchQuery || activeTag) {
+                const tagName = activeTag ? tags.find(t => t.id === activeTag)?.name : null;
+                let text = `Mostrando <span>${count}</span> artículo${count !== 1 ? 's' : ''}`;
+                if (tagName) text += ` en <span>${tagName}</span>`;
+                if (searchQuery) text += ` para "<span>${escapeHtml(searchQuery)}</span>"`;
+                resultsInfo.innerHTML = text;
+            } else {
+                resultsInfo.innerHTML = `<span>${count}</span> artículos disponibles`;
+            }
+        }
+        
+        // Format date
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+        }
+        
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Escape regex special chars
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+        
+        // Toggle mobile menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+        
+        // Show about modal (placeholder)
+        function showAbout() {
+            alert('JuanBlog - Ensayos sobre filosofía, entrenamiento y cultura de masa.\n\nEscritos con 💀 y café.');
+        }
+    </script>
 </body>
 </html>
