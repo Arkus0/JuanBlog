@@ -110,26 +110,13 @@
       "status": "approved"
     },
     {
-      "id": "dictadura-lastre-short",
-      "slug": "la-dictadura-del-lastre-short",
+      "id": "dictadura-lastre",
+      "slug": "la-dictadura-del-lastre",
       "title": "La Dictadura del Lastre",
-      "subtitle": "Por qué los débiles deben ser abandonados (Versión Short)",
-      "date": "2026-02-17",
-      "file": "drafts/la-dictadura-del-lastre-short.html",
-      "tags": ["filosofía", "política", "comparación-modelos"],
-      "excerpt": "TÚ que lees esto, ¿no sientes el PESO de los INÚTILES arrastrándose como gusanos sobre la carne viva de la civilización? El 27% del PIB en la UE se VOMITA sobre los débiles...",
-      "featured": false,
-      "readTime": 4,
-      "status": "draft"
-    },
-    {
-      "id": "dictadura-lastre-long",
-      "slug": "la-dictadura-del-lastre-long",
-      "title": "La Dictadura del Lastre",
-      "subtitle": "Por qué los débiles deben ser abandonados (Versión Long)",
+      "subtitle": "Por qué los débiles deben ser abandonados",
       "date": "2026-02-17",
       "file": "drafts/la-dictadura-del-lastre-long.html",
-      "tags": ["filosofía", "política", "comparación-modelos"],
+      "tags": ["filosofía", "política"],
       "excerpt": "Contemplas el paisaje de una sociedad que se hunde bajo el peso de sus propias contradicciones. El 27% del PIB de la UE destinado al gasto social es el síntoma de una enfermedad terminal...",
       "featured": true,
       "readTime": 8,
@@ -156,7 +143,7 @@
   ],
   "meta": {
     "lastUpdated": "2026-02-17",
-    "totalArticles": 11,
+    "totalArticles": 10,
     "version": "2.0"
   }
 }
