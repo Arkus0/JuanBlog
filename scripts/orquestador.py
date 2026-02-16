@@ -2,6 +2,10 @@
 """
 Agente Orquestador - JuanBlog Pipeline v3
 Decide qué agentes de research activar según el tema.
+Modelos confirmados:
+- Researcher: perplexity/sonar (~1¢)
+- News Scout: openai/gpt-4o-mini (~0.2¢)
+- Fact Checker: openai/gpt-4o-mini (~0.2¢)
 """
 
 import re

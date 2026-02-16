@@ -1,79 +1,141 @@
-# AGENTES ESPECIALIZADOS - JuanBlog Pipeline
+# AGENTES ESPECIALIZADOS - JuanBlog Pipeline v3
 
-## Arquitectura Híbrida (Aprobada)
+## Arquitectura de Agentes (Confirmada Feb 2026)
 
-### Agentes Base (Siempre activos)
-| Agente | Modelo | Rol |
-|--------|--------|-----|
-| Orquestador | Kimi Claw (yo) | Coordinación, decisión de usar research, ensamblaje final |
-| Escritor Creativo | Claude Opus 4.5 | Genera borrador literario con estilo JuanBlog |
-| Revisor | Kimi K2.5 | Pulido, formato, consistencia de voz |
-
-### Agentes de Research (Bajo demanda)
-| Agente | Modelo | Rol | Trigger |
-|--------|--------|-----|---------|
-| Researcher | Kimi K2.5 | Busca fuentes académicas, citas, datos históricos | Tema filosófico/científico/histórico |
-| News Scout | Kimi K2.5 | Hechos de actualidad, tendencias, contexto temporal | Tema con componente actual |
-| Fact Checker | Kimi K2.5 | Verifica datos, evita alucinaciones | Cuando hay cifras/estadísticas |
-
-## Flujo de Decisión
+### Visión General
+Sistema de agentes híbridos donde los agentes de research ejecutan en **paralelo** para enriquecer el contexto que recibe el escritor creativo.
 
 ```
-Usuario: /new [tema]
-    ↓
-Orquestador analiza tema:
-    ¿Necesita fuentes académicas? → SÍ → Activar Researcher
-    ¿Necesita contexto actual? → SÍ → Activar News Scout  
-    ¿Tiene datos/estadísticas? → SÍ → Activar Fact Checker
-    ↓
-Recolectar contexto (0-3 agentes)
-    ↓
-Enviar a Claude Opus: [tema] + [contexto opcional]
-    ↓
-Revisar con Kimi K2.5
-    ↓
-Publicar
+┌─────────────────────────────────────────────┐
+│           ORQUESTADOR (Kimi Claw)           │
+│         Analiza tema → Decide agentes       │
+└──────────────────┬──────────────────────────┘
+                   ↓
+        ┌─────────────────────┐
+        │   RESEARCH LAYER    │  ← Paralelo
+        │  (Bajo demanda)     │
+        └─────────────────────┘
+                   ↓
+        ┌─────────────────────┐
+        │   WRITING LAYER     │  ← Secuencial
+        │  (Siempre activo)   │
+        └─────────────────────┘
 ```
 
-## Criterios de Activación
+## Agentes de Research (Paralelos)
 
-### Researcher (ON si):
-- Tema filosófico → buscar citas de Nietzsche, Foucault, etc.
-- Tema histórico → buscar fechas, eventos, contexto
-- Tema científico → buscar estudios, datos, teorías
-- Referencias específicas solicitadas
+### 1. Researcher
+- **Modelo:** `perplexity/sonar`
+- **Coste:** ~1¢ por consulta
+- **Especialidad:** Fuentes académicas, citas exactas, contexto filosófico
+- **Ganador en pruebas:** Mejor conectando Kant con temas contemporáneos
+- **Trigger:** Filosofía, historia, teoría, conceptos abstractos
 
-### News Scout (ON si):
-- Tema político/social → contexto actual
-- Tecnología → últimos avances
-- Economía → datos recientes
-- "¿Qué está pasando ahora con X?"
+**Ejemplo de salida:**
+```
+FUENTES:
+- "Suponiendo que no hubiera semejantes deberes..." - MdS, Ak. VI: 417-418
+- Concepto: Autonomía como capacidad de darse la ley moral
+```
 
-### Fact Checker (ON si):
-- Artículo menciona estadísticas
-- Artículo menciona cifras económicas
-- Artículo menciona datos de salud
-- Cualquier número que parezca específico
+### 2. News Scout
+- **Modelo:** `openai/gpt-4o-mini`
+- **Coste:** ~0.2¢ por consulta
+- **Especialidad:** Actualidad, tendencias, contexto temporal
+- **Trigger:** Años recientes, crisis, elecciones, tecnología, "hoy"
 
-## Coste Estimado
+**Ejemplo de salida:**
+```
+ACTUALIDAD:
+- Tendencia fitness 2025: Auge del entrenamiento funcional
+- Dato: Industria wellness valorada en $X billones
+```
 
-| Configuración | Coste aprox. |
-|---------------|--------------|
-| Base (Claude + Kimi) | ~3.5¢ |
-| + Researcher | ~4.5¢ |
-| + News Scout | ~4.5¢ |
-| + Fact Checker | ~4.5¢ |
-| Full stack (todos) | ~6¢ |
+### 3. Fact Checker
+- **Modelo:** `openai/gpt-4o-mini`
+- **Coste:** ~0.2¢ por consulta
+- **Especialidad:** Verificación de datos, estadísticas, cifras
+- **Trigger:** Porcentajes, números, "estudio dice", datos concretos
 
-## Comandos Telegram
+**Ejemplo de salida:**
+```
+DATOS VERIFICADOS:
+- 70% de gimnasios cierran en primer año: Fuente [estudio X]
+- Tasa de abandono: 80% tras 5 meses
+```
 
-- `/new [tema]` → Orquestador decide research automáticamente
-- `/new research [tema]` → Forzar research activo
-- `/new fast [tema]` → Forzar modo base (sin research)
+## Agentes de Escritura (Secuenciales)
 
-## Notas
+### 4. Escritor (Claude Opus 4.5)
+- **Coste:** ~3¢
+- **Rol:** Generar borrador literario con el contexto enriquecido
+- **Input:** Tema + Contexto de research (si aplica)
+- **Output:** Artículo en formato HTML
 
-- Researcher usa búsqueda web (kimi_search) para fuentes
-- News Scout usa búsqueda web con freshness=pw (última semana)
-- Fact Checker usa búsqueda web para verificar cifras específicas
-- Todo el research se pasa a Claude como contexto en el system prompt
+### 5. Revisor (Kimi K2.5)
+- **Coste:** ~0.5¢
+- **Rol:** Pulido final, formato, consistencia de voz
+- **Input:** Borrador del Escritor
+- **Output:** Versión final lista para publicar
+
+## Flujo Paralelo en Detalle
+
+```
+Tiempo →
+
+T0: Orquestador recibe tema
+    ↓
+T1: Análisis de tema (100ms)
+    ↓
+T2: Lanza agentes research en PARALELO
+    ├─ Researcher buscando ──────┐
+    ├─ News Scout buscando ──────┼──→ T3: Resultados listos
+    └─ Fact Checker buscando ────┘
+    ↓
+T3: Compila contexto
+    ↓
+T4: Envía a Escritor
+    ↓
+T5: Revisión
+    ↓
+T6: Publicación
+```
+
+**Tiempo ahorrado vs. secuencial:** ~30-40%
+
+## Decisiones de Activación
+
+El orquestador usa `scripts/orquestador.py` para decidir:
+
+```python
+if "filosofía" or "Nietzsche" or "Kant" in tema:
+    activar Researcher
+    
+if "2025" or "actualidad" or "crisis" in tema:
+    activar News Scout
+    
+if "70%" or "estadística" or "dato" in tema:
+    activar Fact Checker
+```
+
+## Ventajas del Sistema
+
+1. **Especialización:** Cada agente hace lo que mejor sabe
+2. **Paralelismo:** Research simultáneo reduce tiempo total
+3. **Escalabilidad:** Fácil añadir más agentes especializados
+4. **Coste optimizado:** Solo pagas por los agentes que necesitas
+5. **Calidad:** Claude Opus recibe contexto enriquecido, escribe mejor
+
+## Futuras Expansiones
+
+Posibles agentes adicionales:
+- **Quote Master:** Especialista en encontrar citas exactas
+- **Counter-Argument:** Busca argumentos contrarios para enriquecer
+- **Style Matcher:** Adapta el tono a referencias específicas
+- **SEO Optimizer:** Optimiza títulos y estructura para web
+
+## Documentación Relacionada
+
+- `PIPELINE.md` - Flujo completo y costes
+- `scripts/orquestador.py` - Lógica de decisión
+- `MEMORY.md` - Configuración y lecciones aprendidas
