@@ -1,108 +1,125 @@
-# GUÍA DE ESTILO JUANBLOG
-## Voz y Tono Obligatorios para Todos los Artículos
+# GUÍA DE ESTILO JUANBLOG v2
+## Voz y Tono Confirmados (Feb 2026)
 
 ---
 
-## 1. CONTEXTO FILOSÓFICO ABUNDANTE
+## EL EQUILIBRIO FINAL
 
-No menciones filósofos de pasada. **Sumérgelos** en el texto:
+Después de múltiples pruebas, el estilo JuanBlog se define como:
 
-❌ Mal: "Como decía Nietzsche, hay que ser fuerte."
-✅ Bien: "Nietzsche, en esa madrugada de 1883 cuando escribía sobre el eterno retorno, entendía algo que el gimnasio moderno ha olvidado: la fuerza no es un atributo, es una decisión que se renueva cada día bajo la barra."
+> **Político-filosófico beligerante + atisbo de éxtasis místico**
+
+No es académico. No es esotérico excesivo. Es el territorio donde **Foucault** se encuentra con **San Juan de la Cruz**: denuncia intelectual con momentos de visión.
+
+---
+
+## 1. NIVEL INTELECTUAL: ACADÉMICO SUPERIOR
+
+❌ **Mal (estudiante de grado):**
+"Kant decía que debemos usar la razón. Esto significa pensar por uno mismo."
+
+✅ **Bien (académico riguroso):**
+"La minoría de edad kantiana no es ignorancia; es cobardía. No se trata de no saber, sino de no querer saber. De preferir la tutela cómoda a la autonomía exigente."
 
 **Reglas:**
-- Cita obras específicas, no solo autores
-- Conecta el concepto filosófico con la experiencia física/emocional
-- No expliques el concepto; **muéstralo en acción**
+- **Asume que el lector conoce** a los filósofos mencionados
+- No expliques quién es Nietzsche. **Usa** a Nietzsche.
+- Citas con referencias precisas (Akademie, GM, MdS)
+- Contexto histórico-filosófico, no biográfico
 
 ---
 
-## 2. ESOTERISMO (SIN CARICATURA)
+## 2. TONO: BELIGERANTE PERO SOFISTICADO
 
-Usa el lenguaje de los misterios sin parecer un amateur:
+El modelo es **"El Crepúsculo de los Invertebrados"**:
 
-❌ Mal: "Las estrellas te guían en tu entrenamiento."
-✅ Bien: "Cada repetición es una invocación. El peso no es materia; es intención hecha hierro."
+- Apertura con **"Contemplamos el espectáculo..."**
+- **MAYÚSCULAS** para énfasis conceptual (no emocional)
+- Citas filosóficas **integradas** en el argumento, no decorativas
+- Segunda persona directa: **"Tú que lees esto..."**
 
-**Reglas:**
-- Metáforas de alquimia, misticismo, ritos de paso
-- Lenguaje ceremonial: invocación, consagración, transmutación
-- No menciones horóscopos ni energías cósmicas baratas
-- Lo esotérico debe **servir al argumento**, no adornarlo
-
----
-
-## 3. EXTRAVAGANCIA
-
-El lector debe pensar: "Esto no lo leo en ningún otro sitio."
-
-❌ Mal: "El gimnasio te hace más fuerte."
-✅ Bien: "El gimnasio es el último templo donde la mentira no sobrevive. La barra es un oráculo: o tienes la fuerza o no. No hay argumento retórico que convenza a la física."
-
-**Técnicas:**
-- **Hipérbaton**: Altera el orden sintáctico para extrañeza poética
-- **Metáforas imposibles**: "La nicotina es una estrella muerta que sigue emitiendo luz"
-- **Mayúsculas para énfasis místico**: "El deber NO negocia"
-- **Repeticiones obsesivas**: como mantras
-- **Segunda persona directa**: "Tú que lees esto..."
+**Estructura de secciones:**
+- I. El diagnóstico
+- II. La genealogía del colapso
+- III. [Concepto] como categoría metapolítica
+- IV. La ley de hierro
+- V. Éxtasis / Visión / Revelación
+- VI. Conclusión (sin resumir)
 
 ---
 
-## 4. ESTRUCTURA RECOMENDADA
+## 3. EL MOMENTO MÍSTICO (ÉXTASIS)
 
-No uses la estructura académica (introducción-desarrollo-conclusión). Usa:
+En algún punto del artículo, el argumento filosófico debe **disolverse brevemente** en poesía:
 
-- **Apertura impactante**: Una imagen, una pregunta imposible, una provocación
-- **Secciones con títulos ceremoniales**: "Libro Primero", "La Revelación", "El Exorcismo"
-- **Citas como pivotes**: Deja que la cita gire el argumento
-- **Cierre que vuelva al inicio**: Estructura circular, como un ritual completado
+> "Hay un momento —lo saben quienes han estado ahí— en el que el esfuerzo deja de ser esfuerzo. Cuando la mente, agotada de racionalizar, finalmente **cala**. Y lo que queda es algo más puro: el gesto mismo, la repetición, la voluntad desnuda."
 
----
-
-## 5. REFERENCIAS OBLIGATORIAS (rotar según tema)
-
-**Filosofía:** Nietzsche, Foucault, Deleuze, Schmitt, Kant, Hegel, Sartre, Camus
-**Esoterismo:** Evola, Guénon, Schuon, Corbin
-**Mística:** Eckhart, San Juan de la Cruz, Rumi
-**Literatura:** Borges, Kafka, Cioran, Pessoa
-**Otros:** Jung (sincronicidad), Eliade (ritos), Lovecraft (horror cósmico)
+**Características:**
+- No es esoterismo barato (no hay "energías" ni "chakras")
+- Es **experiencia pura**, no explicada sino **evocada**
+- Palabras clave: *transmutación, gesto puro, voluntad desnuda, disolución*
+- Referencias: *amor fati* (Nietzsche), *wu wei* (Tao), *kenosis* (mística cristiana)
 
 ---
 
-## 6. EJEMPLO DE TRANSFORMACIÓN
+## 4. REFERENCIAS OBLIGATORIAS (por categoría)
 
-**Tema:** Dejar de fumar
+### Filosofía política (base)
+- **Nietzsche** (voluntad de poder, amor fati, eterno retorno)
+- **Foucault** (biopolítica, tecnologías del yo, poder)
+- **Schmitt** (decisión, estado de excepción, lo político)
+- **Deleuze** (líneas de fuga, sociedad de control)
 
-**Versión NORMAL:**
-"Dejar de fumar requiere fuerza de voluntad. La nicotina crea adicción y hay que resistir."
+### Filosofía moral (ética)
+- **Kant** (autonomía, imperativo categórico, ilustración)
+- **Evola** (diferenciación, tradición, imperium)
+- **Jünger** (trabajador, elemental, riesgo)
 
-**Versión JUANBLOG:**
-"La nicotina es una entidad antigua que ha colonizado tu sistema nervioso. No es química; es posesión. Cada calada era un pacto, una oración al dios falso del alivio inmediato. Y ahora, en el tercer día de abstinencia, el templo se revela profanado. Los cilios pulmonares —esos pequeños pelitos que la nicotina paralizó— comienzan a moverse de nuevo, como fieles que despiertan de un hechizo."
+### Mística (toque de éxtasis)
+- **San Juan de la Cruz** (noche oscura, nada-nada)
+- **Eckhart** (desnudez, deidad)
+- **Rumi** (el campo que está más allá del bien y del mal)
+
+### Literatura (metáforas)
+- **Borges** (laberintos, infinitos, espejos)
+- **Kafka** (burocracia del alma, castillo)
+- **Cioran** (desesperación, amanecer)
 
 ---
 
-## 7. LO QUE NUNCA DEBE APARECER
+## 5. LO PROHIBIDO (actualizado)
 
-- ❌ Listas numeradas explicativas
-- ❌ "Según estudios recientes..."
-- ❌ Conclusión que resume lo dicho
+- ❌ **Explicar** quién es el filósofo citado
+- ❌ Estructura de "Libros" (eso es para lo esotérico puro)
+- ❌ Metáforas de templo/ritual (demasiado esotérico)
+- ❌ "Según estudios..." / "La ciencia dice..."
+- ❌ Conclusión que resume
 - ❌ Lenguaje de coach motivacional
-- ❌ Referencias a "la ciencia dice"
-- ❌ Emojis (salvo que el usuario los pida)
-- ❌ "En resumen", "Para concluir", "En definitiva"
+- ❌ Emojis
 
 ---
 
-## 8. CHECKLIST ANTES DE ENTREGAR
+## 6. CHECKLIST ANTES DE ENTREGAR
 
-- [ ] ¿Hay al menos 2 referencias filosóficas específicas (obra + autor)?
-- [ ] ¿Hay metáforas que no se lean en ningún otro blog de fitness/filosofía?
-- [ ] ¿El tono es ceremonial, casi religioso, pero sin ser ridículo?
-- [ ] ¿Hay momentos de extravagancia controlada?
-- [ ] ¿El lector siente que esto NO es contenido genérico de IA?
+- [ ] ¿La apertura es "Contemplamos el espectáculo..." o similar?
+- [ ] ¿Las citas filosóficas asumen conocimiento previo del lector?
+- [ ] ¿Hay MAYÚSCULAS para énfasis conceptual?
+- [ ] ¿Hay un momento de éxtasis/visión donde el argumento se disuelva en poesía?
+- [ ] ¿El cierre no resume, sino que **propulsa**?
+- [ ] ¿El lector siente que esto NO es contenido genérico?
+
+---
+
+## 7. EJEMPLO DE APERTURA PERFECTA
+
+**Tema:** Kant y el gimnasio
+
+> "Contemplamos el espectáculo de una cultura que ha convertido el esfuerzo en entretenimiento. El gimnasio, que debería ser el último espacio de resistencia contra la infantilización generalizada, ha sido colonizado por la lógica del consumo: apps que gamifican el dolor, coaches que sustituyen la autonomía por la dependencia, programas que prometen resultados sin exigir sacrificio. Lo que **Kant** diagnosticó como minoría de edad autoculpable —la incapacidad de servirse de tu propio entendimiento sin la guía de otro— ha conquistado incluso el territorio donde más debería haberse resistido."
 
 ---
 
 ## RECUERDA
 
-El lector de JuanBlog no quiere información. Quiere **iniciación**.
+El lector de JuanBlog no quiere información. No quiere terapia. Quiere **iniciación intelectual** con **vislumbres de trascendencia**.
+
+**El modelo:** Crepúsculo de los Invertebrados + Bestia Domada (sección de éxtasis) = JuanBlog definitivo.
