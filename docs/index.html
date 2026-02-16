@@ -3,918 +3,771 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JuanBlog - Artículos de Alto Nivel</title>
-    <meta name="description" content="Ensayos sobre filosofía, entrenamiento y cultura de masa. Pensamiento sin filtros.">
-    
-    <!-- Fonts -->
+    <title>JuanBlog — Ensayos sin domesticar</title>
+    <meta name="description" content="Ensayos sobre filosofía, entrenamiento y cultura de masa. Iniciación intelectual con vislumbres de trascendencia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --accent: #ef4444;
-            --accent-hover: #dc2626;
-            --accent-light: rgba(239, 68, 68, 0.1);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: rgba(255, 255, 255, 0.08);
-            --shadow: rgba(0, 0, 0, 0.4);
-            --radius: 12px;
-            --radius-sm: 8px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --ink: #1a1714;
+            --ink-soft: #2c2822;
+            --parchment: #f5f0e8;
+            --parchment-deep: #ebe4d8;
+            --parchment-light: #faf7f2;
+            --accent: #8b2500;
+            --accent-hover: #a83000;
+            --accent-soft: #a0522d;
+            --muted: #7a7168;
+            --muted-light: #9e958a;
+            --divider: #d4c9b8;
+            --divider-light: #e5ddd0;
+            --card-bg: #faf8f4;
+            --card-hover: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(26,23,20,0.06);
+            --shadow-md: 0 4px 16px rgba(26,23,20,0.08);
+            --shadow-lg: 0 12px 40px rgba(26,23,20,0.12);
+            --radius: 2px;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--parchment);
+            color: var(--ink);
             line-height: 1.6;
-            font-size: 16px;
-            min-height: 100vh;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        ::selection {
+            background: rgba(139, 37, 0, 0.15);
+            color: var(--ink);
         }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--bg-tertiary);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-secondary);
-        }
-        
-        /* Navbar */
+
+        /* ========== NAVBAR ========== */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--divider-light);
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
         }
-        
-        .nav-container {
-            max-width: 1200px;
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 1rem 1.5rem;
+            padding: 16px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
+
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--ink);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
+            letter-spacing: -0.01em;
+            transition: color 0.3s var(--ease);
         }
-        
-        .logo:hover {
-            transform: scale(1.02);
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
+
+        .nav-brand:hover { color: var(--accent); }
+
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 32px;
             list-style: none;
         }
-        
+
         .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.82em;
             font-weight: 500;
-            transition: var(--transition);
-            position: relative;
+            color: var(--muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: color 0.3s var(--ease);
         }
-        
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
+
+        .nav-links a:hover { color: var(--ink); }
+
+        /* ========== HERO ========== */
         .hero {
-            padding: 10rem 1.5rem 4rem;
+            padding: 160px 32px 80px;
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--accent-light);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-        
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-        }
-        
-        /* Search Section */
-        .search-section {
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            padding: 0 1.5rem;
-        }
-        
-        .search-container {
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 1rem 1.25rem 1rem 3rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-        
-        .search-input::placeholder {
-            color: var(--text-muted);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-        
-        .search-clear {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.25rem;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .search-clear.visible {
-            opacity: 1;
-        }
-        
-        .search-clear:hover {
-            color: var(--accent);
-        }
-        
-        /* Tags Filter */
-        .tags-section {
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-            padding: 0 1.5rem;
-        }
-        
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-        
-        .tag {
-            padding: 0.5rem 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        
-        .tag:hover {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            transform: translateY(-1px);
-        }
-        
-        .tag.active {
+
+        .hero-rule {
+            width: 40px;
+            height: 1px;
             background: var(--accent);
-            border-color: var(--accent);
-            color: white;
+            margin: 0 auto 24px;
         }
-        
-        .tag-count {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            background: rgba(255,255,255,0.2);
-            padding: 0.1rem 0.4rem;
-            border-radius: 100px;
-        }
-        
-        /* Results Info */
-        .results-info {
-            max-width: 1200px;
-            margin: 0 auto 1.5rem;
-            padding: 0 1.5rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            min-height: 1.5rem;
-        }
-        
-        .results-info span {
-            color: var(--accent);
+
+        .hero-label {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.72em;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            margin-bottom: 20px;
         }
-        
-        /* Articles Grid */
-        .articles-section {
-            max-width: 1200px;
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8em, 6vw, 4.2em);
+            font-weight: 300;
+            line-height: 1.08;
+            color: var(--ink);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15em;
+            color: var(--muted);
+            max-width: 480px;
             margin: 0 auto;
-            padding: 0 1.5rem 4rem;
+            line-height: 1.7;
+            font-style: italic;
         }
-        
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        @media (max-width: 400px) {
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .article-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            transition: var(--transition);
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .article-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .article-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px var(--shadow);
-            border-color: rgba(239, 68, 68, 0.3);
-        }
-        
-        .article-card:hover::before {
-            opacity: 1;
-        }
-        
-        .article-card.hidden {
-            display: none;
-        }
-        
-        .card-header {
+
+        /* ========== FILTER BAR ========== */
+        .filter-bar {
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            padding: 0 32px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 1rem;
-        }
-        
-        .card-tags {
-            display: flex;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            flex: 1;
+            gap: 16px;
         }
-        
-        .card-tag {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.5rem;
-            background: var(--bg-tertiary);
-            border-radius: 4px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
+
+        .filter-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
         }
-        
-        .card-status {
-            font-size: 0.7rem;
-            padding: 0.25rem 0.6rem;
+
+        .filter-tag {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.76em;
+            font-weight: 500;
+            padding: 6px 16px;
+            border: 1px solid var(--divider);
             border-radius: 100px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.25s var(--ease);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .filter-tag:hover {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .filter-tag.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: var(--parchment);
+        }
+
+        .filter-count {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8em;
+            color: var(--muted-light);
+        }
+
+        .filter-count span {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        /* ========== DIVIDER ========== */
+        .section-rule {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            padding: 0 32px;
+        }
+
+        .section-rule hr {
+            border: none;
+            border-top: 1px solid var(--divider);
+        }
+
+        /* ========== FEATURED CARD ========== */
+        .featured-section {
+            max-width: 1100px;
+            margin: 0 auto 64px;
+            padding: 0 32px;
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--card-bg);
+            border: 1px solid var(--divider-light);
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+            transition: all 0.5s var(--ease);
+        }
+
+        .featured-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--divider);
+            transform: translateY(-2px);
+        }
+
+        .featured-left {
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-label {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.68em;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-        
-        .card-status.draft {
-            background: rgba(239, 68, 68, 0.15);
+            letter-spacing: 0.2em;
             color: var(--accent);
+            margin-bottom: 16px;
         }
-        
-        .card-status.approved {
-            background: rgba(34, 197, 94, 0.15);
-            color: #22c55e;
-        }
-        
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.15rem;
+
+        .featured-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 10px;
+            color: var(--ink);
         }
-        
-        .card-subtitle {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+
+        .featured-subtitle {
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.05em;
+            margin-bottom: 20px;
             line-height: 1.5;
         }
-        
+
+        .featured-excerpt {
+            color: var(--muted);
+            font-size: 0.95em;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .featured-meta {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.75em;
+            color: var(--muted-light);
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .featured-meta .dot {
+            width: 3px; height: 3px;
+            background: var(--divider);
+            border-radius: 50%;
+        }
+
+        .featured-right {
+            background: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 360px;
+        }
+
+        .featured-right .deco-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12em;
+            font-weight: 700;
+            color: rgba(255,255,255,0.04);
+            position: absolute;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .featured-right .essay-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6em;
+            font-weight: 300;
+            color: rgba(255,255,255,0.12);
+            letter-spacing: -0.03em;
+        }
+
+        .read-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            transition: gap 0.3s var(--ease);
+        }
+
+        .featured-card:hover .read-arrow { gap: 14px; }
+
+        /* ========== ARTICLES GRID ========== */
+        .articles-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 12px;
+        }
+
+        .grid-header h2 {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.72em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* ========== ARTICLE CARD ========== */
+        .article-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border: 1px solid var(--divider-light);
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s var(--ease);
+            position: relative;
+        }
+
+        .article-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 32px; right: 32px;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease);
+        }
+
+        .article-card:hover {
+            background: var(--card-hover);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .article-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4em;
+            font-weight: 300;
+            color: var(--divider);
+            line-height: 1;
+            margin-bottom: 16px;
+            transition: color 0.4s var(--ease);
+        }
+
+        .article-card:hover .card-number {
+            color: var(--accent);
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .card-tag {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.65em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted-light);
+            padding: 3px 0;
+        }
+
+        .card-tag + .card-tag::before {
+            content: '·';
+            margin-right: 8px;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45em;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+
+        .card-subtitle {
+            font-style: italic;
+            color: var(--muted);
+            font-size: 0.95em;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
         .card-excerpt {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1.25rem;
+            font-size: 0.92em;
+            color: var(--muted);
+            line-height: 1.65;
             flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            margin-bottom: 20px;
         }
-        
+
         .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            padding-top: 16px;
+            border-top: 1px solid var(--divider-light);
         }
-        
-        .card-meta {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+
+        .card-date {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.75em;
+            color: var(--muted-light);
         }
-        
-        .card-read-time::before {
-            content: '⏱️ ';
+
+        .card-read {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.75em;
+            color: var(--muted-light);
         }
-        
-        .card-arrow {
-            color: var(--accent);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        
-        .article-card:hover .card-arrow {
-            transform: translateX(4px);
-        }
-        
-        /* No Results */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-        }
-        
-        .no-results-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-        
-        .no-results h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        
-        .no-results p {
-            color: var(--text-muted);
-        }
-        
-        /* Footer */
-        .footer {
-            border-top: 1px solid var(--border);
-            padding: 2rem 1.5rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg-secondary);
-                flex-direction: column;
-                padding: 1rem;
-                border-bottom: 1px solid var(--border);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .hero {
-                padding-top: 8rem;
-            }
-            
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 4rem;
-            color: var(--text-muted);
-        }
-        
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--bg-tertiary);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Highlight search matches */
-        .highlight {
-            background: rgba(239, 68, 68, 0.3);
-            padding: 0 2px;
+
+        .card-status {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.65em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 3px 10px;
             border-radius: 2px;
         }
+
+        .card-status.draft {
+            background: rgba(139, 37, 0, 0.08);
+            color: var(--accent);
+        }
+
+        .card-status.approved {
+            background: rgba(45, 80, 22, 0.08);
+            color: #2d5016;
+        }
+
+        /* ========== NO RESULTS ========== */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 32px;
+        }
+
+        .no-results p {
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.1em;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            border-top: 1px solid var(--divider);
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .footer-text {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            color: var(--muted-light);
+            letter-spacing: 0.03em;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-inner { padding: 14px 20px; }
+            .nav-links { display: none; }
+            .hero { padding: 130px 20px 60px; }
+            .hero h1 { font-size: 2.4em; }
+            .filter-bar { padding: 0 20px; }
+            .featured-section { padding: 0 20px; }
+            .featured-card { grid-template-columns: 1fr; }
+            .featured-right { min-height: 180px; }
+            .featured-left { padding: 32px; }
+            .articles-section { padding: 0 20px 60px; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .section-rule { padding: 0 20px; }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero { animation: fadeUp 0.8s var(--ease) both; }
+        .filter-bar { animation: fadeUp 0.8s 0.1s var(--ease) both; }
+        .featured-section { animation: fadeUp 0.8s 0.2s var(--ease) both; }
+        .articles-section { animation: fadeUp 0.8s 0.3s var(--ease) both; }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                💪 <span>Juan</span>Blog
-            </a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Artículos</a></li>
-                <li><a href="#about" onclick="showAbout()">About</a></li>
-                <li><a href="https://github.com" target="_blank">GitHub</a></li>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">JuanBlog</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Ensayos</a></li>
+                <li><a href="https://github.com/Arkus0/JuanBlog" target="_blank">Repositorio</a></li>
             </ul>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
+
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-badge">
-            <span>🔥</span> Pensamiento sin filtros
-        </div>
-        <h1>Artículos de Alto Nivel</h1>
-        <p>Ensayos sobre filosofía, entrenamiento y cultura de masa. Ideas que duelen, verdades que liberan.</p>
+        <div class="hero-rule"></div>
+        <p class="hero-label">Ensayos sin domesticar</p>
+        <h1>Pensamiento que <em>incomoda</em></h1>
+        <p class="hero-subtitle">Filosofía, entrenamiento, cultura de masa. Iniciación intelectual con vislumbres de trascendencia.</p>
     </section>
-    
-    <!-- Search Section -->
-    <section class="search-section">
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input 
-                type="text" 
-                class="search-input" 
-                id="searchInput"
-                placeholder="Buscar artículos por título, tema o contenido..."
-                autocomplete="off"
-            >
-            <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
-        </div>
-    </section>
-    
-    <!-- Tags Filter -->
-    <section class="tags-section">
-        <div class="tags-container" id="tagsContainer">
-            <!-- Tags will be populated by JS -->
-        </div>
-    </section>
-    
-    <!-- Results Info -->
-    <div class="results-info" id="resultsInfo"></div>
-    
-    <!-- Articles Grid -->
+
+    <!-- FILTER -->
+    <div class="filter-bar">
+        <div class="filter-tags" id="filterTags"></div>
+        <div class="filter-count" id="filterCount"></div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="section-rule"><hr></div>
+
+    <!-- FEATURED -->
+    <div class="featured-section" id="featuredSection"></div>
+
+    <!-- ARTICLES GRID -->
     <section class="articles-section">
-        <div class="articles-grid" id="articlesGrid">
-            <div class="loading">
-                <div class="loading-spinner"></div>
-                <p>Cargando artículos...</p>
-            </div>
+        <div class="grid-header">
+            <h2>Todos los ensayos</h2>
         </div>
+        <div class="articles-grid" id="articlesGrid"></div>
     </section>
-    
-    <!-- Footer -->
+
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html">Inicio</a>
-                <a href="#" onclick="showAbout(); return false;">About</a>
-                <a href="rss.xml">RSS</a>
-            </div>
-            <p>© 2026 JuanBlog. Generado con 💀 y café.</p>
+        <div class="footer-inner">
+            <div class="footer-brand">JuanBlog</div>
+            <p class="footer-text">Escrito con gravedad moral y café solo · 2026</p>
         </div>
     </footer>
-    
+
     <script>
-        // State
         let articles = [];
         let tags = [];
         let activeTag = null;
-        let searchQuery = '';
-        
-        // DOM Elements
-        const searchInput = document.getElementById('searchInput');
-        const searchClear = document.getElementById('searchClear');
-        const tagsContainer = document.getElementById('tagsContainer');
-        const articlesGrid = document.getElementById('articlesGrid');
-        const resultsInfo = document.getElementById('resultsInfo');
-        
-        // Initialize
+
         document.addEventListener('DOMContentLoaded', loadData);
-        
-        // Event Listeners
-        searchInput.addEventListener('input', handleSearch);
-        searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') clearSearch();
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
         });
-        
-        // Load data from JSON
+
         async function loadData() {
             try {
-                const response = await fetch('data/articles.json');
-                const data = await response.json();
+                const res = await fetch('data/articles.json');
+                const data = await res.json();
                 articles = data.articles;
                 tags = data.tags;
-                
-                renderTags();
-                renderArticles();
-            } catch (error) {
-                console.error('Error loading articles:', error);
-                articlesGrid.innerHTML = `
-                    <div class="no-results">
-                        <div class="no-results-icon">⚠️</div>
-                        <h3>Error al cargar artículos</h3>
-                        <p>No se pudieron cargar los datos. Intenta recargar la página.</p>
-                    </div>
-                `;
+                renderFilters();
+                renderAll();
+            } catch (e) {
+                document.getElementById('articlesGrid').innerHTML =
+                    '<div class="no-results"><p>No se pudieron cargar los ensayos.</p></div>';
             }
         }
-        
-        // Render tags
-        function renderTags() {
-            // Count articles per tag
-            const tagCounts = {};
-            articles.forEach(article => {
-                article.tags.forEach(tag => {
-                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-                });
-            });
-            
-            // Create "All" tag
-            const allTag = document.createElement('button');
-            allTag.className = `tag ${!activeTag ? 'active' : ''}`;
-            allTag.innerHTML = `Todos <span class="tag-count">${articles.length}</span>`;
-            allTag.onclick = () => selectTag(null);
-            tagsContainer.appendChild(allTag);
-            
-            // Create tag buttons
-            tags.forEach(tag => {
-                const count = tagCounts[tag.id] || 0;
-                if (count === 0) return;
-                
+
+        function renderFilters() {
+            const container = document.getElementById('filterTags');
+            const allBtn = document.createElement('button');
+            allBtn.className = 'filter-tag active';
+            allBtn.textContent = 'Todos';
+            allBtn.onclick = () => selectTag(null);
+            container.appendChild(allBtn);
+
+            const usedTags = new Set(articles.flatMap(a => a.tags));
+            tags.filter(t => usedTags.has(t.id)).forEach(tag => {
                 const btn = document.createElement('button');
-                btn.className = `tag ${activeTag === tag.id ? 'active' : ''}`;
-                btn.innerHTML = `${tag.name} <span class="tag-count">${count}</span>`;
+                btn.className = 'filter-tag';
+                btn.textContent = tag.name;
                 btn.onclick = () => selectTag(tag.id);
-                btn.title = tag.description;
-                tagsContainer.appendChild(btn);
+                container.appendChild(btn);
             });
         }
-        
-        // Select tag
+
         function selectTag(tagId) {
             activeTag = tagId;
-            
-            // Update UI
-            document.querySelectorAll('.tag').forEach((btn, index) => {
-                if (index === 0 && !tagId) {
-                    btn.classList.add('active');
-                } else if (tags[index - 1]?.id === tagId) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            document.querySelectorAll('.filter-tag').forEach((btn, i) => {
+                if (i === 0 && !tagId) btn.classList.add('active');
+                else if (btn.textContent === tags.find(t => t.id === tagId)?.name) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
-            
-            renderArticles();
+            renderAll();
         }
-        
-        // Handle search
-        function handleSearch(e) {
-            searchQuery = e.target.value.toLowerCase().trim();
-            searchClear.classList.toggle('visible', searchQuery.length > 0);
-            renderArticles();
-        }
-        
-        // Clear search
-        function clearSearch() {
-            searchInput.value = '';
-            searchQuery = '';
-            searchClear.classList.remove('visible');
-            searchInput.focus();
-            renderArticles();
-        }
-        
-        // Filter and render articles
-        function renderArticles() {
-            let filtered = articles;
-            
-            // Filter by tag
-            if (activeTag) {
-                filtered = filtered.filter(a => a.tags.includes(activeTag));
-            }
-            
-            // Filter by search
-            if (searchQuery) {
-                filtered = filtered.filter(a => {
-                    const searchFields = [
-                        a.title,
-                        a.subtitle,
-                        a.excerpt,
-                        ...a.tags
-                    ].join(' ').toLowerCase();
-                    return searchFields.includes(searchQuery);
-                });
-            }
-            
-            // Sort by date (newest first)
+
+        function renderAll() {
+            let filtered = activeTag
+                ? articles.filter(a => a.tags.includes(activeTag))
+                : [...articles];
+
             filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            // Update results info
-            updateResultsInfo(filtered.length);
-            
-            // Render
+
+            // Count
+            document.getElementById('filterCount').innerHTML =
+                `<span>${filtered.length}</span> ensayo${filtered.length !== 1 ? 's' : ''}`;
+
+            // Featured (first featured article)
+            const featured = filtered.find(a => a.featured);
+            const featuredSection = document.getElementById('featuredSection');
+
+            if (featured && !activeTag) {
+                const idx = articles.indexOf(featured);
+                featuredSection.innerHTML = `
+                    <a href="${featured.file}" class="featured-card">
+                        <div class="featured-left">
+                            <div class="featured-label">Ensayo destacado</div>
+                            <h2 class="featured-title">${featured.title}</h2>
+                            <p class="featured-subtitle">${featured.subtitle}</p>
+                            <p class="featured-excerpt">${featured.excerpt}</p>
+                            <div class="featured-meta">
+                                <span>${formatDate(featured.date)}</span>
+                                <span class="dot"></span>
+                                <span>${featured.readTime} min de lectura</span>
+                            </div>
+                            <div style="margin-top: 24px;">
+                                <span class="read-arrow">Leer ensayo →</span>
+                            </div>
+                        </div>
+                        <div class="featured-right">
+                            <span class="deco-text">J</span>
+                            <span class="essay-number">${String(articles.length - idx).padStart(2, '0')}</span>
+                        </div>
+                    </a>`;
+                filtered = filtered.filter(a => a !== featured);
+            } else {
+                featuredSection.innerHTML = '';
+            }
+
+            // Grid
+            const grid = document.getElementById('articlesGrid');
             if (filtered.length === 0) {
-                articlesGrid.innerHTML = `
-                    <div class="no-results" style="grid-column: 1 / -1;">
-                        <div class="no-results-icon">🔍</div>
-                        <h3>No se encontraron artículos</h3>
-                        <p>Prueba con otros términos de búsqueda o selecciona otra categoría.</p>
-                    </div>
-                `;
+                grid.innerHTML = '<div class="no-results"><p>No hay ensayos en esta categoría.</p></div>';
                 return;
             }
-            
-            articlesGrid.innerHTML = filtered.map(article => createArticleCard(article)).join('');
-        }
-        
-        // Create article card HTML
-        function createArticleCard(article) {
-            const statusClass = article.status === 'approved' ? 'approved' : 'draft';
-            const statusText = article.status === 'approved' ? 'Publicado' : 'Borrador';
-            const tagObjects = article.tags.map(tagId => {
-                const tag = tags.find(t => t.id === tagId);
-                return tag ? tag.name : tagId;
-            });
-            
-            // Highlight search matches
-            let title = article.title;
-            let subtitle = article.subtitle;
-            let excerpt = article.excerpt;
-            
-            if (searchQuery) {
-                const regex = new RegExp(`(${escapeRegex(searchQuery)})`, 'gi');
-                title = title.replace(regex, '<mark class="highlight">$1</mark>');
-                subtitle = subtitle.replace(regex, '<mark class="highlight">$1</mark>');
-                excerpt = excerpt.replace(regex, '<mark class="highlight">$1</mark>');
-            }
-            
-            return `
-                <a href="${article.file}" class="article-card">
-                    <div class="card-header">
+
+            grid.innerHTML = filtered.map((article, i) => {
+                const num = String(articles.length - articles.indexOf(article)).padStart(2, '0');
+                const tagNames = article.tags
+                    .map(t => tags.find(tag => tag.id === t)?.name || t)
+                    .slice(0, 3);
+                const status = article.status === 'approved' ? 'approved' : 'draft';
+                const statusLabel = status === 'approved' ? 'Publicado' : 'Borrador';
+
+                return `
+                    <a href="${article.file}" class="article-card" style="animation: fadeUp 0.5s ${0.1 + i * 0.06}s var(--ease) both;">
+                        <span class="card-number">${num}</span>
                         <div class="card-tags">
-                            ${tagObjects.slice(0, 3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+                            ${tagNames.map(t => `<span class="card-tag">${t}</span>`).join('')}
                         </div>
-                        <span class="card-status ${statusClass}">${statusText}</span>
-                    </div>
-                    <h3 class="card-title">${title}</h3>
-                    <p class="card-subtitle">${subtitle}</p>
-                    <p class="card-excerpt">${excerpt}</p>
-                    <div class="card-footer">
-                        <div class="card-meta">
-                            <span>${formatDate(article.date)}</span>
-                            <span class="card-read-time">${article.readTime} min</span>
+                        <h3 class="card-title">${article.title}</h3>
+                        <p class="card-subtitle">${article.subtitle}</p>
+                        <p class="card-excerpt">${article.excerpt}</p>
+                        <div class="card-footer">
+                            <span class="card-date">${formatDate(article.date)}</span>
+                            <span class="card-read">${article.readTime} min</span>
+                            <span class="card-status ${status}">${statusLabel}</span>
                         </div>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </a>
-            `;
+                    </a>`;
+            }).join('');
         }
-        
-        // Update results info
-        function updateResultsInfo(count) {
-            if (searchQuery || activeTag) {
-                const tagName = activeTag ? tags.find(t => t.id === activeTag)?.name : null;
-                let text = `Mostrando <span>${count}</span> artículo${count !== 1 ? 's' : ''}`;
-                if (tagName) text += ` en <span>${tagName}</span>`;
-                if (searchQuery) text += ` para "<span>${escapeHtml(searchQuery)}</span>"`;
-                resultsInfo.innerHTML = text;
-            } else {
-                resultsInfo.innerHTML = `<span>${count}</span> artículos disponibles`;
-            }
-        }
-        
-        // Format date
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('es-ES', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric'
+
+        function formatDate(d) {
+            return new Date(d).toLocaleDateString('es-ES', {
+                day: 'numeric', month: 'long', year: 'numeric'
             });
-        }
-        
-        // Escape HTML
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // Escape regex special chars
-        function escapeRegex(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
-        
-        // Toggle mobile menu
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-        
-        // Show about modal (placeholder)
-        function showAbout() {
-            alert('JuanBlog - Ensayos sobre filosofía, entrenamiento y cultura de masa.\n\nEscritos con 💀 y café.');
         }
     </script>
+
 </body>
 </html>
