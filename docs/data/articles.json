@@ -1,15 +1,39 @@
 {
   "articles": [
     {
+      "id": "abolicion-silencio",
+      "slug": "la-abolicion-del-silencio",
+      "title": "La Abolición del Silencio",
+      "subtitle": "Anatomía sociológica de una civilización que no soporta callarse",
+      "date": "2026-02-16",
+      "file": "abolicion-silencio-v1.html",
+      "tags": ["filosofía", "sociología", "política"],
+      "excerpt": "Contemplamos el espectáculo de una especie que ha logrado lo que ninguna tiranía anterior consiguió: eliminar el silencio sin necesidad de decretos...",
+      "featured": true,
+      "readTime": 11
+    },
+    {
+      "id": "peso-muerto-v2",
+      "slug": "la-gravitacion-moral-del-peso-muerto",
+      "title": "La Gravitación Moral del Peso Muerto",
+      "subtitle": "Sobre la cobardía de no levantar lo que el suelo te exige",
+      "date": "2026-02-16",
+      "file": "peso-muerto-v2.html",
+      "tags": ["filosofía", "gimnasio", "voluntad"],
+      "excerpt": "Contemplamos el espectáculo de una civilización que ha declarado la guerra a la gravedad —no a la gravedad física, sino a la gravedad moral...",
+      "featured": true,
+      "readTime": 10
+    },
+    {
       "id": "guerra-que-no-ves",
       "slug": "la-guerra-que-no-ves",
       "title": "La Guerra que No Ves",
       "subtitle": "Cómo Rusia Escribe tu Realidad",
       "date": "2026-02-17",
       "file": "drafts/guerra-que-no-ves-v1.html",
-      "tags": ["política", "desinformación", "geopolítica", "rusia"],
+      "tags": ["política", "desinformación", "geopolítica"],
       "excerpt": "Contemplamos el espectáculo de una Europa que ha declarado guerra a Rusia con sanciones y armas, pero ignora la guerra que realmente está perdiendo...",
-      "featured": true,
+      "featured": false,
       "readTime": 12
     },
     {
@@ -19,34 +43,10 @@
       "subtitle": "Kant contra la Infancia del Gimnasio Moderno",
       "date": "2026-02-16",
       "file": "drafts/kant-magic-gimnasio-v1.html",
-      "tags": ["filosofía", "gimnasio", "kant", "adultez"],
+      "tags": ["filosofía", "gimnasio", "kant"],
       "excerpt": "Contemplamos el espectáculo de una cultura que ha convertido el esfuerzo en entretenimiento. El gimnasio, que debería ser el último espacio de resistencia...",
-      "featured": true,
+      "featured": false,
       "readTime": 10
-    },
-    {
-      "id": "bestia-domada",
-      "slug": "el-libro-de-la-bestia",
-      "title": "El Libro de la Bestia",
-      "subtitle": "Dejar de Fumar como Apocalipsis Personal",
-      "date": "2026-02-16",
-      "file": "drafts/bestia-domada-v1.html",
-      "tags": ["psicología", "hábitos", "adicción", "voluntad"],
-      "excerpt": "Estoy en el tercer día. El tercer día de un calvario que no tiene nombre en ningún idioma humano. El tercer día de la gran prueba...",
-      "featured": false,
-      "readTime": 8
-    },
-    {
-      "id": "lecciones-gimnasio",
-      "slug": "lecciones-del-gimnasio",
-      "title": "Lecciones del Gimnasio",
-      "subtitle": "La Sabiduría de No Saber",
-      "date": "2026-02-16",
-      "file": "drafts/lecciones-gimnasio-v1.html",
-      "tags": ["gimnasio", "filosofía", "aprendizaje", "humildad"],
-      "excerpt": "El gimnasio es una escuela de humildad. Cada sesión te recuerda lo que no sabes, lo que no puedes, lo que aún te falta...",
-      "featured": false,
-      "readTime": 7
     },
     {
       "id": "crepusculo-invertebrados",
@@ -55,10 +55,22 @@
       "subtitle": "España ante la Exigencia del Carácter",
       "date": "2026-02-16",
       "file": "drafts/crepusculo-invertebrados-v1.html",
-      "tags": ["política", "españa", "cultura", "carácter"],
+      "tags": ["política", "españa", "cultura"],
       "excerpt": "España es un país de invertebrados. No en el sentido biológico, sino en el moral. Una sociedad que ha perdido la columna vertebral...",
-      "featured": true,
+      "featured": false,
       "readTime": 11
+    },
+    {
+      "id": "bestia-domada",
+      "slug": "el-libro-de-la-bestia",
+      "title": "El Libro de la Bestia",
+      "subtitle": "Dejar de Fumar como Apocalipsis Personal",
+      "date": "2026-02-16",
+      "file": "drafts/bestia-domada-v1.html",
+      "tags": ["psicología", "hábitos", "voluntad"],
+      "excerpt": "Estoy en el tercer día. El tercer día de un calvario que no tiene nombre en ningún idioma humano. El tercer día de la gran prueba...",
+      "featured": false,
+      "readTime": 8
     },
     {
       "id": "gigantes-del-orden",
@@ -67,84 +79,58 @@
       "subtitle": "Por Qué el Estado Necesita un Ejército de Culturistas",
       "date": "2026-02-16",
       "file": "drafts/gigantes-del-orden-v2.html",
-      "tags": ["política", "estado", "gimnasio", "sociedad"],
+      "tags": ["política", "estado", "gimnasio"],
       "excerpt": "El Estado moderno ha olvidado algo esencial: necesita hombres fuertes no solo para defender sus fronteras, sino para sostener su orden simbólico...",
       "featured": false,
       "readTime": 9
     },
     {
+      "id": "lecciones-gimnasio",
+      "slug": "lecciones-del-gimnasio",
+      "title": "Lecciones del Gimnasio",
+      "subtitle": "La Sabiduría de No Saber",
+      "date": "2026-02-16",
+      "file": "drafts/lecciones-gimnasio-v1.html",
+      "tags": ["gimnasio", "filosofía", "humildad"],
+      "excerpt": "El gimnasio es una escuela de humildad. Cada sesión te recuerda lo que no sabes, lo que no puedes, lo que aún te falta...",
+      "featured": false,
+      "readTime": 7
+    },
+    {
       "id": "peso-muerto",
       "slug": "el-peso-muerto",
-      "title": "El Peso Muerto",
+      "title": "El Peso Muerto (v1 original)",
       "subtitle": "La Base del Desarrollo de la Fuerza Total",
-      "date": "2026-02-16",
+      "date": "2026-02-15",
       "file": "drafts/peso-muerto-grok-kimi-v1.html",
-      "tags": ["gimnasio", "técnica", "fuerza", "entrenamiento"],
-      "excerpt": "El peso muerto no es un ejercicio. Es una revelación. Es el momento en que te enfrentas a la gravedad pura, sin artificios, sin excusas...",
+      "tags": ["gimnasio", "técnica", "entrenamiento"],
+      "excerpt": "El peso muerto no es un ejercicio. Es una revelación. Es el momento en que te enfrentas a la gravedad pura, sin artificios...",
       "featured": false,
       "readTime": 8,
       "status": "approved"
     }
   ],
   "tags": [
-    {
-      "id": "política",
-      "name": "Política",
-      "color": "#ef4444",
-      "description": "Análisis político, geopolítica y crítica social"
-    },
-    {
-      "id": "filosofía",
-      "name": "Filosofía",
-      "color": "#8b5cf6",
-      "description": "Pensamiento filosófico y reflexiones conceptuales"
-    },
-    {
-      "id": "gimnasio",
-      "name": "Gimnasio",
-      "color": "#22c55e",
-      "description": "Entrenamiento, técnica y filosofía del fitness"
-    },
-    {
-      "id": "psicología",
-      "name": "Psicología",
-      "color": "#f59e0b",
-      "description": "Mente, comportamiento y desarrollo personal"
-    },
-    {
-      "id": "desinformación",
-      "name": "Desinformación",
-      "color": "#dc2626",
-      "description": "Guerra informacional y manipulación mediática"
-    },
-    {
-      "id": "hábitos",
-      "name": "Hábitos",
-      "color": "#06b6d4",
-      "description": "Cambio de hábitos y transformación personal"
-    },
-    {
-      "id": "españa",
-      "name": "España",
-      "color": "#fbbf24",
-      "description": "Análisis específico sobre la realidad española"
-    },
-    {
-      "id": "estado",
-      "name": "Estado",
-      "color": "#6366f1",
-      "description": "Teoría política e instituciones"
-    },
-    {
-      "id": "técnica",
-      "name": "Técnica",
-      "color": "#14b8a6",
-      "description": "Guías técnicas y metodológicas"
-    }
+    { "id": "política", "name": "Política", "description": "Análisis político, geopolítica y crítica social" },
+    { "id": "filosofía", "name": "Filosofía", "description": "Pensamiento filosófico y reflexiones conceptuales" },
+    { "id": "gimnasio", "name": "Gimnasio", "description": "Entrenamiento, técnica y filosofía del fitness" },
+    { "id": "psicología", "name": "Psicología", "description": "Mente, comportamiento y desarrollo personal" },
+    { "id": "sociología", "name": "Sociología", "description": "Análisis de estructuras sociales y cultura de masa" },
+    { "id": "desinformación", "name": "Desinformación", "description": "Guerra informacional y manipulación mediática" },
+    { "id": "hábitos", "name": "Hábitos", "description": "Cambio de hábitos y transformación personal" },
+    { "id": "españa", "name": "España", "description": "Análisis específico sobre la realidad española" },
+    { "id": "estado", "name": "Estado", "description": "Teoría política e instituciones" },
+    { "id": "voluntad", "name": "Voluntad", "description": "Fuerza de voluntad, decisión y carácter" },
+    { "id": "cultura", "name": "Cultura", "description": "Análisis cultural y de civilización" },
+    { "id": "técnica", "name": "Técnica", "description": "Guías técnicas y metodológicas" },
+    { "id": "entrenamiento", "name": "Entrenamiento", "description": "Programas y metodología de entrenamiento" },
+    { "id": "geopolítica", "name": "Geopolítica", "description": "Relaciones internacionales y poder global" },
+    { "id": "kant", "name": "Kant", "description": "Filosofía kantiana aplicada" },
+    { "id": "humildad", "name": "Humildad", "description": "Virtud y autoconocimiento" }
   ],
   "meta": {
-    "lastUpdated": "2026-02-17",
-    "totalArticles": 7,
-    "version": "1.0"
+    "lastUpdated": "2026-02-16",
+    "totalArticles": 9,
+    "version": "2.0"
   }
 }
