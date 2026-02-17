@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "id": "gap",
+      "slug": "gap",
+      "title": "",
+      "subtitle": "",
+      "date": "2026-02-17",
+      "file": "gap-v1.html",
+      "tags": [],
+      "excerpt": "",
+      "featured": true,
+      "readTime": null
+    },
+    {
       "id": "elegir",
       "slug": "elegir",
       "title": "",
@@ -331,7 +343,7 @@
   ],
   "meta": {
     "lastUpdated": "2026-02-16",
-    "totalArticles": 16,
+    "totalArticles": 17,
     "version": "2.0"
   }
 }
