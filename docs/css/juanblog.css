@@ -1,25 +1,32 @@
 /* ========================================
    JUANBLOG - SISTEMA DE DISEÑO UNIFICADO
+   Basado en "La Abolición del Silencio"
    ======================================== */
 
-/* ---------- VARIABLES BASE ---------- */
+/* ---------- VARIABLES BASE (PERGAMINO) ---------- */
 :root {
   /* Paleta Pergamino/Tinta (default) */
-  --bg-primary: #f5f1e8;
-  --bg-secondary: #e8e0d0;
-  --bg-tertiary: #d4c8b0;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-muted: #7a7a7a;
-  --accent: #8b0000;
-  --accent-light: rgba(139, 0, 0, 0.1);
-  --border: rgba(0, 0, 0, 0.1);
-  --shadow: rgba(0, 0, 0, 0.1);
+  --ink: #1a1714;
+  --parchment: #f5f0e8;
+  --parchment-dark: #ebe5db;
+  --accent: #2c3e50;
+  --accent-soft: #4a6274;
+  --muted: #6b6256;
+  --divider: #d4c9b8;
+  --ecstasy-bg: #0a0d10;
+  --ecstasy-text: #d6cfc2;
+  
+  /* Alias para compatibilidad */
+  --bg-primary: var(--parchment);
+  --bg-secondary: var(--parchment-dark);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --border: var(--divider);
   
   /* Tipografías */
   --font-title: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'EB Garamond', Georgia, serif;
-  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-ui: 'Instrument Sans', system-ui, sans-serif;
   
   /* Espaciado */
   --space-xs: 0.5rem;
@@ -29,36 +36,7 @@
   --space-xl: 4rem;
   
   /* Tamaños */
-  --container-max: 800px;
-  --radius: 8px;
-}
-
-/* ---------- TEMA OSCURO ---------- */
-[data-theme="dark"] {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-tertiary: #1a1a25;
-  --text-primary: #f5f5f5;
-  --text-secondary: #a0a0a0;
-  --text-muted: #606060;
-  --accent: #dc2626;
-  --accent-light: rgba(220, 38, 38, 0.1);
-  --border: rgba(255, 255, 255, 0.1);
-  --shadow: rgba(0, 0, 0, 0.5);
-}
-
-/* ---------- TEMA ROJO (Carne/Sangre) ---------- */
-[data-theme="crimson"] {
-  --bg-primary: #1a0a0a;
-  --bg-secondary: #2a1515;
-  --bg-tertiary: #3a2020;
-  --text-primary: #f5e6e6;
-  --text-secondary: #c9a0a0;
-  --text-muted: #8b6060;
-  --accent: #ff4444;
-  --accent-light: rgba(255, 68, 68, 0.15);
-  --border: rgba(255, 68, 68, 0.2);
-  --shadow: rgba(0, 0, 0, 0.6);
+  --container-max: 680px;
 }
 
 /* ---------- RESET & BASE ---------- */
@@ -75,46 +53,42 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.7;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.85;
   min-height: 100vh;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ---------- TIPOGRAFÍA ---------- */
 h1, h2, h3, h4 {
   font-family: var(--font-title);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: var(--space-sm);
+  font-size: 2.6em;
+  margin-bottom: 16px;
 }
 
 h2 {
-  font-size: clamp(1.3rem, 3vw, 1.6rem);
-  margin-top: var(--space-xl);
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-xs);
-  border-bottom: 2px solid var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-size: 1.5em;
+  margin-top: 50px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--divider);
 }
 
 h3 {
-  font-size: 1.2rem;
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-sm);
+  font-size: 1.2em;
+  margin-top: 32px;
+  margin-bottom: 16px;
   color: var(--accent);
 }
 
 p {
-  margin-bottom: var(--space-md);
+  margin-bottom: 1.5rem;
   text-align: justify;
   hyphens: auto;
 }
@@ -126,16 +100,16 @@ p {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(var(--bg-primary), 0.9);
+  background: rgba(245, 240, 232, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--divider);
+  padding: 16px 0;
 }
 
 .nav-container {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -145,11 +119,9 @@ p {
   font-family: var(--font-title);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--ink);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  letter-spacing: 0.02em;
 }
 
 .nav-logo span {
@@ -158,17 +130,17 @@ p {
 
 .nav-links {
   display: flex;
-  gap: var(--space-lg);
+  gap: 32px;
   list-style: none;
 }
 
 .nav-links a {
   font-family: var(--font-ui);
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: var(--muted);
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
   transition: color 0.2s;
 }
 
@@ -180,197 +152,230 @@ p {
 .article-container {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: calc(80px + var(--space-xl)) var(--space-md) var(--space-xl);
+  padding: 100px 24px 120px;
 }
 
 /* ---------- HEADER DEL ARTÍCULO ---------- */
 .article-header {
-  text-align: center;
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-lg);
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--divider);
+  padding-bottom: 40px;
 }
 
-.article-status {
-  display: inline-block;
-  background: var(--accent-light);
-  color: var(--accent);
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  font-weight: 600;
+.article-number {
+  font-family: var(--font-title);
+  font-size: 0.8em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: var(--space-md);
-  border: 1px solid var(--accent);
+  color: var(--accent);
+  display: block;
+  margin-bottom: 20px;
 }
 
 .article-title {
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  line-height: 1.1;
-  margin-bottom: var(--space-sm);
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 2.6em;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 16px;
 }
 
 .article-subtitle {
   font-family: var(--font-title);
-  font-size: 1.3rem;
   font-style: italic;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-md);
+  font-size: 1.2em;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .article-meta {
+  margin-top: 24px;
+  font-size: 0.85em;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.article-status {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent);
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
   font-family: var(--font-ui);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  flex-wrap: wrap;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
 }
 
-/* ---------- SECCIONES ESPECIALES ---------- */
-
-/* Sección Oscura (para momentos de éxtasis/void) */
-.dark-section {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-lg);
-  margin: var(--space-xl) 0;
+/* ---------- SECCIONES ---------- */
+.section {
+  margin-bottom: 50px;
 }
 
-/* Sección Éxtasis */
-.ecstasy-block {
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-  border-left: 4px solid var(--accent);
-  padding: var(--space-lg);
-  margin: var(--space-xl) 0;
-  font-style: italic;
-}
-
-/* Sección Visceral (para "Carne") */
-.visceral-break {
-  background: var(--accent-light);
-  border-top: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
-  padding: var(--space-lg);
-  margin: var(--space-xl) 0;
-  text-align: center;
-}
-
-.visceral-break p {
-  text-align: center;
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-/* Sección Void (bloque negro) */
-.void-block {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  padding: var(--space-lg);
-  margin: var(--space-xl) 0;
-  border-radius: var(--radius);
-}
-
-.void-block p {
-  text-align: center;
-  margin: 0;
+.section-number {
+  font-family: var(--font-title);
+  font-size: 0.8em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 12px;
 }
 
 /* ---------- CITAS ---------- */
 blockquote {
+  margin: 32px 0;
+  padding: 24px 32px;
   border-left: 3px solid var(--accent);
-  padding-left: var(--space-md);
-  margin: var(--space-lg) 0;
+  background: var(--parchment-dark);
   font-style: italic;
-  color: var(--text-secondary);
+}
+
+blockquote p {
+  margin: 0;
+  font-size: 1.05em;
+  line-height: 1.7;
 }
 
 blockquote cite {
   display: block;
-  margin-top: var(--space-xs);
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  margin-top: 16px;
+  font-size: 0.85em;
+  color: var(--muted);
   font-style: normal;
   font-family: var(--font-ui);
 }
 
 /* ---------- ÉNFASIS ---------- */
 strong, .emphasis {
-  color: var(--accent);
   font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- SECCIONES ESPECIALES ---------- */
+
+/* Éxtasis - Fondo oscuro */
+.ecstasy-block {
+  background: var(--ecstasy-bg);
+  color: var(--ecstasy-text);
+  padding: 48px 40px;
+  margin: 48px -24px;
+  text-align: center;
+}
+
+.ecstasy-block p {
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.ecstasy-block blockquote {
+  background: transparent;
+  border-left: none;
+  border-top: 1px solid rgba(214, 207, 194, 0.3);
+  margin-top: 32px;
+  padding-top: 32px;
+}
+
+/* Visceral - Líneas arriba y abajo */
+.visceral-break {
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding: 32px;
+  margin: 48px 0;
+  text-align: center;
+}
+
+.visceral-break p {
+  text-align: center;
+  font-size: 1.15em;
+  font-style: italic;
+  margin: 0;
+  color: var(--accent);
+}
+
+/* Void - Bloque oscuro */
+.void-block {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 40px;
+  margin: 48px 0;
+}
+
+.void-block p {
+  text-align: center;
+  margin: 0;
+  font-size: 1.1em;
 }
 
 /* ---------- BOTONES ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius);
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 4px;
   font-family: var(--font-ui);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.2s;
-  border: none;
+  border: 1px solid var(--accent);
 }
 
 .btn-primary {
   background: var(--accent);
-  color: white;
+  color: var(--parchment);
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
+  color: var(--accent);
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--parchment);
 }
 
 /* ---------- FOOTER ---------- */
 .article-footer {
-  margin-top: var(--space-xl);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--border);
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--divider);
   text-align: center;
-  color: var(--text-muted);
+  color: var(--muted);
   font-family: var(--font-ui);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
-
-/* ---------- UTILIDADES ---------- */
-.text-center { text-align: center; }
-.mt-lg { margin-top: var(--space-lg); }
-.mb-lg { margin-bottom: var(--space-lg); }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   html { font-size: 16px; }
   
-  .nav-links {
-    display: none;
+  .article-container {
+    padding: 80px 20px 80px;
   }
   
-  .article-container {
-    padding-top: calc(60px + var(--space-lg));
+  .ecstasy-block {
+    margin: 40px -20px;
+    padding: 32px 24px;
+  }
+  
+  .nav-links {
+    display: none;
   }
 }
 
@@ -380,14 +385,14 @@ strong, .emphasis {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--parchment-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--divider);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--muted);
 }
