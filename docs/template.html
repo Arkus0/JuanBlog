@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="parchment">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITULO}} - JuanBlog</title>
+    <meta name="description" content="{{DESCRIPCION}}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/juanblog.css">
+    
+    <style>
+        /* Variables específicas del artículo (opcional) */
+        :root {
+            /* Sobrescribe aquí si necesitas ajustes */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="site-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                💀 <span>Juan</span>Blog
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Artículos</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="https://github.com/arkus0/juanblog" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="article-container">
+        
+        <!-- Header -->
+        <header class="article-header">
+            <span class="article-status">{{STATUS}}</span>
+            <h1 class="article-title">{{TITULO}}</h1>
+            <p class="article-subtitle">{{SUBTITULO}}</p>
+            <div class="article-meta">
+                <span>{{FECHA}}</span>
+                <span>•</span>
+                <span>{{TIEMPO_LECTURA}} min de lectura</span>
+            </div>
+        </header>
+
+        <!-- CONTENIDO DEL ARTÍCULO -->
+        
+        <h2><span class="section-number">I.</span>Título Sección</h2>
+        
+        <p>Párrafo de ejemplo. Lorem ipsum dolor sit amet...</p>
+        
+        <blockquote>
+            "Cita filosófica de ejemplo."
+            <cite>— Autor, Obra</cite>
+        </blockquote>
+        
+        <p>Otro párrafo con <strong>énfasis</strong> importante.</p>
+        
+        <!-- Ejemplo de sección especial: Éxtasis -->
+        <div class="ecstasy-block">
+            <p>Momento de éxtasis filosófico. Texto intenso y trascendente...</p>
+        </div>
+        
+        <!-- Ejemplo de sección especial: Visceral -->
+        <div class="visceral-break">
+            <p>Momento visceral. Impacto emocional directo...</p>
+        </div>
+        
+        <!-- Ejemplo de sección especial: Void -->
+        <div class="void-block">
+            <p>Bloque oscuro. Negación, vacío, abismo...</p>
+        </div>
+        
+        <!-- FIN DEL CONTENIDO -->
+
+        <!-- Footer -->
+        <footer class="article-footer">
+            <p>JuanBlog • Pensamiento sin filtros</p>
+            <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
+                <a href="../index.html" class="btn btn-secondary">← Volver a artículos</a>
+            </div>
+        </footer>
+        
+    </main>
+</body>
+</html>

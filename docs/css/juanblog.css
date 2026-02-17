@@ -1,0 +1,393 @@
+/* ========================================
+   JUANBLOG - SISTEMA DE DISEÑO UNIFICADO
+   ======================================== */
+
+/* ---------- VARIABLES BASE ---------- */
+:root {
+  /* Paleta Pergamino/Tinta (default) */
+  --bg-primary: #f5f1e8;
+  --bg-secondary: #e8e0d0;
+  --bg-tertiary: #d4c8b0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
+  --accent: #8b0000;
+  --accent-light: rgba(139, 0, 0, 0.1);
+  --border: rgba(0, 0, 0, 0.1);
+  --shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Tipografías */
+  --font-title: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  
+  /* Espaciado */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  
+  /* Tamaños */
+  --container-max: 800px;
+  --radius: 8px;
+}
+
+/* ---------- TEMA OSCURO ---------- */
+[data-theme="dark"] {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a25;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a0a0a0;
+  --text-muted: #606060;
+  --accent: #dc2626;
+  --accent-light: rgba(220, 38, 38, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- TEMA ROJO (Carne/Sangre) ---------- */
+[data-theme="crimson"] {
+  --bg-primary: #1a0a0a;
+  --bg-secondary: #2a1515;
+  --bg-tertiary: #3a2020;
+  --text-primary: #f5e6e6;
+  --text-secondary: #c9a0a0;
+  --text-muted: #8b6060;
+  --accent: #ff4444;
+  --accent-light: rgba(255, 68, 68, 0.15);
+  --border: rgba(255, 68, 68, 0.2);
+  --shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- RESET & BASE ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- TIPOGRAFÍA ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: var(--space-sm);
+}
+
+h2 {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--accent);
+}
+
+p {
+  margin-bottom: var(--space-md);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ---------- NAVEGACIÓN ---------- */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(var(--bg-primary), 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-sm) 0;
+}
+
+.nav-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* ---------- CONTENEDOR PRINCIPAL ---------- */
+.article-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: calc(80px + var(--space-xl)) var(--space-md) var(--space-xl);
+}
+
+/* ---------- HEADER DEL ARTÍCULO ---------- */
+.article-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.article-status {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--accent);
+}
+
+.article-title {
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: var(--space-sm);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.article-subtitle {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.article-meta {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+/* ---------- SECCIONES ESPECIALES ---------- */
+
+/* Sección Oscura (para momentos de éxtasis/void) */
+.dark-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+/* Sección Éxtasis */
+.ecstasy-block {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-left: 4px solid var(--accent);
+  padding: var(--space-lg);
+  margin: var(--space-xl) 0;
+  font-style: italic;
+}
+
+/* Sección Visceral (para "Carne") */
+.visceral-break {
+  background: var(--accent-light);
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding: var(--space-lg);
+  margin: var(--space-xl) 0;
+  text-align: center;
+}
+
+.visceral-break p {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Sección Void (bloque negro) */
+.void-block {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: var(--space-lg);
+  margin: var(--space-xl) 0;
+  border-radius: var(--radius);
+}
+
+.void-block p {
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- CITAS ---------- */
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-md);
+  margin: var(--space-lg) 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: normal;
+  font-family: var(--font-ui);
+}
+
+/* ---------- ÉNFASIS ---------- */
+strong, .emphasis {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- BOTONES ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- FOOTER ---------- */
+.article-footer {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+}
+
+/* ---------- UTILIDADES ---------- */
+.text-center { text-align: center; }
+.mt-lg { margin-top: var(--space-lg); }
+.mb-lg { margin-bottom: var(--space-lg); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .article-container {
+    padding-top: calc(60px + var(--space-lg));
+  }
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
