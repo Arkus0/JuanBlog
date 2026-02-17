@@ -218,6 +218,21 @@
       "excerpt": "Genealogía de un deseo que no comprendemos. Por qué el impulso de levantar más peso trasciende la estética y el rendimiento.",
       "featured": false,
       "readTime": 10
+    },
+    {
+      "id": "dictadura-del-lastre",
+      "slug": "dictadura-del-lastre",
+      "title": "La Dictadura del Lastre",
+      "subtitle": "Por qué los débiles deben ser abandonados",
+      "date": "2026-01-10",
+      "file": "drafts/la-dictadura-del-lastre-long.html",
+      "tags": [
+        "filosofía",
+        "fitness"
+      ],
+      "excerpt": "Por qué los débiles deben ser abandonados. Una reflexión sobre el peso muerto de la compasión mal entendida.",
+      "featured": false,
+      "readTime": 12
     }
   ],
   "tags": [
@@ -304,7 +319,7 @@
   ],
   "meta": {
     "lastUpdated": "2026-02-16",
-    "totalArticles": 14,
+    "totalArticles": 15,
     "version": "2.0"
   }
 }
