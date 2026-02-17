@@ -124,8 +124,9 @@ p {
   letter-spacing: 0.02em;
 }
 
-.nav-logo span {
-  color: var(--accent);
+.nav-logo::before {
+  content: '💀';
+  margin-right: 8px;
 }
 
 .nav-links {
@@ -256,13 +257,21 @@ strong, .emphasis {
 
 /* ---------- SECCIONES ESPECIALES ---------- */
 
-/* Éxtasis - Fondo oscuro */
+/* Éxtasis - Pergamino destacado (sin oscuro) */
 .ecstasy-block {
-  background: var(--ecstasy-bg);
-  color: var(--ecstasy-text);
-  padding: 48px 40px;
-  margin: 48px -24px;
+  background: var(--parchment-dark);
+  border: 2px solid var(--accent);
+  padding: 40px 32px;
+  margin: 48px 0;
   text-align: center;
+  border-radius: 8px;
+}
+
+.ecstasy-block::before {
+  content: '✨';
+  font-size: 2em;
+  display: block;
+  margin-bottom: 16px;
 }
 
 .ecstasy-block p {
@@ -275,9 +284,9 @@ strong, .emphasis {
 .ecstasy-block blockquote {
   background: transparent;
   border-left: none;
-  border-top: 1px solid rgba(214, 207, 194, 0.3);
-  margin-top: 32px;
-  padding-top: 32px;
+  border-top: 1px solid var(--divider);
+  margin-top: 24px;
+  padding-top: 24px;
 }
 
 /* Visceral - Líneas arriba y abajo */
