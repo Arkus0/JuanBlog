@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecciones del Gimnasio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1714;
+            --parchment: #f5f0e8;
+            --accent: #6b0f0f;
+            --accent-soft: #8b2020;
+            --muted: #6b6256;
+            --divider: #d4c9b8;
+            --ecstasy-bg: #120805;
+            --ecstasy-text: #e0d2c0;
+            --blood: #7a1a1a;
+            --bruise: #2d1b2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', 'Georgia', serif;
+            line-height: 1.85;
+            color: var(--ink);
+            background: var(--parchment);
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 100px 24px 120px;
+        }
+
+        /* Unified navbar */
+        .site-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #e5ddd0;
+        }
+        .site-nav-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .site-nav a.brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .site-nav a.brand:hover { color: var(--accent); }
+        .site-nav a.back {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            font-weight: 500;
+            color: #7a7168;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .site-nav a.back:hover { color: var(--ink); }
+
+        /* Header */
+        .article-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 40px;
+        }
+
+        .article-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .meta {
+            margin-top: 24px;
+            font-size: 0.85em;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* Sections */
+        .section { margin-bottom: 50px; }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 14px;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 1.12em;
+            margin-bottom: 18px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .concept {
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 2px solid var(--accent-soft);
+            margin: 30px 0;
+            padding: 8px 0 8px 24px;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.05em;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 28px;
+            font-size: 1.12em;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Visceral break — dark band */
+        .visceral-break {
+            background: var(--ink);
+            color: var(--parchment);
+            margin: 50px -24px;
+            padding: 32px 24px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5em;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.04em;
+            line-height: 1.6;
+        }
+
+        .visceral-break em {
+            font-weight: 600;
+            font-style: normal;
+            color: #c45050;
+        }
+
+        /* Ecstasy */
+        .ecstasy {
+            background: var(--ecstasy-bg);
+            color: var(--ecstasy-text);
+            margin: 60px -24px;
+            padding: 70px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecstasy::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(122, 26, 26, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ecstasy .ecstasy-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .ecstasy h2 {
+            color: #c45050;
+        }
+
+        .ecstasy p {
+            color: var(--ecstasy-text);
+            line-height: 2.1;
+            font-size: 1.18em;
+        }
+
+        .ecstasy em {
+            color: #d4956a;
+        }
+
+        .ecstasy strong {
+            color: #e8c9a0;
+            font-weight: 500;
+        }
+
+        /* Dividers */
+        .section-divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--divider);
+            font-size: 1.2em;
+            letter-spacing: 0.5em;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2em; }
+            .container { padding: 80px 18px 100px; }
+            .ecstasy { margin: 40px -18px; padding: 50px 18px; }
+            .visceral-break { margin: 40px -18px; padding: 28px 18px; font-size: 1.25em; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html" class="brand">JuanBlog</a>
+            <a href="index.html" class="back">← Volver</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="article-header">
+            <h1>Lecciones del Gimnasio</h1>
+            <div class="subtitle">La Sabiduría de No Saber</div>
+        </header>
+        <div class="section">
+            <p>Hay una paradoja que se manifiesta en los gimnasios de todo el mundo, visible para quien tenga ojos para ver: aquellos que menos saben sobre fisiología, biomecánica y teoría del entrenamiento, a menudo son los que más progresan. Mientras tanto, el aficionado erudito —que ha leído todos los estudios, optimizado cada variable, calculado cada ratio— permanece estancado en su mediocridad física, prisionero de un conocimiento que lo sabotea.</p>
+            <p>Esta paradoja no es casual. Nos habla de algo profundo sobre la naturaleza del aprendizaje, la acción y la trascendencia. Nos invita a considerar que, en ciertos dominios de la existencia, la inteligencia puede ser un obstáculo y la simplicidad una forma de sabiduría superior.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>I. El Tao del levantamiento</h2>
+            <p>El <em>Tao Te Ching</em> nos enseña sobre la <strong>wu wei</strong>, la no-acción que no es pasividad sino alineación perfecta con la naturaleza de las cosas. Cuando el culturista novato —ese \"tonto\" que simplemente levanta peso cada día— se acerca a la barra, no lo hace desde la teoría. No sabe que está \"activando fibras tipo II\" o \"optimizando el rango excursión\". Simplemente empuja y tira, una y otra vez, confiando en que el cuerpo sabe lo que la mente aún no comprende.</p>
+            <p>Y el cuerpo, ese sabio silencioso, responde. Crece. Se fortalece. No porque el novato entienda el proceso, sino porque no se interpone en él. No hay teoría que filtre la experiencia, no hay expectativa que deforme la percepción. Solo el gesto puro, repetido, consagrado por el tiempo.</p>
+            <p>El culturista que estudia demasiado, en cambio, vive en el laberinto de la representación. Cada sesión es una ecuación por resolver, cada ejercicio una variable en un sistema que nunca se cierra. Y en ese laberinto, la acción directa —el simple hecho de levantar— se diluye en la contemplación de cómo debería levantarse.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>II. La mente de principiante y el olvido sagrado</h2>
+            <p>En la tradición zen se habla de la <strong>shoshin</strong>, la mente de principiante. Es aquella actitud que se acerca a cada experiencia como si fuera la primera, sin el peso del conocimiento acumulado, sin las cicatrices del juicio pasado. El maestro zen Shunryu Suzuki decía: \"En la mente del principiante hay muchas posibilidades; en la mente del experto, pocas\".</p>
+            <p>El principiante entra al gimnasio sin teorías que defender, sin identidad que proteger. Puede simplemente hacer lo que se le indica y observar qué sucede. El experto, en cambio, filtra cada experiencia a través de lo que ya cree saber, y así se cierra a lo que el momento presente podría enseñarle.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>III. Las tres transformaciones</h2>
+            <p><strong>Nietzsche</strong>, en boca de Zaratustra, hablaba de las tres transformaciones del espíritu: de camello a león, de león a niño. El camello carga con el peso del deber y el conocimiento heredado. El león ruge su libertad y destruye las viejas tablas. Pero solo el niño puede crear de nuevo, porque el niño ha olvidado que hay reglas, y en ese olvido sagrado encuentra la inocencia necesaria para el juego genuino.</p>
+            <p>El culturista que deja de pensar tanto no regresa a la ignorancia primitiva; avanza hacia una <strong>simplicidad conquistada</strong>. Ha atravesado el conocimiento y ha salido por el otro lado, más ligero. Como el arquero zen que olvida la diana, olvida el arco, olvida su mano, hasta que solo queda el disparo puro.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>IV. La constancia como práctica espiritual</h2>
+            <p>Quizás el secreto más profundo no resida ni en la inteligencia ni en la ignorancia, sino en algo que ambas pueden oscurecer: <strong>la constancia silenciosa</strong>. El hombre que aparece cada día, sin drama, sin grandes revelaciones, sin la necesidad de entender completamente lo que hace, está practicando una forma de meditación que ningún libro puede enseñar.</p>
+            <p>Cada repetición es un mantra. Cada sesión, una ofrenda pequeña al altar del tiempo. Y el tiempo, ese gran escultor, responde no a quien más sabe, sino a quien más persiste. No es que la ciencia sea inútil; es que la ciencia sirve mejor cuando se ha olvidado que se sabe.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>VI. Más allá del gimnasio: la vida como práctica</h2>
+            <p>Pero el gimnasio, después de todo, es solo una metáfora. Una puerta de entrada a una verdad más vasta que se extiende por todos los dominios de la existencia. La paradoja del "no saber" no pertenece exclusivamente al hierro y el músculo; es la misma que opera en el estudio, en el taller, en el dormitorio, en el templo.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>El trabajo creativo</h2>
+            <p><strong>Rilke</strong> le escribía al joven poeta: <em>"Si su vida cotidiana le parece pobre, no la culpe; cúlpese a sí mismo, dígase que no es lo bastante poeta para conjurar sus riquezas."</em></p>
+            <p>El artista que sobre-piensa su obra —que acumula teorías sobre creatividad, que estudia los métodos de los maestros sin tocar jamás el lienzo— se encuentra en la misma parálisis que el novato sobrecargado de información. <strong>El arte no emerge del saber sobre el arte, sino del hacer arte.</strong> Cada pincelada torpe enseña más que mil tratados de estética.</p>
+            <p>Hay quienes han leído todo sobre escritura y no han escrito una página honesta. Y hay quienes, en su gloriosa ignorancia, han creado belleza simplemente porque no sabían que no podían.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>El amor más allá del análisis</h2>
+            <p><strong>Krishnamurti</strong> observaba que <em>"el momento en que has analizado el amor, este ha desaparecido."</em> El intelectual de las relaciones —armado con teorías del apego, lenguajes del amor, marcos psicológicos— puede describir el amor con precisión quirúrgica mientras permanece incapaz de amar.</p>
+            <p>El amor no pide comprensión; pide presencia. Como el músculo no pide que entiendas la fisiología de la contracción, sino que simplemente lo uses.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>El buscador que nunca llega</h2>
+            <p><strong>Eckhart Tolle</strong> señala una paradoja dolorosa: muchos buscadores espirituales usan la búsqueda misma como escape del momento presente. Acumulan prácticas, tradiciones, lecturas —siempre preparándose para despertar, nunca despertando.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>La existencia como práctica</h2>
+            <p>Quizás la invitación final sea esta: <strong>vivir no es un problema a resolver mediante información.</strong> La existencia no tiene manual porque <em>es</em> el manual, escribiéndose a sí mismo en cada instante.</p>
+            <p>El Tao que puede nombrarse no es el Tao eterno. La vida que puede explicarse no es la vida vivida.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>VII. Invitación</h2>
+            <p>Suelta el peso del saber. Entra al gimnasio. Entra al lienzo. Entra al amor. Entra al silencio.</p>
+            <p>Y descubre que siempre supiste nadar —solo necesitabas olvidar que no sabías.</p>
+        </div>
+    </div>
+</body>
+</html>

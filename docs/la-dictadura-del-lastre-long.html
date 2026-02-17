@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Dictadura del Lastre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1714;
+            --parchment: #f5f0e8;
+            --accent: #6b0f0f;
+            --accent-soft: #8b2020;
+            --muted: #6b6256;
+            --divider: #d4c9b8;
+            --ecstasy-bg: #120805;
+            --ecstasy-text: #e0d2c0;
+            --blood: #7a1a1a;
+            --bruise: #2d1b2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', 'Georgia', serif;
+            line-height: 1.85;
+            color: var(--ink);
+            background: var(--parchment);
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 100px 24px 120px;
+        }
+
+        /* Unified navbar */
+        .site-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #e5ddd0;
+        }
+        .site-nav-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .site-nav a.brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .site-nav a.brand:hover { color: var(--accent); }
+        .site-nav a.back {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            font-weight: 500;
+            color: #7a7168;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .site-nav a.back:hover { color: var(--ink); }
+
+        /* Header */
+        .article-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 40px;
+        }
+
+        .article-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .meta {
+            margin-top: 24px;
+            font-size: 0.85em;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* Sections */
+        .section { margin-bottom: 50px; }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 14px;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 1.12em;
+            margin-bottom: 18px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .concept {
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 2px solid var(--accent-soft);
+            margin: 30px 0;
+            padding: 8px 0 8px 24px;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.05em;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 28px;
+            font-size: 1.12em;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Visceral break — dark band */
+        .visceral-break {
+            background: var(--ink);
+            color: var(--parchment);
+            margin: 50px -24px;
+            padding: 32px 24px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5em;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.04em;
+            line-height: 1.6;
+        }
+
+        .visceral-break em {
+            font-weight: 600;
+            font-style: normal;
+            color: #c45050;
+        }
+
+        /* Ecstasy */
+        .ecstasy {
+            background: var(--ecstasy-bg);
+            color: var(--ecstasy-text);
+            margin: 60px -24px;
+            padding: 70px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecstasy::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(122, 26, 26, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ecstasy .ecstasy-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .ecstasy h2 {
+            color: #c45050;
+        }
+
+        .ecstasy p {
+            color: var(--ecstasy-text);
+            line-height: 2.1;
+            font-size: 1.18em;
+        }
+
+        .ecstasy em {
+            color: #d4956a;
+        }
+
+        .ecstasy strong {
+            color: #e8c9a0;
+            font-weight: 500;
+        }
+
+        /* Dividers */
+        .section-divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--divider);
+            font-size: 1.2em;
+            letter-spacing: 0.5em;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2em; }
+            .container { padding: 80px 18px 100px; }
+            .ecstasy { margin: 40px -18px; padding: 50px 18px; }
+            .visceral-break { margin: 40px -18px; padding: 28px 18px; font-size: 1.25em; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html" class="brand">JuanBlog</a>
+            <a href="index.html" class="back">← Volver</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="article-header">
+            <h1>La Dictadura del Lastre</h1>
+            <div class="subtitle">Por qué los débiles deben ser abandonados</div>
+        </header>
+        <div class="section">
+            <h2>I.Diagnóstico</h2>
+            <p>Contemplas el paisaje de una sociedad que se hunde bajo el peso de sus propias contradicciones. Las calles, otrora símbolo de vitalidad, son ahora un escenario de mendicidad y resignación. El aire está cargado de un murmullo colectivo, un lamento sordo que no se atreve a nombrar su origen. El <strong>27% del PIB</strong> de la Unión Europea destinado al gasto social no es una estadística fría; es el síntoma de una enfermedad terminal, la evidencia de que hemos confundido la compasión con la autodestrucción.</p>
+            <p>¿Por qué sostenemos lo que nos hunde? No es una pregunta retórica, sino una invitación a la <strong>CONSTERNACIÓN</strong> filosófica. No se trata de odio, sino de una perplejidad ante la paradoja de una civilización que celebra su propia decadencia como si fuera virtud.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>II.Genealogía</h2>
+            <p>La compasión, otrora un gesto marginal, se ha erigido en la virtud suprema de nuestra época. Nietzsche lo advirtió: el resentimiento de los débiles ha devenido en el motor moral de Occidente. Evola, desde la cima de la tradición, observa cómo la modernidad ha sustituido el rito por el llanto, la jerarquía por la nivelación. Lo que antes era vergüenza—la incapacidad, la dependencia—hoy se exhibe como orgullo.</p>
+            <blockquote>What is good? All that heightens the feeling of power... What is bad? All that proceeds from weakness.
+Nietzsche, The Antichrist</blockquote>
+            <p>What is good? All that heightens the feeling of power... What is bad? All that proceeds from weakness.</p>
+            <p>La inversión de valores es completa. Ya no se trata de elevar, sino de arrastrar hacia abajo. El <strong>ÚLTIMO HOMBRE</strong> sonríe y se congratula de su mediocridad.</p>
+        </div>
+        <div class="visceral-break">LO QUE NO SE USA SE ATROFIA. ESTO INCLUYE LA VOLUNTAD.</div>
+        <div class="section">
+        </div>
+        <div class="visceral-break">LO QUE NO SE USA SE ATROFIA. ESTO INCLUYE LA VOLUNTAD.</div>
+        <div class="section">
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>III.Categoría Metapolítica</h2>
+            <p>Schmitt nos enseña que lo político se define por la distinción amigo/enemigo. Pero ¿qué ocurre cuando el enemigo no está fuera, sino dentro? No es el pobre, sino el que exige sin crear; no es el distinto, sino el que te arrastra al abismo. Platón, con su <strong>NOBLE MENTIRA</strong>, intuyó la necesidad de jerarquías para evitar el colapso.</p>
+            <blockquote>Until philosophers are kings... cities will never have rest from their evils.
+Platón</blockquote>
+            <p>Until philosophers are kings... cities will never have rest from their evils.</p>
+            <p>El lastre no es una víctima; es un enemigo interno que mina las bases de lo posible.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>IV.Ley de Hierro</h2>
+            <p>La naturaleza no es buena ni mala; es <strong>EFICIENTE</strong>. Cioran denuncia la tolerancia como abdicación, y la historia está plagada de civilizaciones que se suicidaron por compasión. Stirner, desde el egoísmo sano, nos recuerda que el parasitismo no es una opción, sino una condena.</p>
+            <blockquote>Nations die from loss of exclusivism... Tolerance... the gentle names for the abdication of power.
+Cioran</blockquote>
+            <p>Nations die from loss of exclusivism... Tolerance... the gentle names for the abdication of power.</p>
+            <p>La bondad mal entendida es el lujo de los condenados.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="ecstasy">
+            <div class="ecstasy-inner">
+                <h2>V.Éxtasis</h2>
+                <p>Imagina, por un momento, la disolución del "yo" compasivo. No es un acto de odio, sino de <strong>LIBERACIÓN</strong>. La sociedad sin lastre no es una utopía; es el regreso a lo elemental, a la crudeza de lo real. El sacrificio no es un fin, sino el precio de la grandeza.</p>
+                <blockquote>The blood of the heroes is closer to God than the ink of the philosophers...
+Evola</blockquote>
+                <p>The blood of the heroes is closer to God than the ink of the philosophers...</p>
+                <p>Hay un momento —lo saben quienes han estado ahí— en el que el esfuerzo deja de ser esfuerzo. Cuando la mente, agotada de racionalizar, finalmente cala. La crueldad necesaria no es un acto de barbarie, sino de contacto con lo sagrado.</p>
+            </div>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>VI.Conclusión</h2>
+            <p>Este no es un llamado al odio, sino a la <strong>HONESTIDAD</strong>. ¿Qué estás dispuesto a sostener? La respuesta no es una sentencia, sino un umbral. El cierre no es un final, sino una apertura.</p>
+            <blockquote>I am owner of my might, and I am so when I know myself as unique.
+Stirner</blockquote>
+            <p>I am owner of my might, and I am so when I know myself as unique.</p>
+            <p>La pregunta queda suspendida en el aire, como un desafío.</p>
+        </div>
+    </div>
+</body>
+</html>
