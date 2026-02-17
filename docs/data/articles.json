@@ -203,6 +203,19 @@
       "featured": false,
       "readTime": 8,
       "status": "approved"
+    },
+    {
+      "id": "dictadura-lastre",
+      "slug": "la-dictadura-del-lastre",
+      "title": "La Dictadura del Lastre",
+      "subtitle": "Por qué los débiles deben ser abandonados",
+      "date": "2026-02-17",
+      "file": "drafts/la-dictadura-del-lastre-long.html",
+      "tags": ["filosofía", "política", "nietzsche"],
+      "excerpt": "Contemplas el paisaje de una sociedad que se hunde bajo el peso de sus propias contradicciones. El 27% del PIB de la UE destinado al gasto social es el síntoma de una enfermedad terminal...",
+      "featured": true,
+      "readTime": 8,
+      "status": "draft"
     }
   ],
   "tags": [
@@ -288,8 +301,8 @@
     }
   ],
   "meta": {
-    "lastUpdated": "2026-02-16",
-    "totalArticles": 13,
+    "lastUpdated": "2026-02-17",
+    "totalArticles": 14,
     "version": "2.0"
   }
 }
