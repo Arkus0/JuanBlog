@@ -1,32 +1,38 @@
 /* ========================================
-   JUANBLOG - SISTEMA DE DISEÑO UNIFICADO
-   Basado en "La Abolición del Silencio"
+   JUANBLOG v3 - PITÁGORAS UNABOMBER
+   Sistema de Diseño Unificado
    ======================================== */
 
-/* ---------- VARIABLES BASE (PERGAMINO) ---------- */
+/* ---------- VARIABLES BASE (PERGAMINO/SANGRE) ---------- */
 :root {
-  /* Paleta Pergamino/Tinta (default) */
-  --ink: #1a1714;
-  --parchment: #f5f0e8;
-  --parchment-dark: #ebe5db;
-  --accent: #2c3e50;
-  --accent-soft: #4a6274;
+  /* Paleta Registro I: Beligerante Místico */
+  --pergamino: #f5f0e8;
+  --pergamino-dark: #ebe5db;
+  --tinta: #1a1714;
+  --sangre: #8b2500;
+  --sangre-soft: rgba(139, 37, 0, 0.1);
   --muted: #6b6256;
   --divider: #d4c9b8;
-  --ecstasy-bg: #0a0d10;
-  --ecstasy-text: #d6cfc2;
   
-  /* Alias para compatibilidad */
-  --bg-primary: var(--parchment);
-  --bg-secondary: var(--parchment-dark);
-  --text-primary: var(--ink);
+  /* Paleta Registro II/III: Máquina/Artefacto */
+  --void: #0a0a0a;
+  --void-text: #333;
+  --void-panico: #cc3333;
+  --void-total: #000;
+  
+  /* Alias */
+  --bg-primary: var(--pergamino);
+  --bg-secondary: var(--pergamino-dark);
+  --text-primary: var(--tinta);
   --text-secondary: var(--muted);
+  --accent: var(--sangre);
   --border: var(--divider);
   
   /* Tipografías */
   --font-title: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'EB Garamond', Georgia, serif;
   --font-ui: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
   
   /* Espaciado */
   --space-xs: 0.5rem;
@@ -53,8 +59,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--parchment);
-  color: var(--ink);
+  background: var(--pergamino);
+  color: var(--tinta);
   line-height: 1.85;
   min-height: 100vh;
 }
@@ -64,7 +70,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-title);
   font-weight: 700;
   line-height: 1.15;
-  color: var(--ink);
+  color: var(--tinta);
 }
 
 h1 {
@@ -74,17 +80,17 @@ h1 {
 
 h2 {
   font-size: 1.5em;
-  margin-top: 50px;
+  margin-top: 60px;
   margin-bottom: 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 2px solid var(--sangre);
 }
 
 h3 {
   font-size: 1.2em;
   margin-top: 32px;
   margin-bottom: 16px;
-  color: var(--accent);
+  color: var(--sangre);
 }
 
 p {
@@ -119,14 +125,13 @@ p {
   font-family: var(--font-title);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--tinta);
   text-decoration: none;
   letter-spacing: 0.02em;
 }
 
-.nav-logo::before {
-  content: '💀';
-  margin-right: 8px;
+.nav-logo span {
+  color: var(--sangre);
 }
 
 .nav-links {
@@ -146,7 +151,7 @@ p {
 }
 
 .nav-links a:hover {
-  color: var(--accent);
+  color: var(--sangre);
 }
 
 /* ---------- CONTENEDOR PRINCIPAL ---------- */
@@ -168,7 +173,7 @@ p {
   font-size: 0.8em;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--sangre);
   display: block;
   margin-bottom: 20px;
 }
@@ -177,7 +182,7 @@ p {
   font-size: 2.6em;
   font-weight: 700;
   line-height: 1.15;
-  color: var(--ink);
+  color: var(--tinta);
   margin-bottom: 16px;
 }
 
@@ -199,9 +204,9 @@ p {
 .article-status {
   display: inline-block;
   background: transparent;
-  color: var(--accent);
+  color: var(--sangre);
   padding: 4px 12px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--sangre);
   border-radius: 4px;
   font-family: var(--font-ui);
   font-size: 0.7rem;
@@ -221,7 +226,7 @@ p {
   font-size: 0.8em;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--sangre);
   margin-right: 12px;
 }
 
@@ -229,8 +234,8 @@ p {
 blockquote {
   margin: 32px 0;
   padding: 24px 32px;
-  border-left: 3px solid var(--accent);
-  background: var(--parchment-dark);
+  border-left: 3px solid var(--sangre);
+  background: var(--pergamino-dark);
   font-style: italic;
 }
 
@@ -252,26 +257,35 @@ blockquote cite {
 /* ---------- ÉNFASIS ---------- */
 strong, .emphasis {
   font-weight: 600;
-  color: var(--ink);
+  color: var(--sangre);
 }
 
-/* ---------- SECCIONES ESPECIALES ---------- */
+/* ---------- CORTE VISCERAL ---------- */
+.visceral-cut {
+  background: var(--tinta);
+  color: var(--pergamino);
+  padding: 32px 40px;
+  margin: 48px -24px;
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 1.3em;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
 
-/* Éxtasis - Pergamino destacado (sin oscuro) */
+.visceral-cut p {
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- ÉXTASIS ---------- */
 .ecstasy-block {
-  background: var(--parchment-dark);
-  border: 2px solid var(--accent);
+  background: var(--pergamino-dark);
+  border: 2px solid var(--sangre);
   padding: 40px 32px;
   margin: 48px 0;
   text-align: center;
-  border-radius: 8px;
-}
-
-.ecstasy-block::before {
-  content: '✨';
-  font-size: 2em;
-  display: block;
-  margin-bottom: 16px;
 }
 
 .ecstasy-block p {
@@ -289,35 +303,58 @@ strong, .emphasis {
   padding-top: 24px;
 }
 
-/* Visceral - Líneas arriba y abajo */
-.visceral-break {
-  border-top: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
+/* ---------- INTRUSIÓN (registro invadiendo otro) ---------- */
+.intrusion {
+  background: var(--void);
+  color: var(--void-text);
+  padding: 32px;
+  margin: 48px -24px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.intrusion p {
+  margin: 0;
+}
+
+/* ---------- REGISTRO MÁQUINA ---------- */
+.machine-text {
+  font-family: var(--font-mono);
+  color: var(--void-text);
+}
+
+.machine-block {
+  background: var(--void);
+  color: var(--void-text);
   padding: 32px;
   margin: 48px 0;
-  text-align: center;
+  border-radius: 4px;
 }
 
-.visceral-break p {
+.system-note {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--muted);
+  border-left: 2px solid var(--void-panico);
+  padding-left: 16px;
+  margin: 24px 0;
+}
+
+/* ---------- REGISTRO ARTEFACTO ---------- */
+.artefact {
+  background: var(--void-total);
+  color: #222;
+  padding: 60px 40px;
+  margin: 0 -24px;
   text-align: center;
-  font-size: 1.15em;
-  font-style: italic;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  line-height: 2;
+}
+
+.artefact p {
+  text-align: center;
   margin: 0;
-  color: var(--accent);
-}
-
-/* Void - Bloque oscuro */
-.void-block {
-  background: var(--ink);
-  color: var(--parchment);
-  padding: 40px;
-  margin: 48px 0;
-}
-
-.void-block p {
-  text-align: center;
-  margin: 0;
-  font-size: 1.1em;
 }
 
 /* ---------- BOTONES ---------- */
@@ -335,27 +372,27 @@ strong, .emphasis {
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.2s;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--sangre);
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: var(--parchment);
+  background: var(--sangre);
+  color: var(--pergamino);
 }
 
 .btn-primary:hover {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--tinta);
+  border-color: var(--tinta);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--accent);
+  color: var(--sangre);
 }
 
 .btn-secondary:hover {
-  background: var(--accent);
-  color: var(--parchment);
+  background: var(--sangre);
+  color: var(--pergamino);
 }
 
 /* ---------- FOOTER ---------- */
@@ -378,9 +415,10 @@ strong, .emphasis {
     padding: 80px 20px 80px;
   }
   
-  .ecstasy-block {
+  .visceral-cut,
+  .intrusion {
     margin: 40px -20px;
-    padding: 32px 24px;
+    padding: 24px 20px;
   }
   
   .nav-links {
@@ -394,7 +432,7 @@ strong, .emphasis {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--parchment-dark);
+  background: var(--pergamino-dark);
 }
 
 ::-webkit-scrollbar-thumb {
