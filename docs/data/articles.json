@@ -113,7 +113,7 @@
       "title": "El Imperativo de la Barra",
       "subtitle": "Kant contra la Infancia del Gimnasio Moderno",
       "date": "2026-02-16",
-      "file": "drafts/kant-magic-gimnasio-v1.html",
+      "file": "drafts/kant-magic-v3.html",
       "tags": [
         "filosofía",
         "gimnasio",
@@ -205,17 +205,19 @@
       "status": "approved"
     },
     {
-      "id": "dictadura-lastre",
-      "slug": "la-dictadura-del-lastre",
-      "title": "La Dictadura del Lastre",
-      "subtitle": "Por qué los débiles deben ser abandonados",
-      "date": "2026-02-17",
-      "file": "drafts/la-dictadura-del-lastre-long.html",
-      "tags": ["filosofía", "política", "nietzsche"],
-      "excerpt": "Contemplas el paisaje de una sociedad que se hunde bajo el peso de sus propias contradicciones. El 27% del PIB de la UE destinado al gasto social es el síntoma de una enfermedad terminal...",
-      "featured": true,
-      "readTime": 8,
-      "status": "draft"
+      "id": "por-que-queremos-ser-mas-fuertes",
+      "slug": "por-que-queremos-ser-mas-fuertes",
+      "title": "¿Por qué queremos ser más fuertes?",
+      "subtitle": "Genealogía de un deseo que no comprendemos",
+      "date": "2026-01-15",
+      "file": "drafts/por-que-queremos-ser-mas-fuertes-v1.html",
+      "tags": [
+        "filosofía",
+        "fitness"
+      ],
+      "excerpt": "Genealogía de un deseo que no comprendemos. Por qué el impulso de levantar más peso trasciende la estética y el rendimiento.",
+      "featured": false,
+      "readTime": 10
     }
   ],
   "tags": [
@@ -301,7 +303,7 @@
     }
   ],
   "meta": {
-    "lastUpdated": "2026-02-17",
+    "lastUpdated": "2026-02-16",
     "totalArticles": 14,
     "version": "2.0"
   }
