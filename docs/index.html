@@ -7,7 +7,7 @@
     <meta name="description" content="Ensayos sobre filosofía, entrenamiento y cultura de masa. Iniciación intelectual con vislumbres de trascendencia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1714;
@@ -703,7 +703,23 @@
 
             if (featured && !activeTag) {
                 const idx = articles.indexOf(featured);
-                featuredSection.innerHTML = `
+                const isNull = !featured.title && !featured.subtitle;
+                if (isNull) {
+                    featuredSection.innerHTML = `
+                    <a href="${featured.file}" class="featured-card" style="background:#000;border-color:#111;">
+                        <div class="featured-left" style="padding:60px 48px;">
+                            <div class="featured-label" style="color:#333;">null</div>
+                            <h2 class="featured-title" style="color:#1a1a1a;font-family:'JetBrains Mono',monospace;font-size:1.1em;font-weight:400;letter-spacing:0.05em;">${featured.excerpt}</h2>
+                            <div style="margin-top:32px;">
+                                <span class="read-arrow" style="color:#333;">→</span>
+                            </div>
+                        </div>
+                        <div class="featured-right" style="background:#000;">
+                            <span class="essay-number" style="color:rgba(255,255,255,0.03);">∅</span>
+                        </div>
+                    </a>`;
+                } else {
+                    featuredSection.innerHTML = `
                     <a href="${featured.file}" class="featured-card">
                         <div class="featured-left">
                             <div class="featured-label">Ensayo destacado</div>
@@ -724,6 +740,7 @@
                             <span class="essay-number">${String(articles.length - idx).padStart(2, '0')}</span>
                         </div>
                     </a>`;
+                }
                 filtered = filtered.filter(a => a !== featured);
             } else {
                 featuredSection.innerHTML = '';
@@ -743,6 +760,19 @@
                     .slice(0, 3);
                 const status = article.status === 'approved' ? 'approved' : 'draft';
                 const statusLabel = status === 'approved' ? 'Publicado' : 'Borrador';
+                const isNull = !article.title && !article.subtitle;
+
+                if (isNull) {
+                    return `
+                    <a href="${article.file}" class="article-card" style="background:#0a0a0a;border-color:#111;animation: fadeUp 0.5s ${0.1 + i * 0.06}s var(--ease) both;">
+                        <span class="card-number" style="color:#1a1a1a;">∅</span>
+                        <p style="color:#333;font-family:'Instrument Sans',sans-serif;font-size:0.82em;line-height:1.8;flex:1;">${article.excerpt}</p>
+                        <div class="card-footer" style="border-color:#1a1a1a;">
+                            <span class="card-date" style="color:#222;">${formatDate(article.date)}</span>
+                            <span style="color:#222;font-family:'Instrument Sans',sans-serif;font-size:0.75em;">null</span>
+                        </div>
+                    </a>`;
+                }
 
                 return `
                     <a href="${article.file}" class="article-card" style="animation: fadeUp 0.5s ${0.1 + i * 0.06}s var(--ease) both;">
@@ -755,7 +785,7 @@
                         <p class="card-excerpt">${article.excerpt}</p>
                         <div class="card-footer">
                             <span class="card-date">${formatDate(article.date)}</span>
-                            <span class="card-read">${article.readTime} min</span>
+                            <span class="card-read">${article.readTime ? article.readTime + ' min' : ''}</span>
                             <span class="card-status ${status}">${statusLabel}</span>
                         </div>
                     </a>`;
