@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "id": "elegir",
+      "slug": "elegir",
+      "title": "",
+      "subtitle": "",
+      "date": "2026-02-17",
+      "file": "elegir-v1.html",
+      "tags": [],
+      "excerpt": "",
+      "featured": true,
+      "readTime": null
+    },
+    {
       "id": "null",
       "slug": "null",
       "title": "",
@@ -319,7 +331,7 @@
   ],
   "meta": {
     "lastUpdated": "2026-02-16",
-    "totalArticles": 15,
+    "totalArticles": 16,
     "version": "2.0"
   }
 }
