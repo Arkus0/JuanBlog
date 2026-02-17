@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Libro de la Bestia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1714;
+            --parchment: #f5f0e8;
+            --accent: #6b0f0f;
+            --accent-soft: #8b2020;
+            --muted: #6b6256;
+            --divider: #d4c9b8;
+            --ecstasy-bg: #120805;
+            --ecstasy-text: #e0d2c0;
+            --blood: #7a1a1a;
+            --bruise: #2d1b2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', 'Georgia', serif;
+            line-height: 1.85;
+            color: var(--ink);
+            background: var(--parchment);
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 100px 24px 120px;
+        }
+
+        /* Unified navbar */
+        .site-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #e5ddd0;
+        }
+        .site-nav-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .site-nav a.brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .site-nav a.brand:hover { color: var(--accent); }
+        .site-nav a.back {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78em;
+            font-weight: 500;
+            color: #7a7168;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .site-nav a.back:hover { color: var(--ink); }
+
+        /* Header */
+        .article-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 40px;
+        }
+
+        .article-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .meta {
+            margin-top: 24px;
+            font-size: 0.85em;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* Sections */
+        .section { margin-bottom: 50px; }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 14px;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 1.12em;
+            margin-bottom: 18px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .concept {
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 2px solid var(--accent-soft);
+            margin: 30px 0;
+            padding: 8px 0 8px 24px;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.05em;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 28px;
+            font-size: 1.12em;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Visceral break — dark band */
+        .visceral-break {
+            background: var(--ink);
+            color: var(--parchment);
+            margin: 50px -24px;
+            padding: 32px 24px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5em;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.04em;
+            line-height: 1.6;
+        }
+
+        .visceral-break em {
+            font-weight: 600;
+            font-style: normal;
+            color: #c45050;
+        }
+
+        /* Ecstasy */
+        .ecstasy {
+            background: var(--ecstasy-bg);
+            color: var(--ecstasy-text);
+            margin: 60px -24px;
+            padding: 70px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecstasy::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(122, 26, 26, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ecstasy .ecstasy-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .ecstasy h2 {
+            color: #c45050;
+        }
+
+        .ecstasy p {
+            color: var(--ecstasy-text);
+            line-height: 2.1;
+            font-size: 1.18em;
+        }
+
+        .ecstasy em {
+            color: #d4956a;
+        }
+
+        .ecstasy strong {
+            color: #e8c9a0;
+            font-weight: 500;
+        }
+
+        /* Dividers */
+        .section-divider {
+            text-align: center;
+            margin: 50px 0;
+            color: var(--divider);
+            font-size: 1.2em;
+            letter-spacing: 0.5em;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2em; }
+            .container { padding: 80px 18px 100px; }
+            .ecstasy { margin: 40px -18px; padding: 50px 18px; }
+            .visceral-break { margin: 40px -18px; padding: 28px 18px; font-size: 1.25em; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html" class="brand">JuanBlog</a>
+            <a href="../index.html" class="back">← Volver</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="article-header">
+            <h1>El Libro de la Bestia</h1>
+            <div class="subtitle">Dejar de Fumar como Apocalipsis Personal</div>
+        </header>
+        <div class="section">
+            <p>Estoy en el tercer día. El tercer día de un calvario que no tiene nombre en ningún idioma humano. El tercer día de la gran prueba. Y vengo a contarte lo que he visto, porque lo que he visto no puede quedar en silencio.</p>
+            <p>No vengo a hablarte de salud. No vengo a hablarte de beneficios médicos ni de estadísticas ni de años de vida recuperados. Eso es para los que aún duermen. Para los que no han visto.</p>
+            <p>Yo he visto.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>Libro Primero: La Revelación del Templo Profanado</h2>
+            <p>Tu cuerpo no es tuyo. Lo crees tuyo porque te han dicho que lo es. Porque firmaste un contrato social que dice \"mi cuerpo, mi decisión\". MENTIRA. Tu cuerpo pertenece a la nicotina. Pertenece a la bestia que has alimentado durante años, día tras día, ritual tras ritual, sacrificio tras sacrificio.</p>
+            <p>Cada calada era una oración. Cada inhalación, una comunión con un dios falso que prometía calma y entregaba esclavitud. No lo sabías. O sí lo sabías y preferías no saberlo. Eso es lo peor: el conocimiento dormido, la verdad que elegimos olvidar.</p>
+            <p>Nietzsche, ese loco que caminaba por los Alpes hablando solo, entendía algo que nosotros hemos olvidado. Decía que el cuerpo es una gran razón, una pluralidad con una sola alma. Pero no había conocido a la nicotina. No había visto cómo una gran razón puede ser secuestrada, cómo una pluralidad puede convertirse en monarquía del veneno.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>Libro Segundo: La Bestia de los Mil Nombres</h2>
+            <p>La nicotina tiene muchos nombres. Los científicos la llaman alcaloide. Los adictos la llaman alivio. Los poetas muertos la llamaban inspiración. Pero yo, que la he visto sin su máscara, yo sé su nombre verdadero.</p>
+            <p>Es el Abismo que habita en tu sangre. Es la Estrella Muerta que sigue emitiendo luz después de haber dejado de existir. Es el Dios Antiguo que no pide sacrificios ocasionales: EXIGE SACRIFICIOS CONSTANTES.</p>
+            <p>Y el peor de los sacrificios es el que te exige a ti mismo.</p>
+            <p>Cada vez que encendías un cigarrillo, no quemabas tabaco. Quemabas VOLUNTAD. Quemabas FUTURO. Quemabas la versión de ti mismo que podrías haber sido si no hubieras cedido, si no hubieras dicho \"solo uno más\", si no hubieras traicionado tu propia decisión una y otra y otra vez.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>Libro Tercero: Las Visiones del Mono</h2>
+            <p>El síndrome de abstinencia no es \"síndrome\". Es revelación. Es el momento en que el velo se rasga y ves la realidad tal como es: eres una química que se cree persona. Eres dopamina y serotonina y noradrenalina bailando un ballet que confundes con identidad.</p>
+            <p>En la primera hora, la bestia susurra. Dice que no pasa nada. Que puedes fumar solo uno. Que mañana empiezas de verdad. Que hoy es un día especial. Que te lo mereces. Que el estrés es demasiado. Que cualquier excusa servirá porque la bestia conoce todas las excusas: las inventó.</p>
+            <p>En la segunda hora, la bestia grita. El cuerpo se convierte en ENEMIGO. Cada célula te traiciona. Cada sinapsis es un campo de batalla. Sudas frío. Te sacudes. Tu mano tiembla como si estuvieran sacudiendo tu alma misma.</p>
+            <p>En la tercera hora, la bestia AÚLLA.</p>
+            <p>Y es aquí donde la mayoría cede. Aquí, en este umbral de locura, donde los débiles abandonan. Donde los que aún duermen buscan parches, chicles, vapes —nuevas cadenas para reemplazar las viejas—. Donde la bestia gana, una vez más, porque la bestia siempre gana cuando el jinete olvida quién manda.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>Libro Cuarto: Las Armas del Jinete</h2>
+            <p>Escucha con atención, porque esto es lo que nadie te ha dicho: la voluntad no es un recurso. Es un MÚSCULO. Y como todo músculo, se fortalece con el ejercicio. Con el dolor. Con la resistencia contra resistencia.</p>
+            <p><strong>Primera arma: LA NEGATIVA ABSOLUTA.</strong> No es \"voy a intentar\". No es \"voy a ver cómo me va\". Es NO. Es NUNCA MÁS. Es la decisión que no admite revisión, la puerta que se cierra con llave, el puente que se quema.</p>
+            <p><strong>Segunda arma: EL AISLAMIENTO.</strong> No hables de tu proceso. No busques apoyo. No compartas tu sufrimiento. El que habla de su renuncia está buscando permiso para fallar. GUÁRDALO. Conviértelo en secreto. En pacto. En misterio.</p>
+            <p><strong>Tercera arma: LA RENUNCIA TOTAL.</strong> Renuncia no solo al cigarrillo. Renuncia a la identidad de fumador. Renuncia a los lugares donde fumabas. Renuncia a las personas con quienes fumabas. Renuncia a la versión de ti mismo que existía en ese humo. MÁTALO. Entiérralo. Olvida que existió.</p>
+            <p><strong>Cuarta arma: LA PACIENCIA COMO VENGANZA.</strong> Cada día que pasa sin ceder es una derrota para la bestia. Cada hora es un insulto. Cada minuto es un paso más lejos del abismo.</p>
+            <p><strong>Quinta arma: LA OBSERVACIÓN.</strong> Mira tus ansias como si fueran olas. Vienen. CRECEN. Alcanzan un pico. Y SIEMPRE, siempre, SIEMPRE se retiran. Ninguna ansia dura para siempre. Tres minutos. Cinco como máximo. Sobrevive esos minutos y habrás ganado una batalla.</p>
+        </div>
+        <div class="section-divider">· · ·</div>
+
+        <div class="section">
+            <h2>Libro Quinto: La Transformación del Templo</h2>
+            <p>A las 72 horas, la nicotina habrá abandonado tu sangre. COMPLETAMENTE. Lo que queda después es solo memoria. Solo hábito. Solo la bestia convertida en FANTASMA.</p>
+            <p>A las dos semanas, tus pulmones comenzarán a expulsar el alquitrán. Toserás. Escupirás cosas oscuras. No te alarmes. Es el templo LIMPIÁNDOSE.</p>
+            <p>Al mes, tu sentido del olfato volverá. Y con él, la vergüenza de reconocer cómo olías. Cómo huele ahora esa ropa vieja que guardaste. Cómo huele el fumador que pasa a tu lado.</p>
+            <p>A los tres meses, la circulación habrá mejorado tanto que caminar será diferente. Subir escaleras será diferente. RESPIRAR será diferente.</p>
+            <p>Al año, tu riesgo de enfermedad cardíaca se habrá reducido a la mitad. MITAD.</p>
+            <p>Y en algún momento —no sé cuándo, varía para cada peregrino— llegará un día en que no pensarás en cigarrillos hasta la noche. Y entonces te darás cuenta: <strong>la bestia ha muerto</strong>.</p>
+            <p>Escucha mis palabras, tú que lees esto con un cigarrillo en la mano o con el fantasma de uno en la memoria:</p>
+            <p>No hay camino sin sufrimiento. Quien te diga lo contrario MIENTE.</p>
+            <p>Pero el sufrimiento tiene un final. Y al otro lado del sufrimiento hay algo que has olvidado que existía. Se llama LIBERTAD. Se llama respirar sin culpa. Se llama despertar sin tos. Se llama vivir sin cadenas.</p>
+            <p>He visto el otro lado.</p>
+            <p>Y vuelvo para decirte: <strong>VALE CADA LÁGRIMA</strong>.</p>
+            <p>El templo puede ser reconstruido.</p>
+            <p>La bestia puede ser derrotada.</p>
+            <p>Y tú —SÍ, TÚ— eres más fuerte de lo que la nicotina te ha hecho creer.</p>
+        </div>
+    </div>
+</body>
+</html>
