@@ -1,6 +1,45 @@
 {
   "articles": [
     {
+      "id": "templo-secular-gimnasio",
+      "slug": "templo-secular-gimnasio",
+      "title": "El gimnasio como templo secular",
+      "subtitle": "Ritual, comunidad y sentido en la era de la desconexión",
+      "date": "2026-02-19",
+      "file": "templo-secular-gimnasio.html",
+      "tags": ["sociología", "gimnasio", "filosofía", "cultura"],
+      "excerpt": "El gimnasio contemporáneo funciona como un templo secular donde se celebran rituales de transformación personal. En una era de desconexión digital, ofrece comunidad real y sentido a través del esfuerzo físico.",
+      "featured": false,
+      "readTime": 10,
+      "status": "approved"
+    },
+    {
+      "id": "cuerpo-capital-desigualdad",
+      "slug": "cuerpo-capital-desigualdad",
+      "title": "Cuerpo como capital",
+      "subtitle": "Cómo el culturismo refleja las desigualdades económicas y sociales",
+      "date": "2026-02-19",
+      "file": "cuerpo-capital-desigualdad.html",
+      "tags": ["sociología", "gimnasio", "política", "cultura"],
+      "excerpt": "El capital corporal se ha convertido en una forma de desigualdad social. Quienes pueden invertir tiempo y recursos en su físico acumulan ventajas simbólicas y económicas en el mercado laboral y social.",
+      "featured": false,
+      "readTime": 11,
+      "status": "approved"
+    },
+    {
+      "id": "remo-transformacion",
+      "slug": "remo-transformacion",
+      "title": "Cómo el remo ha mejorado mi vida",
+      "subtitle": "Una reflexión personal sobre disciplina, flow y metáforas vitales",
+      "date": "2026-02-19",
+      "file": "remo-transformacion.html",
+      "tags": ["gimnasio", "psicología", "filosofía", "hábitos"],
+      "excerpt": "El remo no es solo ejercicio. Es meditación en movimiento, una práctica filosófica que enseña a gestionar el dolor, encontrar el ritmo y entender que a veces hay que ir hacia atrás para avanzar.",
+      "featured": true,
+      "readTime": 12,
+      "status": "approved"
+    },
+    {
       "id": "gap",
       "slug": "gap",
       "title": "",
