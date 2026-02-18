@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuerpo como capital: cómo el culturismo refleja las desigualdades económicas y sociales | JuanBlog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent: #ef4444;
+            --accent-hover: #dc2626;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Article */
+        article {
+            padding: 60px 0;
+        }
+
+        .article-header {
+            margin-bottom: 48px;
+        }
+
+        .category {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .meta {
+            display: flex;
+            gap: 24px;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Content */
+        .content {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .content p {
+            margin-bottom: 24px;
+        }
+
+        .content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 48px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 32px 0 16px;
+        }
+
+        .content blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 24px;
+            margin: 32px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .content blockquote cite {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.875rem;
+            font-style: normal;
+            color: var(--text-muted);
+        }
+
+        .content ul, .content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 12px;
+        }
+
+        .content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .content a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .pull-quote::before {
+            content: '"';
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: 16px;
+            line-height: 1;
+        }
+
+        .pull-quote p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats box */
+        .stats-box {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .stats-box h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* References */
+        .references {
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .references h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .references ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .references li {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.875rem;
+            }
+
+            .content {
+                font-size: 1rem;
+            }
+
+            .meta {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">JUANBLOG</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="article-header">
+                <span class="category">Economía Política del Cuerpo</span>
+                <h1>Cuerpo como capital: cómo el culturismo refleja las desigualdades económicas y sociales</h1>
+                <div class="meta">
+                    <span>📅 19 de febrero de 2026</span>
+                    <span>⏱️ 14 min de lectura</span>
+                    <span>✍️ Juan</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p>El culturismo, lejos de ser una mera práctica deportiva o estética, constituye un campo privilegiado para observar las dinámicas de reproducción de las desigualdades sociales en las sociedades contemporáneas. A través del prisma de la teoría de Pierre Bourdieu sobre las formas de capital, este artículo examina cómo el cuerpo musculoso funciona como un activo convertible en recursos económicos, sociales, culturales y simbólicos, y cómo su acumulación está estructurada por las mismas lógicas de clase que organizan la distribución desigual de la riqueza en el capitalismo avanzado.</p>
+
+                <div class="stats-box">
+                    <h4>La industria global del fitness en cifras</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">$105B</span>
+                            <span class="stat-label">Valor del mercado en 2024</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8.8%</span>
+                            <span class="stat-label">Crecimiento anual proyectado</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24.9%</span>
+                            <span class="stat-label">Penetración en EE.UU.</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0.8%</span>
+                            <span class="stat-label">Penetración en India</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>El concepto de capital corporal</h2>
+
+                <h3>De Bourdieu a la sociología contemporánea</h3>
+
+                <p>Pierre Bourdieu introdujo el concepto de "capital físico" en su artículo de 1978 "Sport and Social Class", desarrollándolo posteriormente en <em>La distinción</em> (1984). Para Bourdieu, el capital corporal se refiere a las propiedades físicas del cuerpo que pueden convertirse en otros tipos de capital: económico (mediante el trabajo), cultural (como vehículo de transmisión de disposiciones de clase) y social (como base del reconocimiento y la pertenencia grupal).</p>
+
+                <p>El capital corporal, sin embargo, no es una posesión individual en el sentido tradicional. Como señala Bourdieu, "el cuerpo es el producto más indiscutible de la acción pedagógica" —es decir, el resultado de inversiones familiares y escolares que varían sistemáticamente según la posición de clase. En este sentido, el cuerpo es simultáneamente capital heredado y capital adquirido, naturaleza y cultura, dado y construido.</p>
+
+                <div class="pull-quote">
+                    <p>El cuerpo es el producto más indiscutible de la acción pedagógica, y las diferencias corporales entre las clases no son accidentales sino el resultado de inversiones desiguales en tiempo, dinero y disposiciones.</p>
+                </div>
+
+                <p>Chris Shilling, uno de los principales sociólogos del cuerpo, ha desarrollado esta perspectiva señalando que en las sociedades contemporáneas el cuerpo se ha convertido en un proyecto reflexivo. Sin embargo, esta reflexividad no está distribuida equitativamente: las clases dominantes disponen de los recursos necesarios para tratar el cuerpo como "proyecto", mientras que las clases trabajadoras tienden a mantener una relación más instrumental con sus cuerpos, centrada en la funcionalidad inmediata.</p>
+
+                <h3>Formas de conversión del capital corporal</h3>
+
+                <p>El capital corporal, como otras formas de capital bourdianas, es convertible. En el contexto del culturismo y el fitness, identificamos varias vías de conversión:</p>
+
+                <p><strong>Conversión económica:</strong> El cuerpo musculoso puede transformarse directamente en ingresos mediante el trabajo como modelo fitness, entrenador personal, influencer de redes sociales o competidor profesional. Según datos de la industria, los entrenadores personales en mercados desarrollados pueden generar ingresos significativos, con el segmento de entrenamiento personal representando el 47% del mercado de clubes de salud.</p>
+
+                <p><strong>Conversión social:</strong> El cuerpo trabajado funciona como credencial de pertenencia a determinados círculos sociales, facilitando el establecimiento de redes de contacto que pueden activarse en momentos de necesidad. Como documenta David Hutson en su investigación sobre entrenadores personales, el "cuerpo es tu tarjeta de presentación" en la industria del fitness.</p>
+
+                <p><strong>Conversión cultural:</strong> El conocimiento técnico asociado al entrenamiento (nutrición, fisiología del ejercicio, farmacología deportiva) puede acumularse como capital cultural, legitimando posiciones de autoridad y expertise.</p>
+
+                <p><strong>Conversión simbólica:</strong> Finalmente, el cuerpo musculoso genera prestigio, reconocimiento y estatus simbólico que, aunque no directamente monetizable, puede traducirse en ventajas en otros campos sociales.</p>
+
+                <h2>La estructura de clase del culturismo</h2>
+
+                <h3>Origen y evolución de una práctica de clase</h3>
+
+                <p>El culturismo moderno nace en contextos de clase trabajadora. Los gimnasios de los años 60 y 70 en Estados Unidos, documentados en el clásico documental <em>Pumping Iron</em> (1977), eran espacios predominantemente working-class donde hombres —frecuentemente de minorías étnicas— buscaban en el desarrollo muscular una forma de capital alternativo al que les era negado por el sistema educativo y laboral.</p>
+
+                <p>Alan Klein, en su etnografía <em>Little Big Men</em> (1993), describe cómo el culturismo en California funcionaba como una subcultura de compensación para hombres que no encajaban en los moldes tradicionales de masculinidad hegemónica. El gimnasio ofrecía un campo donde el esfuerzo individual podía traducirse en reconocimiento visible, independientemente de los credenciales educativos o el capital económico.</p>
+
+                <p>Sin embargo, esta democratización aparente del capital corporal oculta estructuras de desigualdad más profundas. Como señala Lee Monaghan en <em>Bodybuilding, Drugs and Risk</em> (2001), el acceso a los recursos necesarios para alcanzar el éxito en el culturismo competitivo —suplementación, nutrición especializada, tiempo de entrenamiento, farmacología— está estructurado por la clase social. El culturismo "natural" es, en muchos sentidos, una ilusión ideológica que oculta las inversiones económicas necesarias para construir un cuerpo de élite.</p>
+
+                <h3>La mercantilización del cuerpo ideal</h3>
+
+                <p>La transformación del culturismo de subcultura marginal a industria global ilustra las dinámicas de incorporación capitalista de prácticas alternativas. Lo que comenzó como una forma de expresión corporal working-class ha sido paulatinamente colonizado por la lógica del mercado, generando nuevas formas de desigualdad.</p>
+
+                <p>El mercado global del fitness, valorado en más de 105.000 millones de dólares en 2024, opera según lógicas de segmentación de clase. En un extremo, encontramos gimnasios low-cost con membresías accesibles pero equipamiento básico y sin servicios complementarios; en el otro, centros premium como Equinox o Life Time, con membresías que pueden alcanzar los 40.000 dólares anuales y que ofrecen servicios de "bienestar" y "longevidad" que reproducen distinciones de clase.</p>
+
+                <p>Esta segmentación no es meramente económica; es simbólica. Como documentan investigadores como Jennifer Smith Maguire en <em>Fit for Consumption</em> (2008), los diferentes segmentos del mercado fitness están diseñados para atraer a públicos específicos, con códigos estéticos, espaciales y de interacción que funcionan como mecanismos de exclusión simbólica.</p>
+
+                <h2>El culturismo como meritocracia corporal</h2>
+
+                <h3>El mito del esfuerzo igualitario</h3>
+
+                <p>Una de las ideologías dominantes en la cultura fitness es la creencia en una meritocracia corporal: la idea de que cualquiera puede alcanzar el cuerpo deseado mediante el esfuerzo suficiente. Esta narrativa, profundamente arraigada en el imaginario neoliberal, oculta las estructuras de oportunidad desiguales que determinan quién puede invertir en su cuerpo y cómo.</p>
+
+                <p>Como señala la investigadora brasileña Tania Villanueva en sus estudios sobre cultura de gimnasio, el discurso del "cuerpo moldeable" individualiza la responsabilidad sobre la forma física, despolitizando las desigualdades en el acceso a recursos saludables. La obesidad y la falta de condición física se presentan como fallas morales individuales, no como productos de estructuras económicas que determinan la disponibilidad de tiempo, alimentos nutritivos, espacios seguros para el ejercicio y conocimiento técnico.</p>
+
+                <p>Los datos globales del mercado fitness ilustran esta desigualdad estructural. Mientras Estados Unidos alcanza una penetración del 24,9% de membresías en gimnasios, India se sitúa en apenas el 0,8%. Esta disparidad no refleja diferencias en la voluntad de ejercitarse, sino diferencias en ingresos disponibles, infraestructura urbana, tiempo de ocio y acceso a información sobre salud.</p>
+
+                <h3>La farmacología como niveladora y segregadora</h3>
+
+                <p>El uso de sustancias ergogénicas en el culturismo introduce una paradoja adicional. Por un lado, los esteroides anabólicos y otros compuestos pueden funcionar como "niveladores" que permiten a individuos con menor capital genético alcanzar niveles de desarrollo muscular que de otro modo serían imposibles. Por otro lado, el acceso a farmacología de calidad, supervisión médica adecuada y protocolos seguros está estructurado por la clase social.</p>
+
+                <p>Como documenta Lee Monaghan, el uso de esteroides en el culturismo amateur working-class frecuentemente ocurre en contextos de desinformación, riesgo sanitario y estigmatización criminalizadora. En contraste, el uso de hormonas de crecimiento, péptidos y terapias de reemplazo hormonal en centros anti-envejecimiento de clase alta opera bajo una lógica médica legitimada, aunque las sustancias y los objetivos sean similares.</p>
+
+                <p>Esta doble moral farmacológica reproduce las desigualdades de clase a través de mecanismos de legitimación diferencial. El cuerpo químico de la élite es "biohacking" y "optimización"; el cuerpo químico de la clase trabajadora es "dopaje" y "fraude".</p>
+
+                <h2>Interseccionalidades: género, raza y clase</h2>
+
+                <h3>El cuerpo racializado en el gimnasio</h3>
+
+                <p>La acumulación de capital corporal no ocurre en un vacío de clase. La intersección con otras categorías sociales —especialmente raza y género— produce configuraciones específicas de oportunidad y restricción.</p>
+
+                <p>En el contexto estadounidense, el culturismo históricamente ha sido un espacio de expresión para hombres negros excluidos de otros campos de reconocimiento social. Sin embargo, como señala Ellis Cashmore en sus análisis de la cultura deportiva, el éxito de culturistas negros como Arnold Schwarzenegger (aunque de origen austríaco, su éxito se inscribe en dinámicas de representación racial) o Ronnie Coleman ha operado dentro de estereotipos que asocian la musculatura negra con fuerza física pero no con inteligencia o liderazgo.</p>
+
+                <p>El trabajo de Loïc Wacquant sobre el boxeo en el South Side de Chicago ilustra cómo el capital corporal acumulado por hombres negros working-class frecuentemente queda atrapado en campos deportivos de clase baja, con pocas vías de conversión en capital económico o cultural de largo alcance. El "sueño" del campeonato es, en última instancia, una forma de explotación estructural que canaliza la energía de jóvenes de clase trabajadora hacia objetivos inalcanzables para la mayoría.</p>
+
+                <h3>El género como multiplicador de desigualdad</h3>
+
+                <p>La construcción del capital corporal también está profundamente génerica. Las mujeres en el culturismo enfrentan una paradoja estructural: mientras que el desarrollo muscular les permite acumular capital en el campo deportivo específico, ese mismo capital puede depreciarse en otros campos sociales donde la feminidad hegemónica valora la delgadez sobre la musculatura visible.</p>
+
+                <p>Como documentan investigadoras como Paula Black en <em>The Beauty Industry</em> (2004), las mujeres que desarrollan cuerpos musculosos frecuentemente enfrentan estigmatización y cuestionamiento de su feminidad. Esta "penalización de género" significa que el retorno sobre la inversión en capital corporal es sistemáticamente menor para las mujeres que para los hombres, desincentivando la práctica o forzándolas a negociar permanentemente los límites de la feminidad aceptable.</p>
+
+                <p>Además, las mujeres working-class que trabajan como entrenadoras personales o modelos fitness enfrentan una doble carga: la explotación de su trabajo corporal y la cosificación de sus cuerpos en mercados donde la feminidad musculosa es simultáneamente deseada y devaluada.</p>
+
+                <h2>La industria del fitness: capitalismo biopolítico</h2>
+
+                <h3>De la disciplina al empoderamiento</h3>
+
+                <p>Michel Foucault, en sus análisis sobre la biopolítica, describió cómo el poder moderno opera a través de la gestión de la vida y los cuerpos. La industria del fitness contemporánea representa una forma sofisticada de esta biopolítica, donde la disciplina corporal ya no es impuesta desde fuera sino internalizada como proyecto de auto-optimización.</p>
+
+                <p>Como señala Roberta Sassatelli en <em>Fitness Culture</em> (2010), los gimnasios modernos han abandonado el modelo disciplinario de las gimnasticas autoritarias del siglo XIX para adoptar una lógica de "diversión disciplinada". El entrenamiento se presenta como elección libre, placer personal, expresión de identidad. Sin embargo, esta aparente libertad opera dentro de estructuras de mercado que determinan qué cuerpos son deseables, qué prácticas son legítimas y qué productos son necesarios.</p>
+
+                <p>La convergencia entre fitness, medicina preventiva y longevidad —una de las tendencias clave identificadas por la Health & Fitness Association para 2025— ilustra esta biopolítica contemporánea. El ejercicio ya no es simplemente recreación o estética; es inversión en capital humano, seguro de salud, optimización de la productividad laboral. El cuerpo se convierte en portafolio de activos que requiere gestión constante.</p>
+
+                <h3>La plataformización del capital corporal</h3>
+
+                <p>La digitalización del fitness ha introducido nuevas dinámicas en la acumulación y circulación del capital corporal. Las redes sociales, especialmente Instagram y TikTok, han creado mercados donde el cuerpo musculoso puede convertirse directamente en influencia monetizable.</p>
+
+                <p>Sin embargo, esta "democratización" del acceso a la visibilidad reproduce desigualdades estructurales. Los algoritmos de las plataformas favorecen ciertos tipos corporales, ciertas estéticas, ciertos narrativas de transformación. Además, la economía de la atención digital demanda producción constante de contenido, favoreciendo a quienes pueden dedicar tiempo completo a su presencia online —generalmente, quienes ya disponen de recursos económicos o patrocinios corporativos.</p>
+
+                <p>El resultado es una nueva forma de proletarización del cuerpo fitness, donde influencers de clase trabajadora explotan su propio capital corporal en condiciones de precariedad, mientras corporaciones y plataformas capturan el valor generado.</p>
+
+                <h2>Conclusión: Más allá de la meritocracia corporal</h2>
+
+                <p>El análisis del cuerpo como capital revela las profundas estructuras de desigualdad que atraviesan aparentes prácticas igualitarias como el culturismo y el fitness. Lejos de ser un campo donde el esfuerzo individual determina el éxito, el culturismo reproduce las mismas lógicas de acumulación y exclusión que caracterizan al capitalismo contemporáneo.</p>
+
+                <p>Esta perspectiva no implica descalificar la práctica del culturismo ni negar los beneficios del ejercicio físico. Se trata, más bien, de desarrollar una conciencia sociológica que permita ver más allá de las narrativas meritocráticas y reconocer las estructuras materiales que determinan quién puede construir qué tipo de cuerpo, y con qué consecuencias.</p>
+
+                <p>El desafío para una sociología crítica del cuerpo es imaginar formas de práctica corporal que no reproduzcan estas desigualdades. Esto implica, en primer lugar, desnaturalizar el vínculo entre musculatura y valor moral; en segundo lugar, cuestionar la lógica de mercado que convierte el cuerpo en activo especulativo; y en tercer lugar, construir espacios de práctica corporal colectiva que operen fuera de la lógica de la competencia y la acumulación individual.</p>
+
+                <p>El cuerpo como capital es, en última instancia, una forma de alienación: la transformación de nuestra corporeidad en objeto de inversión, en mercancía, en espectáculo. Una política del cuerpo emancipadora requeriría recuperar la dimensión de uso sobre la de intercambio, la experiencia vivida sobre la representación visual, la solidaridad sobre la competencia.</p>
+
+                <p>En un contexto donde la industria del fitness proyecta alcanzar los 234.800 millones de dólares en 2034, estas reflexiones no son meramente académicas. Son urgentes políticamente.</p>
+
+                <div class="references">
+                    <h2>Referencias</h2>
+                    <ul>
+                        <li>Black, P. (2004). <em>The Beauty Industry: Gender, Culture, Pleasure</em>. Routledge.</li>
+                        <li>Bourdieu, P. (1978). "Sport and Social Class". <em>Social Science Information</em>, 17(6), 819-840.</li>
+                        <li>Bourdieu, P. (1984). <em>La distinción: criterio y bases sociales del gusto</em>. Taurus.</li>
+                        <li>Bourdieu, P. (1986). "The Forms of Capital". En J. Richardson (Ed.), <em>Handbook of Theory and Research for the Sociology of Education</em>. Greenwood.</li>
+                        <li>Cashmore, E. (2006). <em>Sporting Culture: Sociological Perspectives</em>. Routledge.</li>
+                        <li>Foucault, M. (1976). <em>Historia de la sexualidad I: La voluntad de saber</em>. Siglo XXI.</li>
+                        <li>Health & Fitness Association (2025). <em>Global Report: State of the Fitness Industry</em>.</li>
+                        <li>Hutson, D. J. (2016). "Training Bodies, Building Status: Negotiating Gender and Age Differences in the U.S. Fitness Industry". <em>Qualitative Sociology</em>, 39(1), 49-70.</li>
+                        <li>Klein, A. (1993). <em>Little Big Men: Bodybuilding Subculture and Gender Construction</em>. SUNY Press.</li>
+                        <li>Monaghan, L. F. (2001). <em>Bodybuilding, Drugs and Risk</em>. Routledge.</li>
+                        <li>Sassatelli, R. (2010). <em>Fitness Culture: Gyms and the Commercialization of Discipline and Fun</em>. Palgrave Macmillan.</li>
+                        <li>Shilling, C. (2003). <em>The Body and Social Theory</em>. SAGE.</li>
+                        <li>Smith Maguire, J. (2008). <em>Fit for Consumption: Sociology and the Business of Fitness</em>. Routledge.</li>
+                        <li>Villanueva, T. (s.f.). "La cultura del gimnasio y las significaciones del cuerpo". <em>Revista de Investigación en Ciencias Sociales</em>, UAEMéx.</li>
+                        <li>Wacquant, L. (2006). <em>Entre las cuerdas: cuadernos de un aprendiz de boxeador</em>. Siglo XXI.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 JuanBlog. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
